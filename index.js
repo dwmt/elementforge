@@ -3,18 +3,22 @@ const container = new ComponentThemeContainer()
 
 const components = require('./components')
 
+let VueInst = null
+
 const ElementForge = {
 	container,
 	install (Vue, options) {
-		// install all the components
 		components.install(Vue, options)
+		VueInst = Vue
 		if (options.defaultTheme) {
 			container.setDefaultTheme(options.defaultTheme)
 		}
 	},
 	use (theme) {
-		// install theme into container...
-		theme.install(container)
+		if (!VueInst) {
+			throw new Error('ElementForge must be installed first!')
+		}
+		theme.install(container, VueInst)
 	}
 }
 
