@@ -1,6 +1,6 @@
 <script>
 import Componentable from './Componentable'
-import CTC from '../lib/theme/ComponentThemeContainer'
+import {container} from '../index'
 export default {
 	name: 'ContainerComponent',
 	extends: Componentable,
@@ -14,11 +14,11 @@ export default {
 	},
 	computed: {
 		renderableComponent () {
-			let theme = CTC.getDefaultTheme()
+			let theme = container.getDefaultTheme()
 			if (this.theme) {
 				theme = this.theme
 			}
-			let appearance = CTC.getAppearance(theme, this.component, this.appearance)
+			let appearance = container.getAppearance(theme, this.component, this.appearance)
 			if (!appearance) {
 				return this.deafultComponent
 			}
