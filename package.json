@@ -36,5 +36,8 @@
 	"bugs": {
 		"url": "https://github.com/dwmt/elementforge/issues"
 	},
-	"homepage": "https://github.com/dwmt/elementforge#readme"
+	"homepage": "https://github.com/dwmt/elementforge#readme",
+	"dependencies": {
+		"@dwmt/loader": "^1.0.0"
+	}
 }
