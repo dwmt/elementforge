@@ -1,9 +1,12 @@
 <script>
 import Componentable from './Componentable'
-import {container} from '../index'
+import ElementForge from '../index'
 export default {
 	name: 'ContainerComponent',
 	extends: Componentable,
+	data () {
+		globalDarkMode: false
+	},
 	props: {
 		theme: {
 			type: String
@@ -13,17 +16,28 @@ export default {
 		}
 	},
 	computed: {
+		darkModeState () {
+			if (this.darkMode) {
+				return this.darkMode
+			}
+			return this.globalDarkMode
+		},
 		renderableComponent () {
-			let theme = container.getDefaultTheme()
+			let theme = ElementForge.container.getDefaultTheme()
 			if (this.theme) {
 				theme = this.theme
 			}
-			let appearance = container.getAppearance(theme, this.component, this.appearance)
+			let appearance = ElementForge.container.getAppearance(theme, this.component, this.appearance)
 			if (!appearance) {
 				return this.deafultComponent
 			}
 			return appearance.componentName
 		}
+	},
+	beforeMount () {
+		this.globalDarkMode = ElementForge.getDarkMode((darkMode) => {
+			this.globalDarkMode = darkMode
+		})
 	}
 }
 </script>

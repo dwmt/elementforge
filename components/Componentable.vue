@@ -19,6 +19,10 @@ export default {
 		},
 		loader: {
 			type: Object
+		},
+		darkMode: {
+			type: Boolean,
+			default: false
 		}
 	}
 }
