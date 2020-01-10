@@ -1,48 +1,65 @@
 <template>
 	<component
 		:is="renderableComponent"
-		:text="text"
+		:label="label"
 		:properties="properties"
 		:modifier="modifier"
 		:name="name"
 		:isValid="isValid"
 		:errors="errors"
 		:data="data"
-		:darkMode="darkModeState"
+		:readonly="readonly"
 
 		:isLoading="isLoading"
 
 		@click="click"
+		@input="input"
 	/>
 </template>
+
 <script>
 import ContainerComponent from '../ContainerComponent'
 
 const Loader = require('@dwmt/loader/lib/Loader')
 
 export default {
-	name: 'Button',
-	extends: RenderableComponent,
+	name: 'Checkbox',
+	extends: ContainerComponent,
 	data () {
 		return {
-			component: 'Button',
-			defaultComponent: 'default-button',
+			component: 'Checkbox',
+			defaultComponent: 'default-checkbox',
 			loader: null,
-			isLoading: false,
+			isLoading: false
 		}
 	},
 	props: {
-		text: {
-			type: String,
-			required: true
+		label: {
+			type: String
 		},
 		data: {
 			type: Object
+		},
+		trueValue: {
+			default: true
+		},
+		falseValue: {
+			default: false
+		},
+		readonly: {
+			default: false
 		}
 	},
 	methods: {
 		click (payload) {
 			this.$emit('click', payload)
+		},
+		input (payload) {
+			if (!payload) {
+				this.$emit('input', this.falseValue)
+			} else {
+				this.$emit('input', this.trueValue)
+			}
 		}
 	},
 	beforeMount () {
@@ -57,3 +74,7 @@ export default {
 	}
 }
 </script>
+
+<style>
+
+</style>

@@ -5,10 +5,11 @@
 </button>
 </template>
 <script>
-import Componentable from '../Componentable'
+import RenderableComponent from '../RenderableComponent.vue'
+
 export default {
 	name: 'DefaultButton',
-	extends: Componentable,
+	extends: RenderableComponent,
 	props: [
 		'data',
 		'text',
