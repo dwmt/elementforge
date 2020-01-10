@@ -1,6 +1,6 @@
 <script>
 import RenderableComponent from './RenderableComponent'
-import ElementForge from '../index'
+import ElementForge from '../ElementForge'
 export default {
 	name: 'ContainerComponent',
 	extends: RenderableComponent,
