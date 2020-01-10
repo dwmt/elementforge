@@ -33,7 +33,7 @@ export default {
 	],
 	methods: {
 		click (e) {
-			if (!this.isValid || this.disabled) {
+			if (this.disabled) {
 				return
 			}
 			this.$emit('click', { event: e, data: this.value })

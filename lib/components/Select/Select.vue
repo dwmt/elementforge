@@ -4,6 +4,15 @@
 
 		:options="options"
 		:required="required"
+		:placeholder="placeholder"
+		:value="value"
+		:label="label"
+
+		@click="click"
+		@input="input"
+		@focus="focus"
+		@blur="blur"
+		@keyup="keyup"
 	/>
 </template>
 
@@ -26,12 +35,40 @@ export default {
 		value: {},
 		label: {}
 	},
+	data () {
+		return {
+			component: 'Select',
+			defaultComponent: 'default-select',
+			loader: null,
+			isLoading: false
+		}
+	},
 	methods: {
-		click () {},
-		input () {},
-		focus () {},
-		blur () {},
-		keyup () {}
+		click (payload) {
+			this.$emit('click', payload)
+		},
+		input (payload) {
+			this.$emit('input', payload)
+		},
+		focus (payload) {
+			this.$emit('focus', payload)
+		},
+		blur (payload) {
+			this.$emit('blur', payload)
+		},
+		keyup (payload) {
+			this.$emit('keyup', payload)
+		}
+	},
+	beforeMount () {
+		this.loader = new Loader({
+			onActivation: () => {
+				this.isLoading = true
+			},
+			onTermination: () => {
+				this.isLoading = false
+			}
+		})
 	}
 }
 </script>

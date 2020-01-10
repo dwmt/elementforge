@@ -24,7 +24,7 @@
 <script>
 import ContainerComponent from '../ContainerComponent'
 
-const Loader = ('@dwmt/loader/lib/Loader')
+const Loader = require('@dwmt/loader/lib/Loader')
 
 export default {
 	name: 'Textarea',
