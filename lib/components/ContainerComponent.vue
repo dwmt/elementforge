@@ -1,9 +1,9 @@
 <script>
-import Componentable from './Componentable'
+import RenderableComponent from './RenderableComponent'
 import ElementForge from '../index'
 export default {
 	name: 'ContainerComponent',
-	extends: Componentable,
+	extends: RenderableComponent,
 	data () {
 		globalDarkMode: false
 	},

@@ -16,13 +16,13 @@
 	/>
 </template>
 <script>
-import ContainerComponent from '../ContainerComponent'
+import RenderableComponent from '../RenderableComponent'
 
 const Loader = require('@dwmt/loader/lib/Loader')
 
 export default {
 	name: 'Button',
-	extends: ContainerComponent,
+	extends: RenderableComponent,
 	data () {
 		return {
 			component: 'Button',

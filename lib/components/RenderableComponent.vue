@@ -1,6 +1,6 @@
 <script>
 export default {
-	name: 'Componentable',
+	name: 'RenderableComponent',
 	props: {
 		modifier: {
 			type: String
