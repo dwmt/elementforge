@@ -9,15 +9,13 @@ export default {
 			type: String
 		},
 		isValid: {
-			type: Boolean
+			type: Boolean,
+			default: true
 		},
 		errors: {
 			type: Array
 		},
 		properties: {
-			type: Object
-		},
-		loader: {
 			type: Object
 		},
 		darkMode: {

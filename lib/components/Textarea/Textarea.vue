@@ -32,7 +32,7 @@ export default {
 	data () {
 		return {
 			component: 'textarea',
-			defaultComponent: 'deafult-textarea',
+			defaultComponent: 'default-textarea',
 			loader: null,
 			isLoading: false
 		}
@@ -55,7 +55,9 @@ export default {
 		click () {},
 		focus () {},
 		blur () {},
-		input () {},
+		input (payload) {
+			this.$emit('input', payload)
+		},
 		keyup () {}
 	},
 	beforeMount () {

@@ -1,5 +1,5 @@
 <template>
-<button :class="{modifier, darkMode}" :disabled="disabled" :name="name" >
+<button :class="{modifier, darkMode}" :disabled="disabled" :name="name" @click="click" >
 	<span v-if="!isLoading">{{ text }}</span>
 	<span v-else>Loading...</span>
 </button>

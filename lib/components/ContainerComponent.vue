@@ -1,5 +1,5 @@
 <script>
-import RenderableComponent from './RenderableComponent'
+import RenderableComponent from './RenderableComponent.vue'
 import ElementForge from '../ElementForge'
 export default {
 	name: 'ContainerComponent',
@@ -29,7 +29,7 @@ export default {
 			}
 			let appearance = ElementForge.container.getAppearance(theme, this.component, this.appearance)
 			if (!appearance) {
-				return this.deafultComponent
+				return this.defaultComponent
 			}
 			return appearance.componentName
 		}

@@ -16,18 +16,18 @@
 	/>
 </template>
 <script>
-import ContainerComponent from '../ContainerComponent'
+import ContainerComponent from '../ContainerComponent.vue'
 
 const Loader = require('@dwmt/loader/lib/Loader')
 
 export default {
 	name: 'Button',
-	extends: RenderableComponent,
+	extends: ContainerComponent,
 	data () {
 		return {
 			component: 'Button',
 			defaultComponent: 'default-button',
-			loader: null,
+			loaderInstance: null,
 			isLoading: false,
 		}
 	},
@@ -46,7 +46,7 @@ export default {
 		}
 	},
 	beforeMount () {
-		this.loader = new Loader({
+		this.loaderInstance = new Loader({
 			onActivation: () => {
 				this.isLoading = true
 			},

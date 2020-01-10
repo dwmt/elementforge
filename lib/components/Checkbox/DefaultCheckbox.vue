@@ -1,5 +1,13 @@
 <template>
-	<input type="checkbox" :name="name" :disabled="disabled" :readonly="readonly"/>
+	<input
+		type="checkbox"
+		:name="name"
+		:disabled="disabled"
+		:readonly="readonly"
+		:checked="checked"
+		@input="input"
+		@click="click"
+	/>
 </template>
 
 <script>

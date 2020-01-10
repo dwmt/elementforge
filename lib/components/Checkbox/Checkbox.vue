@@ -9,6 +9,7 @@
 		:errors="errors"
 		:data="data"
 		:readonly="readonly"
+		:checked="checked"
 
 		:isLoading="isLoading"
 
@@ -48,6 +49,12 @@ export default {
 		},
 		readonly: {
 			default: false
+		},
+		value: {}
+	},
+	computed: {
+		checked () {
+			return this.value === this.trueValue
 		}
 	},
 	methods: {
