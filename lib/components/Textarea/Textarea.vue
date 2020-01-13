@@ -2,7 +2,7 @@
 	<component
 		:is="renderableComponent"
 		:value="value"
-		:requried="required"
+		:required="required"
 		:minlength="minlength"
 		:maxlength="maxlength"
 		:label="label"
@@ -31,7 +31,7 @@ export default {
 	extends: ContainerComponent,
 	data () {
 		return {
-			component: 'textarea',
+			component: 'Textarea',
 			defaultComponent: 'default-textarea',
 			loader: null,
 			isLoading: false
