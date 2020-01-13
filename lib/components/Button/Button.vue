@@ -27,7 +27,7 @@ export default {
 		return {
 			component: 'Button',
 			defaultComponent: 'default-button',
-			loaderInstance: null,
+			loader: null,
 			isLoading: false,
 		}
 	},
@@ -46,7 +46,7 @@ export default {
 		}
 	},
 	beforeMount () {
-		this.loaderInstance = new Loader({
+		this.loader = new Loader({
 			onActivation: () => {
 				this.isLoading = true
 			},
