@@ -42,6 +42,9 @@ export default {
 	},
 	methods: {
 		click (payload) {
+			if (this.isLoading || this.disabled) {
+				return
+			}
 			this.$emit('click', payload)
 		}
 	},
