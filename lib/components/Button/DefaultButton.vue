@@ -1,5 +1,5 @@
 <template>
-<button :class="{modifier, darkMode}" :disabled="disabled" :name="name" @click="click" >
+<button :class="classes" :disabled="disabled" :name="name" @click="click" >
 	<span v-if="!isLoading">{{ text }}</span>
 	<span v-else>Loading...</span>
 </button>
@@ -16,6 +16,18 @@ export default {
 		'disabled',
 		'isLoading'
 	],
+	computed: {
+		classes () {
+			let classes = []
+			if (this.modifiers.length) {
+				classes = classes.concat(this.modifiers)
+			}
+			if (this.darkMode) {
+				classes.push('darkMode')
+			}
+			return classes
+		}
+	},
 	methods: {
 		click (e) {
 			if (!this.isValid || this.disabled) {

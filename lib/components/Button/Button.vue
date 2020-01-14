@@ -3,7 +3,7 @@
 		:is="renderableComponent"
 		:text="text"
 		:properties="properties"
-		:modifier="modifier"
+		:modifiers="modifiers"
 		:name="name"
 		:isValid="isValid"
 		:errors="errors"

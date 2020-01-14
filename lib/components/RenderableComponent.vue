@@ -2,8 +2,9 @@
 export default {
 	name: 'RenderableComponent',
 	props: {
-		modifier: {
-			type: String
+		modifiers: {
+			type: Array,
+			default: () => { return [] }
 		},
 		name: {
 			type: String
@@ -16,7 +17,8 @@ export default {
 			type: Array
 		},
 		properties: {
-			type: Object
+			type: Object,
+			default: () => { return {} }
 		},
 		darkMode: {
 			type: Boolean,

@@ -3,13 +3,14 @@
 		:is="renderableComponent"
 		:label="label"
 		:properties="properties"
-		:modifier="modifier"
+		:modifiers="modifiers"
 		:name="name"
 		:isValid="isValid"
 		:errors="errors"
 		:data="data"
 		:readonly="readonly"
 		:checked="checked"
+		:disabled="disabled"
 
 		:isLoading="isLoading"
 
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import ContainerComponent from '../ContainerComponent'
+import ContainerComponent from '../ContainerComponent.vue'
 
 const Loader = require('@dwmt/loader/lib/Loader')
 
@@ -48,6 +49,10 @@ export default {
 			default: false
 		},
 		readonly: {
+			default: false
+		},
+		disabled: {
+			type: Boolean,
 			default: false
 		},
 		value: {}
