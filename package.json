@@ -39,6 +39,7 @@
 	"homepage": "https://github.com/dwmt/elementforge#readme",
 	"dependencies": {
 		"@dwmt/loader": "^1.0.0",
+		"vindication.js": "^4.16.5",
 		"vue": "^2.6.11"
 	},
 	"devDependencies": {
