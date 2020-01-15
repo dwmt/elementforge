@@ -135,7 +135,24 @@ export default {
 
 		}
 	},
+	watch: {
+		toggled () {
+			if (this.toggled) {
+				document.addEventListener('click', this.blurEvent)
+			} else {
+				document.removeEventListener('click', this.blurEvent)
+			}
+		}
+	},
 	methods: {
+		blurEvent (e) {
+			if (!this.$el.contains(e.target)) {
+				this.close()
+			}
+		},
+		close () {
+			this.toggled = false
+		},
 		toggle () {
 			this.toggled = !this.toggled
 		},
