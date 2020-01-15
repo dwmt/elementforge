@@ -14,7 +14,8 @@ export default {
 			default: true
 		},
 		errors: {
-			type: Array
+			type: Array,
+			default: () => []
 		},
 		properties: {
 			type: Object,
