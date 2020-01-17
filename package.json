@@ -1,9 +1,10 @@
 {
 	"name": "@dwmt/elementforge",
-	"version": "0.0.2",
+	"version": "0.0.5",
 	"description": "Simple UI component library",
-	"main": "index.js",
+	"main": "./dist/ElementForge.js",
 	"scripts": {
+		"prepublish": "npx parcel build lib/ElementForge.js -o dist/ElementForge.js",
 		"test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mochapack --webpack-config test/webpack.config.js --require test/setup.js test/**/*.spec.js"
 	},
 	"repository": {
@@ -43,6 +44,8 @@
 		"vue": "^2.6.11"
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.8.3",
+		"@babel/core": "^7.8.3",
 		"@babel/plugin-syntax-dynamic-import": "^7.7.4",
 		"@babel/preset-env": "^7.7.7",
 		"@vue/test-utils": "^1.0.0-beta.30",
@@ -60,6 +63,8 @@
 		"mocha": "^7.0.0",
 		"mochapack": "^1.1.13",
 		"nyc": "^15.0.0",
+		"parcel-bundler": "^1.12.4",
+		"pug": "^2.0.4",
 		"tailwindcss": "^1.1.4",
 		"vue-loader": "^15.8.3",
 		"vue-template-compiler": "^2.6.11",

@@ -8,7 +8,8 @@
 		:isValid="isValid"
 		:modifiers="modifiers"
 		:properties="properties"
-		
+		:type="type"
+
 		:label="label"
 		:value="value"
 		@input="input"
@@ -25,7 +26,8 @@ export default {
 			type: String,
 			default: ''
 		},
-		value: {}
+		value: {},
+		type: {}
 	},
 	data () {
 		return {

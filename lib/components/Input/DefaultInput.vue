@@ -1,7 +1,7 @@
 <template lang="pug">
 .input-container
 	.label {{ label }}
-	input(:value="value" @input="input")
+	input(:value="value" @input="input" :type="type")
 </template>
 
 <script>
@@ -11,7 +11,8 @@ export default {
 	extends: RenderableComponent,
 	props: {
 		value: {},
-		label: {}
+		label: {},
+		type: {}
 	},
 	methods: {
 		input(e) {
