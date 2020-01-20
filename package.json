@@ -5,6 +5,7 @@
 	"main": "./dist/ElementForge.js",
 	"scripts": {
 		"prepublish": "npx parcel build lib/ElementForge.js -o dist/ElementForge.js",
+		"dev": "npx parcel lib/ElementForge.js -o dist/ElementForge.js",
 		"test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mochapack --webpack-config test/webpack.config.js --require test/setup.js test/**/*.spec.js"
 	},
 	"repository": {
