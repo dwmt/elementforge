@@ -1,12 +1,12 @@
 {
 	"name": "@dwmt/elementforge",
-	"version": "0.0.7",
+	"version": "0.0.8",
 	"description": "Simple UI component library",
 	"main": "./dist/ElementForge.js",
 	"module": "./dist/ElementForge.esm.js",
 	"scripts": {
-		"prepublish": "npx bili --format esm --format cjs",
-		"dev": "npx bili --watch --format esm --format cjs",
+		"prepublish": "npx bili --format esm --format cjs --bundle-node-modules",
+		"dev": "npx bili --watch --format esm --format cjs --bundle-node-modules",
 		"test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mochapack --webpack-config test/webpack.config.js --require test/setup.js test/**/*.spec.js"
 	},
 	"files": [
