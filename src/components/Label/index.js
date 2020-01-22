@@ -1,5 +1,5 @@
-import Label from './Label'
-import DefaultLabel from './DefaultLabel'
+import Label from './Label.vue'
+import DefaultLabel from './DefaultLabel.vue'
 
 export default function (Vue, options) {
 	Vue.component('Label', Label)

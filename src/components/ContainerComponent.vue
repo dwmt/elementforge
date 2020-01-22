@@ -1,6 +1,7 @@
 <script>
 import RenderableComponent from './RenderableComponent.vue'
-import ElementForge from '../ElementForge'
+import container from '../Container'
+import bus from '../Bus'
 export default {
 	name: 'ContainerComponent',
 	extends: RenderableComponent,
@@ -23,11 +24,11 @@ export default {
 			return this.globalDarkMode
 		},
 		renderableComponent () {
-			let theme = ElementForge.container.getDefaultTheme()
+			let theme = container.getDefaultTheme()
 			if (this.theme) {
 				theme = this.theme
 			}
-			let appearance = ElementForge.container.getAppearance(theme, this.component, this.appearance)
+			let appearance = container.getAppearance(theme, this.component, this.appearance)
 			if (!appearance) {
 				return this.defaultComponent
 			}
@@ -35,7 +36,8 @@ export default {
 		}
 	},
 	beforeMount () {
-		this.globalDarkMode = ElementForge.getDarkMode((darkMode) => {
+		this.globalDarkMode = container.getDarkMode()
+		bus.$on('darkMode:change', (darkMode) => {
 			this.globalDarkMode = darkMode
 		})
 	}

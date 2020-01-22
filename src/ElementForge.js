@@ -1,12 +1,8 @@
-import ComponentThemeContainer from './theme/ComponentThemeContainer.js'
 import Theme from './theme/Theme.js'
+import container from './Container'
+import bus from './Bus'
 
 import RenderableComponent from './components/RenderableComponent.vue'
-
-import Vue from 'vue'
-
-const container = new ComponentThemeContainer()
-const bus = new Vue({})
 
 import components from './components'
 
@@ -24,6 +20,9 @@ export default {
 		VueInst = Vue
 		if (options.darkMode) {
 			this.setDarkMode(options.darkMode)
+		}
+		if (options.strict) {
+			container.setStrictMode(options.strict)
 		}
 	},
 	use (theme) {

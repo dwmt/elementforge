@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import RenderableComponent from '../RenderableComponent'
+import RenderableComponent from '../RenderableComponent.vue'
 export default {
 	name: 'DefaultInput',
 	extends: RenderableComponent,

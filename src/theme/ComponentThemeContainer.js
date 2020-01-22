@@ -1,17 +1,22 @@
-function ComponentThemeContainer () {
+function ComponentThemeContainer (options) {
 	this.themes = {},
 	this.defaultTheme = 'default'
 	this.darkMode = false
+	this.strict = options.strict || false
 }
 
 ComponentThemeContainer.prototype.registerTheme = function (name) {
-	if (this.themes[name]) {
+	if (this.themes[name] && this.strict) {
 		throw new Error(`Theme ${name} already exists`)
 	}
 	if (name === 'default') {
-		throw new Error(`Name ${name} is reserved`)
+		throw new Error(`Name default is reserved`)
 	}
 	this.themes[name] = {}
+}
+
+ComponentThemeContainer.prototype.setStrictMode = function (strict) {
+	this.strict = strict
 }
 
 ComponentThemeContainer.prototype.setDarkMode = function (state = true) {
@@ -22,7 +27,7 @@ ComponentThemeContainer.prototype.getDarkMode = function () {
 }
 
 ComponentThemeContainer.prototype.registerComponent = function (theme, component) {
-	if (!this.themes[theme]) {
+	if (!this.themes[theme] && this.strict) {
 		throw new Error(`Theme ${theme} does not exist`)
 	}
 	if (!this.themes[theme][component]) {
@@ -58,7 +63,7 @@ ComponentThemeContainer.prototype.getDefaultTheme = function () {
 }
 
 ComponentThemeContainer.prototype.getAppearance = function (theme, component, appearanceName) {
-	if (theme !== 'default' && !this.themes[theme]) {
+	if (theme !== 'default' && !this.themes[theme] && this.strict) {
 		throw new Error(`Theme ${theme} does not exist`)
 	}
 

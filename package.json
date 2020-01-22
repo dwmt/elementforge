@@ -1,12 +1,17 @@
 {
 	"name": "@dwmt/elementforge",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "Simple UI component library",
 	"main": "./dist/ElementForge.js",
+	"module": "./dist/ElementForge.esm.js",
 	"scripts": {
-		"prepublish": "npx parcel build lib/ElementForge.js -o dist/ElementForge.js",
+		"prepublish": "npx bili --format esm --format cjs",
+		"dev": "npx bili --watch --format esm --format cjs",
 		"test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mochapack --webpack-config test/webpack.config.js --require test/setup.js test/**/*.spec.js"
 	},
+	"files": [
+		"dist"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/dwmt/elementforge.git"
@@ -52,6 +57,7 @@
 		"babel-core": "^6.26.3",
 		"babel-loader": "^8.0.6",
 		"babel-plugin-istanbul": "^6.0.0",
+		"bili": "^4.8.1",
 		"chai": "^4.2.0",
 		"cross-env": "^6.0.3",
 		"css-loader": "^3.4.1",
@@ -65,6 +71,8 @@
 		"nyc": "^15.0.0",
 		"parcel-bundler": "^1.12.4",
 		"pug": "^2.0.4",
+		"rollup-plugin-pug": "^1.1.1",
+		"rollup-plugin-vue": "^5.1.5",
 		"tailwindcss": "^1.1.4",
 		"vue-loader": "^15.8.3",
 		"vue-template-compiler": "^2.6.11",

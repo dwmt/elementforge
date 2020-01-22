@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import ContainerComponent from '../ContainerComponent'
+import ContainerComponent from '../ContainerComponent.vue'
 
 const Loader = require('@dwmt/loader/lib/Loader')
 

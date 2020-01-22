@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ContainerComponent from '../ContainerComponent'
+import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Label',

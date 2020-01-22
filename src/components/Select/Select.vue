@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import ContainerComponent from '../ContainerComponent'
+import ContainerComponent from '../ContainerComponent.vue'
 import {optionalChaining} from '../../utils'
 
 const Loader = require('@dwmt/loader/lib/Loader')

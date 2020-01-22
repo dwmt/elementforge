@@ -10,8 +10,7 @@ export default {
 			type: String
 		},
 		isValid: {
-			type: Boolean,
-			default: true
+			default: null
 		},
 		errors: {
 			type: Array,
