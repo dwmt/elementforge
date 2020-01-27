@@ -1,6 +1,6 @@
 <template>
 <button :class="classes" :disabled="disabled" :name="name" @click="click" >
-	<span v-if="!isLoading">{{ text }}</span>
+	<span v-if="!isLoading && text">{{ text }}</span>
 	<span v-else>Loading...</span>
 </button>
 </template>

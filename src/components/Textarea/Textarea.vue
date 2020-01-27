@@ -1,17 +1,20 @@
 <template>
 	<component
 		:is="renderableComponent"
+
+		:darkMode="darkModeState"
+		:errors="errors"
+		:name="name"
+		:isValid="isValid"
+		:modifiers="modifiers"
+		:properties="properties"
+
 		:value="value"
 		:required="required"
 		:minlength="minlength"
 		:maxlength="maxlength"
 		:label="label"
 		:placeholder="placeholder"
-		:isValid="isValid"
-		:errors="errors"
-		:darkMode="darkModeState"
-
-		:isLoading="isLoading"
 
 		@click="click"
 		@focus="focus"
@@ -24,8 +27,6 @@
 <script>
 import ContainerComponent from '../ContainerComponent.vue'
 
-const Loader = require('@dwmt/loader/lib/Loader')
-
 export default {
 	name: 'Textarea',
 	extends: ContainerComponent,
@@ -33,8 +34,6 @@ export default {
 		return {
 			component: 'Textarea',
 			defaultComponent: 'default-textarea',
-			loader: null,
-			isLoading: false
 		}
 	},
 	props: {
@@ -59,16 +58,6 @@ export default {
 			this.$emit('input', payload)
 		},
 		keyup () {}
-	},
-	beforeMount () {
-		this.loader = new Loader({
-			onActivation: () => {
-				this.isLoading = true
-			},
-			onTermination: () => {
-				this.isLoading = false
-			}
-		})
 	}
 
 }
