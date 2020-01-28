@@ -1,25 +1,27 @@
 <template>
 	<component
 		:is="renderableComponent"
+		:properties="properties"
+		:modifiers="modifiers"
+		:darkMode="darkMode"
+		
+		:name="name"
+		:isValid="isValid"
+		:errors="errors"
+		:disabled="disabled"
 
-		:options="selectionOptions"
-		:required="required"
-		:value="selectionValue"
-		:label="label"
-		:toggled="toggled"
+		:selectedItems="selectedItems"
+		:items="items"
 
-		@click="click"
-		@focus="focus"
-		@blur="blur"
-		@keyup="keyup"
-		@input="select"
-		@toggle="toggle"
+		@select="selectItem"
+		@delete="deleteItem"
+		@selectAll="selectAll"
+		@deleteAll="deleteAll"
 	/>
 </template>
 
 <script>
 import ContainerComponent from '../ContainerComponent.vue'
-import {optionalChaining} from '../../utils'
 
 const equal = require('fast-deep-equal')
 
@@ -36,41 +38,27 @@ const OPTIONS_TYPES = {
 }
 
 export default {
-	name: 'Select',
+	name: 'Multiselect',
 	extends: ContainerComponent,
+	data () {
+		return {
+			component: 'Multiselect',
+			defaultComponent: 'default-multiselect',
+			loader: null,
+			isLoading: false
+		}
+	},
 	props: {
-		options: {
-			type: Array,
-			default: () => []
-		},
-		required: {
+		disabled: {
+			type: Boolean,
 			default: false
 		},
 		value: {},
-		label: {},
-		localisation: {
-			type: Boolean,
-			default: false
-		}
-	},
-	data () {
-		return {
-			component: 'Select',
-			defaultComponent: 'default-select',
-			loader: null,
-			isLoading: false,
-			toggled: false
-		}
+		options: {}
 	},
 	computed: {
-		selectionValue () {
-			let optionsType = this.optionsType
-			let value = this.selectionOptions.find((option) => {
-				return equal(option.value, this.value)
-			})
-			if (!value)
-				return undefined
-			return value.key
+		checked () {
+			return this.value === this.trueValue
 		},
 		optionsType () {
 			let allString = true
@@ -134,62 +122,39 @@ export default {
 					}
 				})
 			}
-
-		}
-	},
-	watch: {
-		toggled () {
-			if (this.toggled) {
-				document.addEventListener('click', this.blurEvent)
-			} else {
-				document.removeEventListener('click', this.blurEvent)
-			}
+		},
+		selectedItems () {
+			return this.selectionOptions.filter((item) => {
+				let found = this.value.find((val) => equal(val, item.value))
+				return found
+			})
+		},
+		items () {
+			return this.selectionOptions.filter((item) => {
+				let found = this.value.find((val) => equal(val, item.value))
+				return !found
+			})
 		}
 	},
 	methods: {
-		blurEvent (e) {
-			if (!this.$el.contains(e.target)) {
-				this.close()
-			}
+		input (payload) {
+			this.$emit('input', payload)
 		},
-		close () {
-			this.toggled = false
+		selectItem (value) {
+			let items = [].concat(this.value)
+			items.push(value)
+			this.input(items)
 		},
-		toggle () {
-			this.toggled = !this.toggled
+		deleteItem (value) {
+			let items = [].concat(this.value)
+			this.input(items.filter((item) => !equal(item, value)))
 		},
-		translate (key) {
-			if (!this.$t) {
-				return key
-			}
-			return this.$t(key)
+		selectAll () {
+			this.input(this.selectionOptions.map((item) => item.value))
 		},
-		click (payload) {
-			this.$emit('click', payload)
-		},
-		select (key) {
-			this.$emit('input', this.selectionOptions[key].value)
-			this.toggled = false
-		},
-		focus (payload) {
-			this.$emit('focus', payload)
-		},
-		blur (payload) {
-			this.$emit('blur', payload)
-		},
-		keyup (payload) {
-			this.$emit('keyup', payload)
+		deleteAll () {
+			this.input([])
 		}
 	},
-	beforeMount () {
-		this.loader = new Loader({
-			onActivation: () => {
-				this.isLoading = true
-			},
-			onTermination: () => {
-				this.isLoading = false
-			}
-		})
-	}
 }
 </script>

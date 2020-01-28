@@ -5,6 +5,7 @@ import Select from './Select'
 import Label from './Label'
 import Input from './Input'
 import Progress from './Progress'
+import Multiselect from './Multiselect'
 
 let components = {
 	'Button': Button,
@@ -13,7 +14,8 @@ let components = {
 	'Select': Select,
 	'Label': Label,
 	'Input': Input,
-	'Progress': Progress
+	'Progress': Progress,
+	'Multiselect': Multiselect
 }
 
 export default {

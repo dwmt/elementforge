@@ -8,6 +8,7 @@
 		:label="label"
 		:value="value"
 		:showPercentage="showPercentage"
+		:animated="animated"
 	/>
 </template>
 <script>
@@ -31,6 +32,11 @@ export default {
 			required: false
 		},
 		showPercentage: {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+		animated: {
 			type: Boolean,
 			required: false,
 			default: false

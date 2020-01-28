@@ -1,6 +1,6 @@
 {
 	"name": "@dwmt/elementforge",
-	"version": "0.0.10",
+	"version": "0.1.0",
 	"description": "Simple UI component library",
 	"main": "./dist/ElementForge.js",
 	"module": "./dist/ElementForge.esm.js",
@@ -45,6 +45,7 @@
 	"homepage": "https://github.com/dwmt/elementforge#readme",
 	"dependencies": {
 		"@dwmt/loader": "^1.0.0",
+		"fast-deep-equal": "^3.1.1",
 		"vindication.js": "^4.16.5",
 		"vue": "^2.6.11"
 	},
@@ -72,6 +73,7 @@
 		"pug": "^2.0.4",
 		"rollup-plugin-pug": "^1.1.1",
 		"rollup-plugin-vue": "^5.1.5",
+		"stylus": "^0.54.7",
 		"tailwindcss": "^1.1.4",
 		"vue-loader": "^15.8.3",
 		"vue-template-compiler": "^2.6.11",

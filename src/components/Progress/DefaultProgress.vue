@@ -10,7 +10,8 @@ export default {
 	props: [
 		'value',
 		'label',
-		'showPercentage'
+		'showPercentage',
+		'animated'
 	],
 	computed: {
 		classes () {
