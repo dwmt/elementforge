@@ -13,6 +13,7 @@
 		:label="label"
 		:value="value"
 		@input="input"
+		@click="click"
 	)
 </template>
 
@@ -38,6 +39,9 @@ export default {
 	methods: {
 		input (e) {
 			this.$emit('input', e)
+		},
+		click () {
+			this.$emit('click')
 		}
 	}
 }

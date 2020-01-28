@@ -122,6 +122,7 @@ export default {
 		},
 		selectedDate () {
 			if(this.type === 'date') {
+				console.log(this.selectedYear, this.selectedMonth, this.selectedDay, new Date(this.selectedYear, this.selectedMonth, this.selectedDay))
 				return new Date(this.selectedYear, this.selectedMonth, this.selectedDay)
 			}
 			return new Date(this.selectedYear, this.selectedMonth, this.selectedDay, this.selectedHour, this.selectedMinute)
@@ -144,8 +145,8 @@ export default {
 		}
 	},
 	methods: {
-		close () {
-			this.$emit('close')
+		close (e) {
+			this.$emit('close', e)
 		},
 		input () {
 			if (this.returnDate) {

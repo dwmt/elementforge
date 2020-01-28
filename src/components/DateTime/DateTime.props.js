@@ -1,3 +1,7 @@
 export default {
-	value: {}
+	value: {},
+	type: {
+		type: String,
+		default: 'date'
+	}
 }

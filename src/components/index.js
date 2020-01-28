@@ -18,6 +18,7 @@ let components = {
 	'Input': Input,
 	'Progress': Progress,
 	'Multiselect': Multiselect,
+	'DateTimePicker': DateTimePicker,
 	'DateTime': DateTime
 }
 

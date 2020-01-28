@@ -7,15 +7,16 @@
 		:darkMode="darkModeState"
 		
 		:name="name"
-		:value="value"
+		:value="displayDate"
 		@click="openPicker"
 	)
-	DateTimePicker(:theme="theme" :value="value" :type="type" :defaultDate="defaultDate" @input="changeTime" :modal="true" v-if="pickerVisible")
+	DateTimePicker(:theme="theme" :value="value" :type="type" :defaultDate="defaultDate" @input="changeTime" :modal="true" v-if="pickerVisible" @close="closePicker" :returnDate="true")
 </template>
 
 <script>
 import ContainerComponent from '../ContainerComponent.vue'
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
+import {format} from 'date-fns'
 export default {
 	name: 'DateTime',
 	extends: ContainerComponent,
@@ -43,12 +44,25 @@ export default {
 		},
 		defaultDate: {
 			default: () => new Date()
-		}
+		},
+		format: {type: String}
 	},
 	computed: {
+		computedFormat () {
+			if (!this.format) {
+				if (this.type === 'datetime') {
+					return 'yyyy-MM-dd HH:mm'
+				}
+				if (this.type === 'date') {
+					return 'yyyy-MM-dd'
+				}
+			}
+			return this.format
+		},
 		displayDate () {
-			// TODO: implement format..
-			return this.value
+			let val = this.value
+			val = format(new Date(val), this.computedFormat)
+			return val
 		}
 	},
 	methods: {
@@ -57,6 +71,9 @@ export default {
 		},
 		openPicker () {
 			this.pickerVisible = true
+		},
+		closePicker () {
+			this.pickerVisible = false
 		}
 	}
 }
