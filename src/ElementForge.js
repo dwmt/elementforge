@@ -4,6 +4,9 @@ import bus from './Bus'
 
 import RenderableComponent from './components/RenderableComponent.vue'
 
+import DateTimePickerProps from './components/DateTimePicker/DateTimePicker.props'
+import DateTimeProps from './components/DateTime/DateTime.props'
+
 import components from './components'
 
 let VueInst = null
@@ -13,7 +16,11 @@ export default {
 	bus,
 	theme: {
 		Theme,
-		RenderableComponent
+		RenderableComponent,
+		props: {
+			DateTimePicker: DateTimePickerProps,
+			DateTime: DateTimeProps
+		}
 	},
 	install (Vue, options = {}) {
 		components.install(Vue, options)

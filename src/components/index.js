@@ -6,6 +6,8 @@ import Label from './Label'
 import Input from './Input'
 import Progress from './Progress'
 import Multiselect from './Multiselect'
+import DateTimePicker from './DateTimePicker'
+import DateTime from './DateTime'
 
 let components = {
 	'Button': Button,
@@ -15,7 +17,8 @@ let components = {
 	'Label': Label,
 	'Input': Input,
 	'Progress': Progress,
-	'Multiselect': Multiselect
+	'Multiselect': Multiselect,
+	'DateTime': DateTime
 }
 
 export default {
