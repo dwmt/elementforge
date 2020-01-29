@@ -9,6 +9,7 @@
 		:modifiers="modifiers"
 		:properties="properties"
 		:type="type"
+		:editable="editable"
 
 		:label="label"
 		:value="value"
@@ -28,7 +29,11 @@ export default {
 			default: ''
 		},
 		value: {},
-		type: {}
+		type: {},
+		editable: {
+			type: Boolean,
+			default: true
+		}
 	},
 	data () {
 		return {

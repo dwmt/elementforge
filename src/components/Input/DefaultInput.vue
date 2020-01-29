@@ -1,7 +1,7 @@
 <template lang="pug">
 .input-container
 	.label {{ label }}
-	input(:value="value" @input="input" :type="type")
+	input(:value="value" @input="input" :type="type", :readonly="!editable")
 </template>
 
 <script>
@@ -12,7 +12,8 @@ export default {
 	props: {
 		value: {},
 		label: {},
-		type: {}
+		type: {},
+		editable: {}
 	},
 	methods: {
 		input(e) {
