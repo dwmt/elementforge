@@ -8,6 +8,7 @@ import Progress from './Progress'
 import Multiselect from './Multiselect'
 import DateTimePicker from './DateTimePicker'
 import DateTime from './DateTime'
+import TagInput from './TagInput'
 
 let components = {
 	'Button': Button,
@@ -19,7 +20,8 @@ let components = {
 	'Progress': Progress,
 	'Multiselect': Multiselect,
 	'DateTimePicker': DateTimePicker,
-	'DateTime': DateTime
+	'DateTime': DateTime,
+	'TagInput': TagInput
 }
 
 export default {

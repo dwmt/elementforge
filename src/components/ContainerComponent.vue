@@ -1,4 +1,5 @@
 <script>
+const Loader = require('@dwmt/loader/lib/Loader')
 import RenderableComponent from './RenderableComponent.vue'
 import container from '../Container'
 import bus from '../Bus'
@@ -6,7 +7,11 @@ export default {
 	name: 'ContainerComponent',
 	extends: RenderableComponent,
 	data () {
-		globalDarkMode: false
+		return {
+			globalDarkMode: false,
+			loader: null,
+			isLoading: false
+		}
 	},
 	props: {
 		theme: {
@@ -39,6 +44,14 @@ export default {
 		this.globalDarkMode = container.getDarkMode()
 		bus.$on('darkMode:change', (darkMode) => {
 			this.globalDarkMode = darkMode
+		})
+		this.loader = new Loader({
+			onActivation: () => {
+				this.isLoading = true
+			},
+			onTermination: () => {
+				this.isLoading = false
+			}
 		})
 	}
 }
