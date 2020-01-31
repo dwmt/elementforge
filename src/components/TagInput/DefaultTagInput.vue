@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .tag-input-container
 	display flex
 	flex-direction row
