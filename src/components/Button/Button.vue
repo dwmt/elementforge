@@ -9,6 +9,7 @@
 		:errors="errors"
 		:data="data"
 		:darkMode="darkModeState"
+		:disabled="disabledComputed"
 
 		:isLoading="isLoading"
 
@@ -29,23 +30,55 @@ export default {
 			defaultComponent: 'default-button',
 			loader: null,
 			isLoading: false,
+			disabledInherit: null
 		}
 	},
+	inject: {
+		form: { default: null }
+	},
 	props: {
+		type: {
+			type: String,
+			required: false,
+			default: 'default'
+		},
 		text: {
 			type: String,
 			required: true
 		},
 		data: {
 			type: Object
+		},
+		disabled: {
+			type: Boolean,
+			required: false,
+			default: false
+		}
+	},
+	computed: {
+		disabledComputed () {
+			if (this.disabledInherit === null || this.type !== 'submit') {
+				return this.disabled
+			}
+			return this.disabledInherit
 		}
 	},
 	methods: {
 		click (payload) {
-			if (this.isLoading || this.disabled) {
+			if (this.isLoading || this.disabledComputed) {
+				return
+			}
+			if (this.type === 'submit' && this.form !== null && !this.form.validateForm()) {
 				return
 			}
 			this.$emit('click', payload)
+		}
+	},
+	mounted () {
+		if (this.form) {
+			this.form.watchSubmit(this.name || Math.random(), (disabled) => {
+				this.disabledInherit = disabled
+			})
 		}
 	},
 	beforeMount () {

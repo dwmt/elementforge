@@ -51,7 +51,7 @@
 import ContainerComponent from '../ContainerComponent.vue'
 
 function daysInMonth (year, month) {
-	return new Date(year, month + 1, 0).getUTCDate()
+	return (new Date(year, month + 1, 0)).getUTCDate() + 1
 }
 
 const range = (start, end, length = end - start + 1) => Array.from({ length }, (_, i) => start + i)
@@ -118,11 +118,10 @@ export default {
 		},
 		days () {
 			let days = daysInMonth(this.selectedYear, this.selectedMonth)
-			return range(0, days - 1)
+			return range(0, days)
 		},
 		selectedDate () {
 			if(this.type === 'date') {
-				console.log(this.selectedYear, this.selectedMonth, this.selectedDay, new Date(this.selectedYear, this.selectedMonth, this.selectedDay))
 				return new Date(this.selectedYear, this.selectedMonth, this.selectedDay)
 			}
 			return new Date(this.selectedYear, this.selectedMonth, this.selectedDay, this.selectedHour, this.selectedMinute)

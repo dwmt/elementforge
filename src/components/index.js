@@ -9,6 +9,7 @@ import Multiselect from './Multiselect'
 import DateTimePicker from './DateTimePicker'
 import DateTime from './DateTime'
 import TagInput from './TagInput'
+import Form from './Form'
 
 let components = {
 	'Button': Button,
@@ -21,7 +22,8 @@ let components = {
 	'Multiselect': Multiselect,
 	'DateTimePicker': DateTimePicker,
 	'DateTime': DateTime,
-	'TagInput': TagInput
+	'TagInput': TagInput,
+	'Form': Form
 }
 
 export default {
