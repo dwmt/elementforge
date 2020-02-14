@@ -106,7 +106,7 @@ export default {
 					this.errorsInherit = null
 					return
 				}
-				this.isValidInherit = isValid || null
+				this.isValidInherit = !!isValid
 				this.errorsInherit = errors || null
 			})
 		}

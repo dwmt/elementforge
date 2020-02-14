@@ -2,6 +2,14 @@
 	<component
 		:is="renderableComponent"
 
+		:darkMode="darkMode"
+		:errors="errorsComputed"
+		:name="name"
+		:isValid="isValidComputed"
+		:modifiers="modifiers"
+		:properties="properties"
+		:editable="editable"
+
 		:options="selectionOptions"
 		:required="required"
 		:value="selectionValue"
@@ -23,11 +31,16 @@ import {optionalChaining} from '../../utils'
 
 const equal = require('fast-deep-equal')
 
-const Loader = require('@dwmt/loader/lib/Loader')
-
 const OPTIONS_TYPE_ARRAY = 'OPTIONS_TYPE_ARRAY'
 const OPTIONS_TYPE_KEY_VALUE_NORMAL = 'OPTIONS_TYPE_KEY_VALUE_NORMAL'
 const OPTIONS_TYPE_KEY_VALUE_LOCALIZED = 'OPTIONS_TYPE_KEY_VALUE_LOCALIZED'
+
+const STATES = {
+	'PRISTINE': 0,	// entry was not interacted yet
+	'UNTOUCHED': 1,	// entry not lost focus yet
+	'TOUCHED': 2,		// entry lost focus at least once
+	'DIRTY': 3			// interaction occured with entry
+}
 
 const OPTIONS_TYPES = {
 	'ARRAY': OPTIONS_TYPE_ARRAY,
@@ -38,6 +51,9 @@ const OPTIONS_TYPES = {
 export default {
 	name: 'Select',
 	extends: ContainerComponent,
+	inject: {
+		form: { default: null }
+	},
 	props: {
 		options: {
 			type: Array,
@@ -48,6 +64,10 @@ export default {
 		},
 		value: {},
 		label: {},
+		editable: {
+			type: Boolean,
+			default: true
+		},
 		localisation: {
 			type: Boolean,
 			default: false
@@ -57,12 +77,25 @@ export default {
 		return {
 			component: 'Select',
 			defaultComponent: 'default-select',
-			loader: null,
-			isLoading: false,
+			state: STATES.PRISTINE,
+			isValidInherit: null,
+			errorsInherit: null,
 			toggled: false
 		}
 	},
 	computed: {
+		isValidComputed () {
+			if (!this.form || this.isValidInherit === null) {
+				return this.isValid
+			}
+			return this.isValidInherit
+		},
+		errorsComputed () {
+			if (!this.form || this.errorsInherit === null) {
+				return this.errors
+			}
+			return this.errorsInherit
+		},
 		selectionValue () {
 			let optionsType = this.optionsType
 			let value = this.selectionOptions.find((option) => {
@@ -109,7 +142,7 @@ export default {
 				return []
 			}
 			let optionsType = this.optionsType
-			
+
 			if (optionsType === OPTIONS_TYPES.ARRAY) {
 				return this.options.map((o) => { return {key: o, value: o} })
 			}
@@ -170,26 +203,45 @@ export default {
 		select (key) {
 			this.$emit('input', this.selectionOptions[key].value)
 			this.toggled = false
+			this.state = STATES.DIRTY
+			if (this.form) {
+				this.form.dirty(this.name)
+			}
 		},
 		focus (payload) {
 			this.$emit('focus', payload)
+			this.state = STATES.UNTOUCHED
+			if (this.form) {
+				this.form.focus(this.name)
+			}
 		},
 		blur (payload) {
 			this.$emit('blur', payload)
+			if (this.state !== STATES.DIRTY) {
+				this.state = STATES.TOUCHED
+			}
+			if (this.form) {
+				this.form.blur(this.name)
+			}
 		},
 		keyup (payload) {
 			this.$emit('keyup', payload)
 		}
 	},
-	beforeMount () {
-		this.loader = new Loader({
-			onActivation: () => {
-				this.isLoading = true
-			},
-			onTermination: () => {
-				this.isLoading = false
-			}
-		})
+	mounted () {
+		console.log(this.form, this.name)
+		if (this.form) {
+			this.form.registerEntry(this.name)
+			this.form.watchEntry(this.name, (isValid, errors, reset) => {
+				if (reset) {
+					this.isValidInherit = null
+					this.errorsInherit = null
+					return
+				}
+				this.isValidInherit = !!isValid
+				this.errorsInherit = errors || null
+			})
+		}
 	}
 }
 </script>
