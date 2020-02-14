@@ -53,6 +53,12 @@ export default {
 			type: Boolean,
 			required: false,
 			default: false
+		},
+		formInstance: {
+			type: Object,
+			default () {
+				return this.form
+			}
 		}
 	},
 	computed: {
@@ -68,17 +74,19 @@ export default {
 			if (this.isLoading || this.disabledComputed) {
 				return
 			}
-			if (this.type === 'submit' && this.form !== null && !this.form.validateForm()) {
+			if (this.type === 'submit' && this.formInstance !== null && !this.formInstance.validateForm()) {
 				return
 			}
 			this.$emit('click', payload)
 		}
 	},
-	mounted () {
-		if (this.form) {
-			this.form.watchSubmit(this.name || Math.random(), (disabled) => {
-				this.disabledInherit = disabled
-			})
+	watch: {
+		formInstance () {
+			if (this.formInstance) {
+				this.formInstance.watchSubmit(this.name || Math.random(), (disabled) => {
+					this.disabledInherit = disabled
+				})
+			}
 		}
 	},
 	beforeMount () {
