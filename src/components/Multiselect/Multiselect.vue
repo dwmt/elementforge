@@ -1,18 +1,22 @@
 <template>
 	<component
 		:is="renderableComponent"
-		:properties="properties"
-		:modifiers="modifiers"
+
 		:darkMode="darkMode"
-		
+		:errors="errorsComputed"
 		:name="name"
-		:isValid="isValid"
-		:errors="errors"
-		:disabled="disabled"
+		:isValid="isValidComputed"
+		:modifiers="modifiers"
+		:properties="properties"
+
 
 		:selectedItems="selectedItems"
 		:items="items"
+		:label="label"
+		:disabled="disabled"
 
+		@focus="focus"
+		@blur="blur"
 		@select="selectItem"
 		@delete="deleteItem"
 		@selectAll="selectAll"
@@ -22,41 +26,47 @@
 
 <script>
 import ContainerComponent from '../ContainerComponent.vue'
+import { OPTIONS_TYPES, STATES } from '../../consts'
 
 const equal = require('fast-deep-equal')
-
-const Loader = require('@dwmt/loader/lib/Loader')
-
-const OPTIONS_TYPE_ARRAY = 'OPTIONS_TYPE_ARRAY'
-const OPTIONS_TYPE_KEY_VALUE_NORMAL = 'OPTIONS_TYPE_KEY_VALUE_NORMAL'
-const OPTIONS_TYPE_KEY_VALUE_LOCALIZED = 'OPTIONS_TYPE_KEY_VALUE_LOCALIZED'
-
-const OPTIONS_TYPES = {
-	'ARRAY': OPTIONS_TYPE_ARRAY,
-	'NORMAL': OPTIONS_TYPE_KEY_VALUE_NORMAL,
-	'LOCALIZED': OPTIONS_TYPE_KEY_VALUE_LOCALIZED
-}
 
 export default {
 	name: 'Multiselect',
 	extends: ContainerComponent,
-	data () {
-		return {
-			component: 'Multiselect',
-			defaultComponent: 'default-multiselect',
-			loader: null,
-			isLoading: false
-		}
+	inject: {
+		form: { default: null }
 	},
 	props: {
 		disabled: {
 			type: Boolean,
 			default: false
 		},
+		label: {},
 		value: {},
 		options: {}
 	},
+	data () {
+		return {
+			component: 'Multiselect',
+			defaultComponent: 'default-multiselect',
+			state: STATES.PRISTINE,
+			isValidInherit: null,
+			errorsInherit: null
+		}
+	},
 	computed: {
+		isValidComputed () {
+			if (!this.form || this.isValidInherit === null) {
+				return this.isValid
+			}
+			return this.isValidInherit
+		},
+		errorsComputed () {
+			if (!this.form || this.errorsInherit === null) {
+				return this.errors
+			}
+			return this.errorsInherit
+		},
 		checked () {
 			return this.value === this.trueValue
 		},
@@ -97,7 +107,7 @@ export default {
 				return []
 			}
 			let optionsType = this.optionsType
-			
+
 			if (optionsType === OPTIONS_TYPES.ARRAY) {
 				return this.options.map((o) => { return {key: o, value: o} })
 			}
@@ -140,21 +150,67 @@ export default {
 		input (payload) {
 			this.$emit('input', payload)
 		},
+		focus (payload) {
+			this.$emit('focus', payload)
+			this.state = STATES.UNTOUCHED
+			if (this.form) {
+				this.form.focus(this.name)
+			}
+		},
+		blur (payload) {
+			this.$emit('blur', payload)
+			if (this.state !== STATES.DIRTY) {
+				this.state = STATES.TOUCHED
+			}
+			if (this.form) {
+				this.form.blur(this.name)
+			}
+		},
 		selectItem (value) {
 			let items = [].concat(this.value)
 			items.push(value)
 			this.input(items)
+			this.state = STATES.DIRTY
+			if (this.form) {
+				this.form.dirty(this.name)
+			}
 		},
 		deleteItem (value) {
 			let items = [].concat(this.value)
 			this.input(items.filter((item) => !equal(item, value)))
+			this.state = STATES.DIRTY
+			if (this.form) {
+				this.form.dirty(this.name)
+			}
 		},
 		selectAll () {
 			this.input(this.selectionOptions.map((item) => item.value))
+			this.state = STATES.DIRTY
+			if (this.form) {
+				this.form.dirty(this.name)
+			}
 		},
 		deleteAll () {
 			this.input([])
+			this.state = STATES.DIRTY
+			if (this.form) {
+				this.form.dirty(this.name)
+			}
 		}
 	},
+	mounted () {
+		if (this.form) {
+			this.form.registerEntry(this.name)
+			this.form.watchEntry(this.name, (isValid, errors, reset) => {
+				if (reset) {
+					this.isValidInherit = null
+					this.errorsInherit = null
+					return
+				}
+				this.isValidInherit = !!isValid
+				this.errorsInherit = errors || null
+			})
+		}
+	}
 }
 </script>

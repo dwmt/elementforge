@@ -8,13 +8,13 @@
 		:isValid="isValidComputed"
 		:modifiers="modifiers"
 		:properties="properties"
-		:editable="editable"
 
 		:options="selectionOptions"
 		:required="required"
 		:value="selectionValue"
 		:label="label"
 		:toggled="toggled"
+		:disabled="disabled"
 
 		@click="click"
 		@focus="focus"
@@ -29,24 +29,9 @@
 import ContainerComponent from '../ContainerComponent.vue'
 import {optionalChaining} from '../../utils'
 
+import { OPTIONS_TYPES, STATES } from '../../consts'
+
 const equal = require('fast-deep-equal')
-
-const OPTIONS_TYPE_ARRAY = 'OPTIONS_TYPE_ARRAY'
-const OPTIONS_TYPE_KEY_VALUE_NORMAL = 'OPTIONS_TYPE_KEY_VALUE_NORMAL'
-const OPTIONS_TYPE_KEY_VALUE_LOCALIZED = 'OPTIONS_TYPE_KEY_VALUE_LOCALIZED'
-
-const STATES = {
-	'PRISTINE': 0,	// entry was not interacted yet
-	'UNTOUCHED': 1,	// entry not lost focus yet
-	'TOUCHED': 2,		// entry lost focus at least once
-	'DIRTY': 3			// interaction occured with entry
-}
-
-const OPTIONS_TYPES = {
-	'ARRAY': OPTIONS_TYPE_ARRAY,
-	'NORMAL': OPTIONS_TYPE_KEY_VALUE_NORMAL,
-	'LOCALIZED': OPTIONS_TYPE_KEY_VALUE_LOCALIZED
-}
 
 export default {
 	name: 'Select',
@@ -64,9 +49,9 @@ export default {
 		},
 		value: {},
 		label: {},
-		editable: {
-			type: Boolean,
-			default: true
+		disabled: {
+			default: false,
+			type: Boolean
 		},
 		localisation: {
 			type: Boolean,
@@ -229,7 +214,6 @@ export default {
 		}
 	},
 	mounted () {
-		console.log(this.form, this.name)
 		if (this.form) {
 			this.form.registerEntry(this.name)
 			this.form.watchEntry(this.name, (isValid, errors, reset) => {
