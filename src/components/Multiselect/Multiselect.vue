@@ -67,9 +67,6 @@ export default {
 			}
 			return this.errorsInherit
 		},
-		checked () {
-			return this.value === this.trueValue
-		},
 		optionsType () {
 			let allString = true
 			let allObject = true
@@ -149,6 +146,10 @@ export default {
 	methods: {
 		input (payload) {
 			this.$emit('input', payload)
+			this.state = STATES.DIRTY
+			if (this.form) {
+				this.form.dirty(this.name)
+			}
 		},
 		focus (payload) {
 			this.$emit('focus', payload)
@@ -170,32 +171,16 @@ export default {
 			let items = [].concat(this.value)
 			items.push(value)
 			this.input(items)
-			this.state = STATES.DIRTY
-			if (this.form) {
-				this.form.dirty(this.name)
-			}
 		},
 		deleteItem (value) {
 			let items = [].concat(this.value)
 			this.input(items.filter((item) => !equal(item, value)))
-			this.state = STATES.DIRTY
-			if (this.form) {
-				this.form.dirty(this.name)
-			}
 		},
 		selectAll () {
 			this.input(this.selectionOptions.map((item) => item.value))
-			this.state = STATES.DIRTY
-			if (this.form) {
-				this.form.dirty(this.name)
-			}
 		},
 		deleteAll () {
 			this.input([])
-			this.state = STATES.DIRTY
-			if (this.form) {
-				this.form.dirty(this.name)
-			}
 		}
 	},
 	mounted () {

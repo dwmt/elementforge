@@ -11,6 +11,8 @@
 		:type="type"
 		:editable="editable"
 
+		:required="required"
+
 		:label="label"
 		:value="value"
 		@input="input"
@@ -22,12 +24,7 @@
 
 <script>
 import ContainerComponent from '../ContainerComponent.vue'
-const STATES = {
-	'PRISTINE': 0,	// entry was not interacted yet
-	'UNTOUCHED': 1,	// entry not lost focus yet
-	'TOUCHED': 2,		// entry lost focus at least once
-	'DIRTY': 3			// interaction occured with entry
-}
+import { STATES } from '../../consts'
 export default {
 	name: 'Input',
 	extends: ContainerComponent,
@@ -44,6 +41,10 @@ export default {
 		editable: {
 			type: Boolean,
 			default: true
+		},
+		required: {
+			default: false,
+			type: Boolean
 		}
 	},
 	data () {

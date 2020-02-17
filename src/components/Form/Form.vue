@@ -4,12 +4,7 @@
 </div>
 </template>
 <script>
-const STATES = {
-	'PRISTINE': 0,	// entry was not interacted yet
-	'UNTOUCHED': 1,	// entry not lost focus yet
-	'TOUCHED': 2,		// entry lost focus at least once
-	'DIRTY': 3			// interaction occured with entry
-}
+import { STATES } from '../../consts'
 const v = require('vindication.js')
 export default {
 	name: 'Form',
@@ -81,15 +76,15 @@ export default {
 		},
 		validate (name) {
 			let validation = v.validate(
-				{[name]: this.value[name]},
-				{[name]: this.rules[name]}
+				this.value[name],
+				this.rules[name]
 			)
 			let isValid = validation === null
 			let errors = []
 			this.formState[name].isValid = isValid
 			this.formState[name].errors = errors
 			if (validation !== null) {
-				errors = (Array.isArray(validation[name])) ? validation[name] : [validation[name]]
+				errors = (Array.isArray(validation)) ? validation : [validation]
 				this.formState[name].errors = errors
 			}
 			this.watchers[name](isValid, errors)
