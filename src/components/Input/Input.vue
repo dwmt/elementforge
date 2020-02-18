@@ -10,6 +10,7 @@
 		:properties="properties"
 		:type="type"
 		:editable="editable"
+		:disabled="disabled"
 
 		:required="required"
 
@@ -43,6 +44,10 @@ export default {
 			default: true
 		},
 		required: {
+			default: false,
+			type: Boolean
+		},
+		disabled: {
 			default: false,
 			type: Boolean
 		}
