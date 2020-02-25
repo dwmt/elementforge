@@ -24,13 +24,13 @@ component(
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
-import TagInputProps from './TagInput.props'
 
 export default {
 	name: 'Select',
 	extends: ContainerComponent,
-	props: TagInputProps.container,
+	props: ElementForgeTheme.props.TagInput.container,
 	data () {
 		return {
 			component: 'TagInput',

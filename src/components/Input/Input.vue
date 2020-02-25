@@ -1,57 +1,41 @@
 <template lang="pug">
-	component(
-		:is="renderableComponent"
+component(
+	:is="renderableComponent"
 
-		:darkMode="darkMode"
-		:errors="errorsComputed"
-		:name="name"
-		:isValid="isValidComputed"
-		:modifiers="modifiers"
-		:properties="properties"
-		:type="type"
-		:editable="editable"
-		:disabled="disabled"
+	:darkMode="darkMode"
+	:errors="errorsComputed"
+	:name="name"
+	:isValid="isValidComputed"
+	:modifiers="modifiers"
+	:properties="properties"
+	:type="type"
+	:editable="editable"
+	:disabled="disabled"
 
-		:required="required"
+	:required="required"
 
-		:label="label"
-		:value="value"
-		@input="input"
-		@click="click"
-		@focus="focus"
-		@blur="blur"
-	)
+	:label="label"
+	:value="value"
+	@input="input"
+	@click="click"
+	@focus="focus"
+	@blur="blur"
+)
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
+
 import { STATES } from '../../consts'
+
 export default {
 	name: 'Input',
 	extends: ContainerComponent,
 	inject: {
 		form: { default: null }
 	},
-	props: {
-		label: {
-			type: String,
-			default: ''
-		},
-		value: {},
-		type: {},
-		editable: {
-			type: Boolean,
-			default: true
-		},
-		required: {
-			default: false,
-			type: Boolean
-		},
-		disabled: {
-			default: false,
-			type: Boolean
-		}
-	},
+	props: ElementForgeTheme.props.Input.container,
 	data () {
 		return {
 			component: 'Input',

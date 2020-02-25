@@ -5,17 +5,12 @@
 </template>
 
 <script>
-import RenderableComponent from '../RenderableComponent.vue';
+import ElementForgeTheme from '@dwmt/elementforge-theme'
+
 export default {
 	name: 'DefaultSelect',
-	extends: RenderableComponent,
-	props: [
-		'value',
-		'options',
-		'required',
-		'label',
-		'placeholder'
-	],
+	extends: ElementForgeTheme.RenderableComponent,
+	props: ElementForgeTheme.props.Select.renderable,
 	methods: {
 		click (e) {
 			if (this.disabled) {

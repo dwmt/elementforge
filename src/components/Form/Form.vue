@@ -4,10 +4,15 @@
 </div>
 </template>
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
+
 import { STATES } from '../../consts'
+
 const v = require('vindication.js')
+
 export default {
 	name: 'Form',
+	props: ElementForgeTheme.props.Form.container,
 	data () {
 		return {
 			formState: {},
@@ -27,20 +32,6 @@ export default {
 			handler () {
 				this.validateAll()
 			}
-		}
-	},
-	props: {
-		resetValue: {
-			type: Object,
-			default: () => {}
-		},
-		value: {
-			type: Object,
-			default: () => {}
-		},
-		rules: {
-			type: Object,
-			default: () => {}
 		}
 	},
 	methods: {

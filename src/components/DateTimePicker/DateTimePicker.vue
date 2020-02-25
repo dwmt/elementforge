@@ -1,53 +1,54 @@
 <template>
-	<component
-		:is="renderableComponent"
-		:properties="properties"
-		:modifiers="modifiers"
-		:darkMode="darkModeState"
-		
-		:name="name"
-		:year="year"
-		:month="month"
-		:day="day"
-		:needTime="type === 'datetime'"
-		:hour="hour"
-		:minute="minute"
+<component
+	:is="renderableComponent"
+	:properties="properties"
+	:modifiers="modifiers"
+	:darkMode="darkModeState"
+	
+	:name="name"
+	:year="year"
+	:month="month"
+	:day="day"
+	:needTime="type === 'datetime'"
+	:hour="hour"
+	:minute="minute"
 
-		:selectedYear="selectedYear"
-		:selectedMonth="selectedMonth"
-		:selectedDay="selectedDay"
-		:selectedHour="selectedHour"
-		:selectedMinute="selectedMinute"
-		:days="days"
+	:selectedYear="selectedYear"
+	:selectedMonth="selectedMonth"
+	:selectedDay="selectedDay"
+	:selectedHour="selectedHour"
+	:selectedMinute="selectedMinute"
+	:days="days"
 
-		@previousYear="previousYear"
-		@nextYear="nextYear"
-		@selectYear="selectYear"
+	@previousYear="previousYear"
+	@nextYear="nextYear"
+	@selectYear="selectYear"
 
-		@previousMonth="previousMonth"
-		@nextMonth="nextMonth"
-		@selectMonth="selectMonth"
+	@previousMonth="previousMonth"
+	@nextMonth="nextMonth"
+	@selectMonth="selectMonth"
 
-		@previousDay="previousDay"
-		@nextDay="nextDay"
-		@selectDay="selectDay"
+	@previousDay="previousDay"
+	@nextDay="nextDay"
+	@selectDay="selectDay"
 
-		@previousHour="previousHour"
-		@nextHour="nextHour"
-		@selectHour="selectHour"
-		
-		@previousMinute="previousMinute"
-		@nextMinute="nextMinute"
-		@selectMinute="selectMinute"
+	@previousHour="previousHour"
+	@nextHour="nextHour"
+	@selectHour="selectHour"
+	
+	@previousMinute="previousMinute"
+	@nextMinute="nextMinute"
+	@selectMinute="selectMinute"
 
-		@close="close"
+	@close="close"
 
-		:modal="modal"
-		:toolbox="toolbox"
-	/>
+	:modal="modal"
+	:toolbox="toolbox"
+/>
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
 
 function daysInMonth (year, month) {
@@ -76,24 +77,7 @@ export default {
 			}
 		}
 	},
-	props: {
-		value: {},
-		modal: {
-			type: Boolean,
-			default: false
-		},
-		type: {
-			type: String,
-			default: 'date'
-		},
-		returnDate: {
-			type: Boolean,
-			default: false
-		},
-		defaultDate: {
-			default: () => new Date()
-		}
-	},
+	props: ElementForgeTheme.props.DateTimePicker.container,
 	computed: {
 		dateValue () {
 			if (!this.value) {

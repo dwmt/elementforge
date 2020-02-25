@@ -26,7 +26,9 @@
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
+
 import {optionalChaining} from '../../utils'
 
 import { OPTIONS_TYPES, STATES } from '../../consts'
@@ -39,25 +41,7 @@ export default {
 	inject: {
 		form: { default: null }
 	},
-	props: {
-		options: {
-			type: Array,
-			default: () => []
-		},
-		required: {
-			default: false
-		},
-		value: {},
-		label: {},
-		disabled: {
-			default: false,
-			type: Boolean
-		},
-		localisation: {
-			type: Boolean,
-			default: false
-		}
-	},
+	props: ElementForgeTheme.props.Select.container,
 	data () {
 		return {
 			component: 'Select',

@@ -12,34 +12,17 @@
 	/>
 </template>
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Progress',
 	extends: ContainerComponent,
+	props: ElementForgeTheme.props.Progress.container,
 	data () {
 		return {
 			component: 'Progress',
 			defaultComponent: 'default-progress'
-		}
-	},
-	props: {
-		value: {
-			type: Number
-		},
-		label: {
-			type: String,
-			required: false
-		},
-		showPercentage: {
-			type: Boolean,
-			required: false,
-			default: false
-		},
-		animated: {
-			type: Boolean,
-			required: false,
-			default: false
 		}
 	}
 }

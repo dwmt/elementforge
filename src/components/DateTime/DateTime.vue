@@ -14,13 +14,17 @@
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
+
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
+
 import {format} from 'date-fns'
+
 export default {
 	name: 'DateTime',
 	extends: ContainerComponent,
-	components: {DateTimePicker},
+	components: { DateTimePicker },
 	data () {
 		return {
 			component: 'DateTime',
@@ -28,25 +32,7 @@ export default {
 			pickerVisible: false
 		}
 	},
-	props: {
-		value: {},
-		modal: {
-			type: Boolean,
-			default: false
-		},
-		type: {
-			type: String,
-			default: 'date'
-		},
-		returnDate: {
-			type: Boolean,
-			default: false
-		},
-		defaultDate: {
-			default: () => new Date()
-		},
-		format: {type: String}
-	},
+	props: ElementForgeTheme.props.DateTime.container,
 	computed: {
 		computedFormat () {
 			if (!this.format) {

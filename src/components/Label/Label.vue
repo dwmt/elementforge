@@ -9,20 +9,13 @@
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Label',
 	extends: ContainerComponent,
-	props: {
-		value: {
-			type: String,
-			default: ''
-		},
-		label: {
-			type: String
-		}
-	},
+	props: ElementForgeTheme.props.Label.container,
 	data () {
 		return {
 			component: 'Label',

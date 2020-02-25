@@ -1,11 +1,11 @@
 <script>
 const Loader = require('@dwmt/loader/lib/Loader')
-import RenderableComponent from './RenderableComponent.vue'
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import container from '../Container'
 import bus from '../Bus'
 export default {
 	name: 'ContainerComponent',
-	extends: RenderableComponent,
+	extends: ElementForgeTheme.RenderableComponent,
 	data () {
 		return {
 			globalDarkMode: false,

@@ -1,28 +1,22 @@
 <template>
-	<input
-		type="checkbox"
-		:name="name"
-		:disabled="disabled"
-		:readonly="readonly"
-		:checked="checked"
-		@input="input"
-		@click="click"
-	/>
+<input
+	type="checkbox"
+	:name="name"
+	:disabled="disabled"
+	:readonly="readonly"
+	:checked="checked"
+	@input="input"
+	@click="click"
+/>
 </template>
 
 <script>
-import RenderableComponent from '../RenderableComponent.vue'
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 
 export default {
 	name: 'DefaultCheckbox',
-	extends: RenderableComponent,
-	props: [
-		'checked',
-		'label',
-		'disabled',
-		'isLoading',
-		'readonly'
-	],
+	extends: ElementForgeTheme.RenderableComponent,
+	props: ElementForgeTheme.props.Checkbox.renderable,
 	methods: {
 		click (e) {
 			if (!this.isValid || this.disabled) {

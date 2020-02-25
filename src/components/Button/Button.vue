@@ -17,6 +17,7 @@
 	/>
 </template>
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
 
 const Loader = require('@dwmt/loader/lib/Loader')
@@ -36,31 +37,7 @@ export default {
 	inject: {
 		form: { default: null }
 	},
-	props: {
-		type: {
-			type: String,
-			required: false,
-			default: 'default'
-		},
-		text: {
-			type: String,
-			required: true
-		},
-		data: {
-			type: Object
-		},
-		disabled: {
-			type: Boolean,
-			required: false,
-			default: false
-		},
-		formInstance: {
-			type: Object,
-			default () {
-				return this.form
-			}
-		}
-	},
+	props: ElementForgeTheme.props.Button.container,
 	computed: {
 		disabledComputed () {
 			if (this.disabledInherit === null || this.type !== 'submit') {

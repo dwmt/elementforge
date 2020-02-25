@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
 
 const Loader = require('@dwmt/loader/lib/Loader')
@@ -35,28 +36,7 @@ export default {
 			isLoading: false
 		}
 	},
-	props: {
-		label: {
-			type: String
-		},
-		data: {
-			type: Object
-		},
-		trueValue: {
-			default: true
-		},
-		falseValue: {
-			default: false
-		},
-		readonly: {
-			default: false
-		},
-		disabled: {
-			type: Boolean,
-			default: false
-		},
-		value: {}
-	},
+	props: ElementForgeTheme.props.Checkbox.container,
 	computed: {
 		checked () {
 			return this.value === this.trueValue

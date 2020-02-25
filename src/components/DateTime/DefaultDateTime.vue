@@ -1,9 +1,12 @@
 <template lang="pug">
-	.asd
+.asd
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
+
 export default {
-	name: 'DefaultDateTime'
+	name: 'DefaultDateTime',
+	props: ElementForgeTheme.props.DateTime.renderable
 }
 </script>

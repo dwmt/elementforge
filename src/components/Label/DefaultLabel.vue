@@ -5,13 +5,11 @@
 </template>
 
 <script>
-import RenderableComponent from '../RenderableComponent.vue';
+import ElementForgeTheme from '@dwmt/elementforge-theme'
+
 export default {
 	name: 'DefaultLabel',
-	extends: RenderableComponent,
-	props: [
-		'value',
-		'label'
-	]
+	extends: ElementForgeTheme.RenderableComponent,
+	props: ElementForgeTheme.props.Label.renderable
 }
 </script>

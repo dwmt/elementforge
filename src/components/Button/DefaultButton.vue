@@ -5,17 +5,12 @@
 </button>
 </template>
 <script>
-import RenderableComponent from '../RenderableComponent.vue'
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 
 export default {
 	name: 'DefaultButton',
-	extends: RenderableComponent,
-	props: [
-		'data',
-		'text',
-		'disabled',
-		'isLoading'
-	],
+	extends: ElementForgeTheme.RenderableComponent,
+	props: ElementForgeTheme.props.Button.renderable,
 	computed: {
 		classes () {
 			let classes = []

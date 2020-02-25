@@ -1,13 +1,12 @@
 <template lang="pug">
-	.date-time-picker-container
+.date-time-picker-container
 </template>
-
 <script>
-import RenderableComponent from '../RenderableComponent.vue'
-import DateTimePickerProps from './DateTimePicker.props'
+import ElementForgeTheme from '@dwmt/elementforge-theme'
+
 export default {
 	name: 'DefaultDateTimePicker',
-	extends: RenderableComponent,
-	props: DateTimePickerProps
+	extends: ElementForgeTheme.RenderableComponent,
+	props: ElementForgeTheme.props.DateTimePicker.renderable
 }
 </script>

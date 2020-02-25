@@ -5,16 +5,12 @@
 </template>
 
 <script>
-import RenderableComponent from '../RenderableComponent.vue'
+import ElementForgeTheme from '@dwmt/elementforge-theme'
+
 export default {
 	name: 'DefaultInput',
-	extends: RenderableComponent,
-	props: {
-		value: {},
-		label: {},
-		type: {},
-		editable: {}
-	},
+	extends: ElementForgeTheme.RenderableComponent,
+	props: ElementForgeTheme.props.Input.renderable,
 	methods: {
 		input(e) {
 			this.$emit('input', e.target.value)

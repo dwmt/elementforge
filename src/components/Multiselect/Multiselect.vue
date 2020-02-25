@@ -25,7 +25,9 @@
 </template>
 
 <script>
+import ElementForgeTheme from '@dwmt/elementforge-theme'
 import ContainerComponent from '../ContainerComponent.vue'
+
 import { OPTIONS_TYPES, STATES } from '../../consts'
 
 const equal = require('fast-deep-equal')
@@ -36,15 +38,7 @@ export default {
 	inject: {
 		form: { default: null }
 	},
-	props: {
-		disabled: {
-			type: Boolean,
-			default: false
-		},
-		label: {},
-		value: {},
-		options: {}
-	},
+	props: ElementForgeTheme.props.Multiselect.container,
 	data () {
 		return {
 			component: 'Multiselect',
