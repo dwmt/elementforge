@@ -16,10 +16,7 @@ component(
 
 	:label="label"
 	:value="value"
-	@input="input"
-	@click="click"
-	@focus="focus"
-	@blur="blur"
+	v-on="inputListeners"
 )
 </template>
 
@@ -46,6 +43,32 @@ export default {
 		}
 	},
 	computed: {
+		inputListeners: function () {
+			var vm = this
+			return Object.assign({},
+				this.$listeners,
+				{
+					input: function (event) {
+						vm.$emit('input', event)
+					},
+					blur: function (event) {
+						vm.$emit('blur', event)
+					},
+					click: function (event) {
+						vm.$emit('click', event)
+					},
+					focus: function (event) {
+						vm.$emit('focus', event)
+					},
+					keyup: function (event) {
+						vm.$emit('keyup', event)
+					},
+					keydown: function (event) {
+						vm.$emit('keydown', event)
+					}
+				}
+			)
+		},
 		isValidComputed () {
 			if (!this.form || this.isValidInherit === null) {
 				return this.isValid
