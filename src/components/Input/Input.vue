@@ -12,6 +12,10 @@ component(
 	:editable="editable"
 	:disabled="disabled"
 
+	:precision="precision"
+	:min="min"
+	:max="max"
+
 	:required="required"
 
 	:label="label"
