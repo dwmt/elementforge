@@ -8,6 +8,9 @@
 		
 		:name="name"
 		:value="displayDate"
+		:label="label"
+		:disabled="disabled"
+		:required="required"
 		@click="openPicker"
 	)
 	DateTimePicker(:theme="theme" :value="value" :type="type" :defaultDate="defaultDate" @input="changeTime" :modal="true" v-if="pickerVisible" @close="closePicker" :returnDate="true")
@@ -47,7 +50,7 @@ export default {
 		},
 		displayDate () {
 			let val = this.value
-			val = format(new Date(val), this.computedFormat)
+			val = (typeof val === 'undefined') ? '' : format(new Date(val), this.computedFormat)
 			return val
 		}
 	},
