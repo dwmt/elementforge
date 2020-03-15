@@ -10,6 +10,7 @@ import DateTimePicker from './DateTimePicker'
 import DateTime from './DateTime'
 import TagInput from './TagInput'
 import Form from './Form'
+import Paginator from './Paginator'
 
 let components = {
 	'Button': Button,
@@ -23,7 +24,8 @@ let components = {
 	'DateTimePicker': DateTimePicker,
 	'DateTime': DateTime,
 	'TagInput': TagInput,
-	'Form': Form
+	'Form': Form,
+	'Paginator': Paginator
 }
 
 export default {
