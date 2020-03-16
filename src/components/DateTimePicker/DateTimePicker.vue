@@ -78,6 +78,15 @@ export default {
 		}
 	},
 	props: ElementForgeTheme.props.DateTimePicker.container,
+	watch: {
+		value () {
+			this.selectedYear = this.year
+			this.selectedMonth = this.month
+			this.selectedDay = this.day
+			this.selectedHour = this.hour
+			this.selectedMinute = this.minute
+		}
+	},
 	computed: {
 		dateValue () {
 			if (!this.value) {
@@ -86,23 +95,23 @@ export default {
 			return new Date(this.value)
 		},
 		year () {
-			return this.dateValue.getUTCFullYear()
+			return this.dateValue.getFullYear()
 		},
 		month () {
-			return this.dateValue.getUTCMonth()
+			return this.dateValue.getMonth()
 		},
 		day () {
-			return this.dateValue.getUTCDate()
+			return this.dateValue.getDate()
 		},
 		hour () {
-			return this.dateValue.getUTCHours()
+			return this.dateValue.getHours()
 		},
 		minute () {
-			return this.dateValue.getUTCMinutes()
+			return this.dateValue.getMinutes()
 		},
 		days () {
 			let days = daysInMonth(this.selectedYear, this.selectedMonth)
-			return range(0, days)
+			return range(1, days)
 		},
 		selectedDate () {
 			if(this.type === 'date') {
@@ -118,7 +127,7 @@ export default {
 				validMonth = false
 			}
 
-			let days = daysInMonth(this.selectedYear, this.selectedMonth) - 1
+			let days = daysInMonth(this.selectedYear, this.selectedMonth)
 
 			if (this.selectedDay < 0 || this.selectedDay > days) {
 				validDay = false
@@ -180,7 +189,7 @@ export default {
 			let selectedDay = this.selectedDay - 1
 			if (selectedDay < 0) {
 				this.previousMonth()
-				selectedDay = daysInMonth(this.selectedYear, this.selectedMonth) - 1
+				selectedDay = daysInMonth(this.selectedYear, this.selectedMonth)
 			}
 			this.selectedDay = selectedDay
 			if (this.type === 'date' && this.isValidDate) {
@@ -189,7 +198,7 @@ export default {
 		},
 		nextDay () {
 			let selectedDay = this.selectedDay + 1
-			let days = daysInMonth(this.selectedYear, this.selectedMonth) - 1
+			let days = daysInMonth(this.selectedYear, this.selectedMonth)
 			if (selectedDay > days) {
 				this.nextMonth()
 				selectedDay = 0
@@ -201,7 +210,7 @@ export default {
 		},
 		selectDay (day) {
 			let selectedDay = day
-			let days = daysInMonth(this.selectedYear, this.selectedMonth) - 1
+			let days = daysInMonth(this.selectedYear, this.selectedMonth)
 			if (day < 0 || day > days) {
 				selectedDay = 0
 			}
