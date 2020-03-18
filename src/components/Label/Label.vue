@@ -4,7 +4,9 @@
 		:value="value"
 		:label="label"
 		:properties="properties"
-		:modifiers="modifiers"
+		:modifiers="modifiers",
+
+		@click="click"
 	)
 </template>
 
@@ -20,6 +22,11 @@ export default {
 		return {
 			component: 'Label',
 			defaultComponent: 'default-label'
+		}
+	},
+	methods: {
+		click () {
+			this.$emit('click')
 		}
 	}
 }
