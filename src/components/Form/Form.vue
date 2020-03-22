@@ -35,8 +35,10 @@ export default {
 		}
 	},
 	methods: {
-		resetForm () {
-			this.$emit('input', this.resetValue)
+		resetForm (valueReset = true) {
+			if (valueReset) {
+				this.$emit('input', this.resetValue)
+			}
 			let entries = Object.keys(this.formState)
 			entries.forEach((entry) => {
 				this.formState[entry].state = STATES.PRISTINE

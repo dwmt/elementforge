@@ -1,6 +1,6 @@
 {
 	"name": "@dwmt/elementforge",
-	"version": "0.3.10",
+	"version": "0.3.11",
 	"description": "Simple UI component library",
 	"main": "./dist/ElementForge.js",
 	"module": "./dist/ElementForge.esm.js",
