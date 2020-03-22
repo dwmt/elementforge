@@ -30,6 +30,7 @@ export default {
 		value: {
 			deep: true,
 			handler () {
+				console.log('Value changed...')
 				this.validateAll()
 			}
 		}

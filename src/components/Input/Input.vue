@@ -89,6 +89,9 @@ export default {
 	methods: {
 		input (e) {
 			this.$emit('input', e)
+			this.makeDirty()
+		},
+		makeDirty () {
 			this.state = STATES.DIRTY
 			if (this.form) {
 				this.form.dirty(this.name)
