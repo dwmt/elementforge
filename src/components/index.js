@@ -11,6 +11,7 @@ import DateTime from './DateTime'
 import TagInput from './TagInput'
 import Form from './Form'
 import Paginator from './Paginator'
+import Weekdays from './Weekdays'
 
 let components = {
 	'Button': Button,
@@ -25,7 +26,8 @@ let components = {
 	'DateTime': DateTime,
 	'TagInput': TagInput,
 	'Form': Form,
-	'Paginator': Paginator
+	'Paginator': Paginator,
+	'Weekdays': Weekdays
 }
 
 export default {
