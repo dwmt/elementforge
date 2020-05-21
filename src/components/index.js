@@ -15,6 +15,7 @@ import Radio from './Radio'
 import RadioGroup from './RadioGroup'
 import Sorter from './Sorter'
 import Autocomplete from './Autocomplete'
+import Weekdays from './Weekdays'
 
 let components = {
 	'Button': Button,
@@ -33,7 +34,8 @@ let components = {
 	'Radio': Radio,
 	'RadioGroup': RadioGroup,
 	'Sorter': Sorter,
-	'Autocomplete': Autocomplete
+	'Autocomplete': Autocomplete,
+	'Weekdays': Weekdays
 }
 
 export default {
