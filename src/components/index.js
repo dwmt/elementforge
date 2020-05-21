@@ -11,6 +11,10 @@ import DateTime from './DateTime'
 import TagInput from './TagInput'
 import Form from './Form'
 import Paginator from './Paginator'
+import Radio from './Radio'
+import RadioGroup from './RadioGroup'
+import Sorter from './Sorter'
+import Autocomplete from './Autocomplete'
 
 let components = {
 	'Button': Button,
@@ -25,7 +29,11 @@ let components = {
 	'DateTime': DateTime,
 	'TagInput': TagInput,
 	'Form': Form,
-	'Paginator': Paginator
+	'Paginator': Paginator,
+	'Radio': Radio,
+	'RadioGroup': RadioGroup,
+	'Sorter': Sorter,
+	'Autocomplete': Autocomplete
 }
 
 export default {

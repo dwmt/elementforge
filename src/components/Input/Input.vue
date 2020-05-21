@@ -69,6 +69,9 @@ export default {
 					},
 					keydown: function (event) {
 						vm.$emit('keydown', event)
+					},
+					keypress: function (event) {
+						vm.$emit('keypress', event)
 					}
 				}
 			)

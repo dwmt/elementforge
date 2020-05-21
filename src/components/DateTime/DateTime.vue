@@ -23,6 +23,7 @@ import ContainerComponent from '../ContainerComponent.vue'
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
 
 import {format} from 'date-fns'
+const isNull = (value) => typeof value === "object" && !value
 
 export default {
 	name: 'DateTime',
@@ -50,7 +51,7 @@ export default {
 		},
 		displayDate () {
 			let val = this.value
-			val = (typeof val === 'undefined') ? '' : format(new Date(val), this.computedFormat)
+			val = (typeof val === 'undefined') ? '' : format(isNull(val) ? new Date() : new Date(val), this.computedFormat)
 			return val
 		}
 	},
