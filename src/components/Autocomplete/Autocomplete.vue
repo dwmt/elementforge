@@ -24,7 +24,7 @@
 		:properties="properties"
 		:modifiers="modifiers"
 		:darkMode="darkModeState"
-		
+
 		:options="optionsComputed"
 		:selectedOption="selectedOption"
 		:visible="dropdownVisible"
@@ -78,7 +78,7 @@ export default {
 			setTimeout(() => {
 				this.dropdownVisible = false
 				this.selectedOption = 0
-			}, 2500)
+			}, 250)
 		},
 		arrowUp () {
 			this.selectedOption = (this.selectedOption - 1 >= 0) ? this.selectedOption - 1 : 0
