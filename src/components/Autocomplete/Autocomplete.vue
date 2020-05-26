@@ -1,5 +1,5 @@
 <template lang="pug">
-.date-time-component
+.autocomplete-component
 	Input(
 		:theme="theme"
 		:value="displayValue"
