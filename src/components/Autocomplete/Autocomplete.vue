@@ -119,15 +119,29 @@ export default {
 			this.$emit('input', selectedOption.value)
 			this.dropdownVisible = false
 		},
+
+		cleanOptions (options) {
+			let res = []
+			for (let option of options) {
+				if (typeof option === 'string') {
+					res.push({ key: option, value: option })
+				} else {
+					res.push(option)
+				}
+			}
+			return res
+		}
 	},
-	mounted () {
-		for (let option of this.options) {
-			if (typeof option === 'string') {
-				this.optionsCleaned.push({ key: option, value: option })
-			} else {
-				this.optionsCleaned.push(option)
+	watch: {
+		options: {
+			deep: true,
+			handler: function (newVal) {
+				this.optionsCleaned = this.cleanOptions(newVal)
 			}
 		}
+	},
+	mounted () {
+		this.optionsCleaned = this.cleanOptions(this.options)
 	},
 	beforeDestroy () {
 		this.optionsCleaned = []
