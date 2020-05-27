@@ -86,6 +86,9 @@ export default {
 		arrowDown () {
 			this.selectedOption = (this.selectedOption + 1 < this.optionsComputed.length) ? this.selectedOption + 1 : this.optionsComputed.length - 1
 		},
+		setDisplayValue (value) {
+			this.displayValue = value
+		},
 		keypress (e) {
 			if (!this.dropdownVisible) {
 				this.dropdownVisible = true
