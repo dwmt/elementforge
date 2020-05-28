@@ -2,7 +2,7 @@
 .autocomplete-component
 	Input(
 		:theme="theme"
-		:value="displayValue"
+		:value="computedValue"
 		:type="type"
 		:properties="properties"
 		:modifiers="modifiers"
@@ -39,6 +39,7 @@ import ContainerComponent from '../ContainerComponent.vue'
 
 import Input from '../Input/Input.vue'
 
+const equal = require('fast-deep-equal')
 
 export default {
 	name: 'Autocomplete',
@@ -49,7 +50,7 @@ export default {
 			component: 'Autocomplete',
 			defaultComponent: 'default-autocomplete',
 			dropdownVisible: false,
-			displayValue: '',
+			computedValue: '',
 			selectedOption: 0,
 			optionsCleaned: []
 		}
@@ -66,7 +67,7 @@ export default {
 			if (!this.autoFilter) {
 				this.$emit('filter', payload)
 			}
-			this.displayValue = payload
+			this.computedValue = payload
 			if (this.behaviour.toLowerCase() === 'input') {
 				this.$emit('input', payload)
 			}
@@ -85,9 +86,6 @@ export default {
 		},
 		arrowDown () {
 			this.selectedOption = (this.selectedOption + 1 < this.optionsComputed.length) ? this.selectedOption + 1 : this.optionsComputed.length - 1
-		},
-		setDisplayValue (value) {
-			this.displayValue = value
 		},
 		keypress (e) {
 			if (!this.dropdownVisible) {
@@ -118,9 +116,23 @@ export default {
 		selectOption (optionIndex) {
 			console.log('Selecting option...')
 			let selectedOption = this.optionsComputed[optionIndex]
-			this.displayValue = selectedOption.value
+			this.computedValue = selectedOption.value
 			this.$emit('input', selectedOption.value)
 			this.dropdownVisible = false
+		},
+
+		setComputedValue () {
+			let val = this.optionsCleaned.find(o => equal(o.value, this.value))
+
+			if (!!val) {
+				this.computedValue = val.key
+				return
+			}
+			if (typeof this.value === 'string') {
+				this.computedValue = this.value
+			} else {
+				this.computedValue = this.displayValue
+			}
 		},
 
 		cleanOptions (options) {
@@ -141,10 +153,18 @@ export default {
 			handler: function (newVal) {
 				this.optionsCleaned = this.cleanOptions(newVal)
 			}
+		},
+		value: {
+			deep: true,
+			handler: function () {
+				this.setComputedValue()
+			}
 		}
 	},
 	mounted () {
 		this.optionsCleaned = this.cleanOptions(this.options)
+		this.setComputedValue()
+
 	},
 	beforeDestroy () {
 		this.optionsCleaned = []
