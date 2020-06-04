@@ -77,13 +77,13 @@ export default {
 			)
 		},
 		isValidComputed () {
-			if (!this.form || this.isValidInherit === null) {
+			if (!this.form || this.isValidInherit === null || !this.validable) {
 				return this.isValid
 			}
 			return this.isValidInherit
 		},
 		errorsComputed () {
-			if (!this.form || this.errorsInherit === null) {
+			if (!this.form || this.errorsInherit === null || !this.validable) {
 				return this.errors
 			}
 			return this.errorsInherit

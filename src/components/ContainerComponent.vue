@@ -19,6 +19,10 @@ export default {
 		},
 		appearance: {
 			type: String
+		},
+		validable: {
+			type: Boolean,
+			default: true
 		}
 	},
 	computed: {
