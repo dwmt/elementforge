@@ -33,6 +33,9 @@ export default {
 				console.log('Value changed...')
 				this.validateAll()
 			}
+		},
+		isValid (newVal) {
+			this.$emit('validation', newVal)
 		}
 	},
 	methods: {
