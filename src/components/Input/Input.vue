@@ -56,7 +56,7 @@ export default {
 						vm.input(event)
 					},
 					blur: function (event) {
-						vm.focus(event)
+						vm.blur(event)
 					},
 					click: function (event) {
 						vm.$emit('click', event)
