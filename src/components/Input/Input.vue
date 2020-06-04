@@ -53,16 +53,16 @@ export default {
 				this.$listeners,
 				{
 					input: function (event) {
-						vm.$emit('input', event)
+						vm.input(event)
 					},
 					blur: function (event) {
-						vm.$emit('blur', event)
+						vm.focus(event)
 					},
 					click: function (event) {
 						vm.$emit('click', event)
 					},
 					focus: function (event) {
-						vm.$emit('focus', event)
+						vm.focus(event)
 					},
 					keyup: function (event) {
 						vm.$emit('keyup', event)
