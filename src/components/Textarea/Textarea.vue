@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import { STATES } from '../../consts'
@@ -46,7 +46,7 @@ export default {
 			errorsInherit: null
 		}
 	},
-	props: ElementForgeTheme.props.Textarea.container,
+	props: Props.Textarea.container,
 	computed: {
 		isValidComputed () {
 			if (!this.form || this.isValidInherit === null) {

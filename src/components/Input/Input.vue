@@ -25,7 +25,7 @@ component(
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import { STATES } from '../../consts'
@@ -36,7 +36,7 @@ export default {
 	inject: {
 		form: { default: null }
 	},
-	props: ElementForgeTheme.props.Input.container,
+	props: Props.Input.container,
 	data () {
 		return {
 			component: 'Input',

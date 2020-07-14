@@ -16,6 +16,7 @@ import RadioGroup from './RadioGroup'
 import Sorter from './Sorter'
 import Autocomplete from './Autocomplete'
 import Weekdays from './Weekdays'
+import Slider from './Slider'
 
 let components = {
 	'Button': Button,
@@ -35,10 +36,12 @@ let components = {
 	'RadioGroup': RadioGroup,
 	'Sorter': Sorter,
 	'Autocomplete': Autocomplete,
-	'Weekdays': Weekdays
+	'Weekdays': Weekdays,
+	'Slider': Slider
 }
 
 export default {
+	components,
 	install: function (Vue, options) {
 		const disabled = options.disabled || []
 		const enabled = options.enabled || false

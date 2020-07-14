@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import { STATES } from '../../consts'
@@ -69,7 +69,7 @@ export default {
 			errorsInherit: null
 		}
 	},
-	props: ElementForgeTheme.props.Autocomplete.container,
+	props: Props.Autocomplete.container,
 	computed: {
 		optionsComputed () {
 			return this.optionsCleaned

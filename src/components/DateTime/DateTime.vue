@@ -5,7 +5,7 @@
 		:properties="properties"
 		:modifiers="modifiers"
 		:darkMode="darkModeState"
-		
+
 		:name="name"
 		:value="displayDate"
 		:label="label"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
@@ -36,7 +36,7 @@ export default {
 			pickerVisible: false
 		}
 	},
-	props: ElementForgeTheme.props.DateTime.container,
+	props: Props.DateTime.container,
 	computed: {
 		computedFormat () {
 			if (!this.format) {

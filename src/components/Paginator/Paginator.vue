@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Paginator',
 	extends: ContainerComponent,
-	props: ElementForgeTheme.props.Paginator.container,
+	props: Props.Paginator.container,
 	data () {
 		return {
 			component: 'Paginator',

@@ -10,12 +10,13 @@ ul(class="flex list-reset border border-smoke-light rounded w-auto font-sans", v
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultPaginator',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.Paginator.renderable,
+	extends: RenderableComponent,
+	props: Props.Paginator.renderable,
 	computed: {
 		pageNumbers () {
 			let delta = 2,

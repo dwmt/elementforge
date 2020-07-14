@@ -16,12 +16,13 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultTextarea',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.Textarea.renderable,
+	extends: RenderableComponent,
+	props: Props.Textarea.renderable,
 	methods: {
 		click (e) {
 			if (this.disabled) {

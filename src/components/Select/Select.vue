@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import {optionalChaining} from '../../utils'
@@ -41,7 +41,7 @@ export default {
 	inject: {
 		form: { default: null }
 	},
-	props: ElementForgeTheme.props.Select.container,
+	props: Props.Select.container,
 	data () {
 		return {
 			component: 'Select',

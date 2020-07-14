@@ -19,10 +19,8 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
-
-import {optionalChaining} from '../../utils'
 
 const equal = require('fast-deep-equal')
 
@@ -32,7 +30,7 @@ export default {
 	inject: {
 		radioGroup: { default: null }
 	},
-	props: ElementForgeTheme.props.Radio.container,
+	props: Props.Radio.container,
 	data () {
 		return {
 			component: 'Radio',

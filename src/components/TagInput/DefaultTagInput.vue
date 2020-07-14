@@ -8,12 +8,13 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultTagInput',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.TagInput.renderable,
+	extends: RenderableComponent,
+	props: Props.TagInput.renderable,
 	methods: {
 		enter () {
 			this.$emit('enter')

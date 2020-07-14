@@ -1,11 +1,12 @@
 <script>
+import RenderableComponent from "./RenderableComponent.vue"
+
 const Loader = require('@dwmt/loader/lib/Loader')
-import ElementForgeTheme from '@dwmt/elementforge-theme'
 import container from '../Container'
-import bus from '../Bus'
+import bus from '../CommunicationBus.js'
 export default {
 	name: 'ContainerComponent',
-	extends: ElementForgeTheme.RenderableComponent,
+	extends: RenderableComponent,
 	data () {
 		return {
 			globalDarkMode: false,
@@ -46,7 +47,7 @@ export default {
 	},
 	beforeMount () {
 		this.globalDarkMode = container.getDarkMode()
-		bus.$on('darkMode:change', (darkMode) => {
+		bus.on('darkMode:change', (darkMode) => {
 			this.globalDarkMode = darkMode
 		})
 		this.loader = new Loader({

@@ -1,5 +1,8 @@
 const EventEmitter = require('events')
 
-class CommunicationBus extends EventEmitter {}
+export class CommunicationBus extends EventEmitter {}
 
-export default CommunicationBus
+const bus = new CommunicationBus()
+bus.setMaxListeners(0)
+
+export default bus

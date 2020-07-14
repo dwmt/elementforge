@@ -1,7 +1,7 @@
 <template lang="pug">
 component(
 	:is="renderableComponent"
-	
+
 	:modifiers="modifiers"
 	:name="name"
 	:isValid="isValid"
@@ -10,13 +10,13 @@ component(
 	:darkMode="darkModeState"
 
 	v-model="tag"
-	
+
 	:tags="value"
 	:editable="editable"
 	:required="required"
 	:label="label"
 	:disabled="disabled"
-	
+
 	@enter="enter"
 	@remove="remove"
 	@backspace="backspace"
@@ -24,13 +24,13 @@ component(
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Select',
 	extends: ContainerComponent,
-	props: ElementForgeTheme.props.TagInput.container,
+	props: Props.TagInput.container,
 	data () {
 		return {
 			component: 'TagInput',

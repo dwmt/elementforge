@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 let stateMatrix = {
@@ -28,7 +28,7 @@ let stateMatrix = {
 export default {
 	name: 'Sorter',
 	extends: ContainerComponent,
-	props: ElementForgeTheme.props.Sorter.container,
+	props: Props.Sorter.container,
 	data () {
 		return {
 			component: 'Sorter',

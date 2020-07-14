@@ -1,13 +1,20 @@
-import container from './Container'
-import bus from './Bus'
+import container from './Container.js'
+import bus from './CommunicationBus.js'
+import Theme from './Theme.js'
 
-import components from './components'
+import RenderableComponent from "./components/RenderableComponent.vue";
+
+import components from './components/index.js'
+import props from './props/index.js'
 
 let VueInst = null
 
 export default {
 	container,
 	bus,
+	Theme,
+	RenderableComponent,
+	components: props,
 	install (Vue, options = {}) {
 		components.install(Vue, options)
 		VueInst = Vue
@@ -26,17 +33,17 @@ export default {
 	},
 	/**
 	 * @event darkMode:change
-	 * @param {*} state 
+	 * @param {*} state
 	 */
 	setDarkMode(state = true) {
 		container.setDarkMode(state)
-		bus.$emit('darkMode:change', state)
+		bus.emit('darkMode:change', state)
 	},
 	isDarkMode () {
 		return container.getDarkMode()
 	},
 	getDarkMode (callback) {
-		bus.$on('darkMode:change', callback)
+		bus.on('darkMode:change', callback)
 		return container.getDarkMode()
 	},
 	setDefaultTheme (themeName) {

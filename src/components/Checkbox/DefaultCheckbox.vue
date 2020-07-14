@@ -11,12 +11,13 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultCheckbox',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.Checkbox.renderable,
+	extends: RenderableComponent,
+	props: Props.Checkbox.renderable,
 	methods: {
 		click (e) {
 			if (!this.isValid || this.disabled) {

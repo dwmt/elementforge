@@ -4,7 +4,7 @@
 	:properties="properties"
 	:modifiers="modifiers"
 	:darkMode="darkModeState"
-	
+
 	:name="name"
 	:year="year"
 	:month="month"
@@ -35,7 +35,7 @@
 	@previousHour="previousHour"
 	@nextHour="nextHour"
 	@selectHour="selectHour"
-	
+
 	@previousMinute="previousMinute"
 	@nextMinute="nextMinute"
 	@selectMinute="selectMinute"
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 function daysInMonth (year, month) {
@@ -77,7 +77,7 @@ export default {
 			}
 		}
 	},
-	props: ElementForgeTheme.props.DateTimePicker.container,
+	props: Props.DateTimePicker.container,
 	watch: {
 		value () {
 			this.selectedYear = this.year

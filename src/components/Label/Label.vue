@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Label',
 	extends: ContainerComponent,
-	props: ElementForgeTheme.props.Label.container,
+	props: Props.Label.container,
 	data () {
 		return {
 			component: 'Label',

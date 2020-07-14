@@ -4,7 +4,7 @@
 </div>
 </template>
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 
 import { STATES } from '../../consts'
 
@@ -12,7 +12,7 @@ const v = require('vindication.js')
 
 export default {
 	name: 'Form',
-	props: ElementForgeTheme.props.Form.container,
+	props: Props.Form.container,
 	data () {
 		return {
 			formState: {},

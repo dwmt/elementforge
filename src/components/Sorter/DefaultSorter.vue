@@ -3,11 +3,11 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
-
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 export default {
 	name: 'DefaultSorter',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.Sorter.renderable,
+	extends: RenderableComponent,
+	props: Props.Sorter.renderable,
 }
 </script>

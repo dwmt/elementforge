@@ -5,12 +5,13 @@ label(:for="name")
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultRadio',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.Radio.renderable,
+	extends: RenderableComponent,
+	props: Props.Radio.renderable,
 	methods: {
 		click (e) {
 			if (this.disabled) {

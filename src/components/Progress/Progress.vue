@@ -12,13 +12,13 @@
 	/>
 </template>
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Progress',
 	extends: ContainerComponent,
-	props: ElementForgeTheme.props.Progress.container,
+	props: Props.Progress.container,
 	data () {
 		return {
 			component: 'Progress',

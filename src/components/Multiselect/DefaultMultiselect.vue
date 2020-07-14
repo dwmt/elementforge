@@ -10,12 +10,13 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultMultiselect',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.Multiselect.renderable,
+	extends: RenderableComponent,
+	props: Props.Multiselect.renderable,
 	methods: {
 		selectItem (value) {
 			this.$emit('select', value)

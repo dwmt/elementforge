@@ -3,10 +3,12 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultAutocomplete',
-	props: ElementForgeTheme.props.Autocomplete.renderable
+	props: Props.Autocomplete.renderable,
+	extends: RenderableComponent
 }
 </script>

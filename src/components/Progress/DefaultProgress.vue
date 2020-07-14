@@ -2,12 +2,13 @@
 	<progress class="default" :value="value" max="100"/>
 </template>
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
+import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultProgress',
-	extends: ElementForgeTheme.RenderableComponent,
-	props: ElementForgeTheme.props.Progress.renderable,
+	extends: RenderableComponent,
+	props: Props.Progress.renderable,
 	computed: {
 		classes () {
 			let classes = []

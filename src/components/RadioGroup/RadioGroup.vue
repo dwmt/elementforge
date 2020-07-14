@@ -4,11 +4,11 @@
 </div>
 </template>
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 
 export default {
 	name: 'RadioGroup',
-	props: ElementForgeTheme.props.RadioGroup.container,
+	props: Props.RadioGroup.container,
 	data () {
 		return {
 			watchers: {},

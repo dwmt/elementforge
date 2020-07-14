@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import ElementForgeTheme from '@dwmt/elementforge-theme'
+import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'InputGroup',
 	extends: ContainerComponent,
-	props: ElementForgeTheme.props.InputGroup.container
+	props: Props.InputGroup.container
 }
 </script>
 
