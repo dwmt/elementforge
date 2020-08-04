@@ -33,6 +33,7 @@
 
 		:options="optionsComputed"
 		:selectedOption="selectedOption"
+		:selectedIndex="selectedIndex"
 		:visible="dropdownVisible"
 		@select="selectOption"
 		@moveSelection="moveSelection"
@@ -63,6 +64,7 @@ export default {
 			dropdownVisible: false,
 			computedValue: '',
 			selectedOption: 0,
+			selectedIndex: -1,
 			optionsCleaned: [],
 			state: STATES.PRISTINE,
 			isValidInherit: null,
@@ -158,6 +160,7 @@ export default {
 		},
 		selectOption (optionIndex) {
 			console.log('Selecting option...')
+			let selectedIndex = optionIndex
 			let selectedOption = this.optionsComputed[optionIndex]
 			this.computedValue = selectedOption.value
 			this.$emit('input', selectedOption.value)
@@ -170,6 +173,7 @@ export default {
 
 			if (!!val) {
 				this.computedValue = val.key
+				this.selectedIndex = this.optionsCleaned.indexOf(val)
 				return
 			}
 			if (typeof this.value === 'string') {
@@ -177,6 +181,7 @@ export default {
 			} else {
 				this.computedValue = this.displayValue
 			}
+			this.selectedIndex = -1
 		},
 
 		cleanOptions (options) {

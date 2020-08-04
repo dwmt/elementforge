@@ -27,6 +27,10 @@ const renderable = {
 	toggled: {
 		type: Boolean,
 		default: false
+	},
+	selectedIndex: {
+		type: Number,
+		default: -1
 	}
 }
 

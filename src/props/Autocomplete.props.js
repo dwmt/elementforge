@@ -58,6 +58,10 @@ const renderable = {
 	visible: {
 		type: Boolean,
 		default: () => false
+	},
+	selectedIndex: {
+		type: Number,
+		default: () => -1
 	}
 }
 

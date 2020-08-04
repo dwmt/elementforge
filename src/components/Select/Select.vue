@@ -12,6 +12,7 @@
 		:options="selectionOptions"
 		:required="required"
 		:value="selectionValue"
+		:selectedIndex="selectedIndex"
 		:label="label"
 		:toggled="toggled"
 		:disabled="disabled"
@@ -49,7 +50,8 @@ export default {
 			state: STATES.PRISTINE,
 			isValidInherit: null,
 			errorsInherit: null,
-			toggled: false
+			toggled: false,
+			selectedIndex: -1
 		}
 	},
 	computed: {
@@ -170,6 +172,7 @@ export default {
 			this.$emit('click', payload)
 		},
 		select (key) {
+			this.selectedIndex = key
 			this.$emit('input', this.selectionOptions[key].value)
 			this.toggled = false
 			this.state = STATES.DIRTY
@@ -198,6 +201,7 @@ export default {
 		}
 	},
 	mounted () {
+		this.selectedIndex = this.options.findIndex(option => option.value ? option.value === this.value : option === this.value)
 		if (this.form) {
 			this.form.registerEntry(this.name)
 			this.form.watchEntry(this.name, (isValid, errors, reset) => {
