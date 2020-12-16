@@ -1,18 +1,18 @@
 <template lang="pug">
-	component(
-		:is="renderableComponent"
+component(
+	:is="renderableComponent"
 
-		:darkMode="darkMode"
-		:name="name"
-		:modifiers="modifiers"
-		:properties="properties"
+	:darkMode="darkMode"
+	:name="name"
+	:modifiers="modifiers"
+	:properties="properties"
 
-		:value="value"
-		:label="label"
-		:disabled="disabled"
+	:value="value"
+	:label="label"
+	:disabled="disabled"
 
-		@input="input"
-	)
+	@input="input"
+)
 </template>
 
 <script>

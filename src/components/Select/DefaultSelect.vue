@@ -1,7 +1,7 @@
 <template>
-	<select name="" @input="input">
-		<option v-for="(option, index) in options" :key=index :selected="value === option.value">{{ option.value }}</option>
-	</select>
+<select name="" @input="input">
+	<option v-for="(option, index) in options" :key=index :selected="value === option.value">{{ option.value }}</option>
+</select>
 </template>
 
 <script>

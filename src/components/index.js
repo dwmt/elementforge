@@ -18,45 +18,45 @@ import Autocomplete from './Autocomplete'
 import Weekdays from './Weekdays'
 import Slider from './Slider'
 
-let components = {
-	'Button': Button,
-	'Checkbox': Checkbox,
-	'Textarea': Textarea,
-	'Select': Select,
-	'Label': Label,
-	'Input': Input,
-	'Progress': Progress,
-	'Multiselect': Multiselect,
-	'DateTimePicker': DateTimePicker,
-	'DateTime': DateTime,
-	'TagInput': TagInput,
-	'Form': Form,
-	'Paginator': Paginator,
-	'Radio': Radio,
-	'RadioGroup': RadioGroup,
-	'Sorter': Sorter,
-	'Autocomplete': Autocomplete,
-	'Weekdays': Weekdays,
-	'Slider': Slider
+const components = {
+  Button: Button,
+  Checkbox: Checkbox,
+  Textarea: Textarea,
+  Select: Select,
+  Label: Label,
+  Input: Input,
+  Progress: Progress,
+  Multiselect: Multiselect,
+  DateTimePicker: DateTimePicker,
+  DateTime: DateTime,
+  TagInput: TagInput,
+  Form: Form,
+  Paginator: Paginator,
+  Radio: Radio,
+  RadioGroup: RadioGroup,
+  Sorter: Sorter,
+  Autocomplete: Autocomplete,
+  Weekdays: Weekdays,
+  Slider: Slider
 }
 
 export default {
-	components,
-	install: function (Vue, options) {
-		const disabled = options.disabled || []
-		const enabled = options.enabled || false
-		if (enabled) {
-			enabled.forEach(component => {
-				if (!disabled.includes(component)) {
-					components[component](Vue, options)
-				}
-			})
-			return;
-		}
-		Object.keys(components).forEach(componentName => {
-			if (!disabled.includes(componentName)) {
-				components[componentName](Vue, options)
-			}
-		})
-	}
+  components,
+  install: function (Vue, options) {
+    const disabled = options.disabled || []
+    const enabled = options.enabled || false
+    if (enabled) {
+      enabled.forEach(component => {
+        if (!disabled.includes(component)) {
+          components[component](Vue, options)
+        }
+      })
+      return
+    }
+    Object.keys(components).forEach(componentName => {
+      if (!disabled.includes(componentName)) {
+        components[componentName](Vue, options)
+      }
+    })
+  }
 }

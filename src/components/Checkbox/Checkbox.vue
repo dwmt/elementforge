@@ -1,22 +1,22 @@
 <template>
-	<component
-		:is="renderableComponent"
-		:label="label"
-		:properties="properties"
-		:modifiers="modifiers"
-		:name="name"
-		:isValid="isValid"
-		:errors="errors"
-		:data="data"
-		:readonly="readonly"
-		:checked="checked"
-		:disabled="disabled"
+<component
+	:is="renderableComponent"
+	:label="label"
+	:properties="properties"
+	:modifiers="modifiers"
+	:name="name"
+	:isValid="isValid"
+	:errors="errors"
+	:data="data"
+	:readonly="readonly"
+	:checked="checked"
+	:disabled="disabled"
 
-		:isLoading="isLoading"
+	:isLoading="isLoading"
 
-		@click="click"
-		@input="input"
-	/>
+	@click="click"
+	@input="input"
+/>
 </template>
 
 <script>

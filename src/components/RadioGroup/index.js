@@ -1,6 +1,5 @@
 import RadioGroup from './RadioGroup.vue'
 
-export default function (Vue, options) {
-	Vue.component('RadioGroup', RadioGroup)
-
+export default function (Vue) {
+  Vue.component('RadioGroup', RadioGroup)
 }

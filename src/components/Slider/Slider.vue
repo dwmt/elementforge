@@ -1,19 +1,19 @@
 <template>
-	<component
-		:is="renderableComponent"
-		:properties="properties"
-		:modifiers="modifiers"
-		:name="name"
-		:darkMode="darkModeState"
+<component
+	:is="renderableComponent"
+	:properties="properties"
+	:modifiers="modifiers"
+	:name="name"
+	:darkMode="darkModeState"
 
-		:value="value"
-		:animated="animated"
-		:min="min"
-		:max="max"
-		:step="step"
+	:value="value"
+	:animated="animated"
+	:min="min"
+	:max="max"
+	:step="step"
 
-		v-on="inputListeners"
-	/>
+	v-on="inputListeners"
+/>
 </template>
 <script>
 import Props from '../../props/index.js'

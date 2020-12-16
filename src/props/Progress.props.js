@@ -1,32 +1,32 @@
 const props = {
-	value: {
-		type: Number
-	},
-	label: {
-		type: String,
-		required: false
-	},
-	showPercentage: {
-		type: Boolean,
-		required: false,
-		default: false
-	},
-	animated: {
-		type: Boolean,
-		required: false,
-		default: false
-	}
+  value: {
+    type: Number
+  },
+  label: {
+    type: String,
+    required: false
+  },
+  showPercentage: {
+    type: Boolean,
+    required: false,
+    default: false
+  },
+  animated: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
 }
 
 const container = {
-	...props
+  ...props
 }
 
 const renderable = {
-	...props
+  ...props
 }
 
 export default {
-	container,
-	renderable
+  container,
+  renderable
 }

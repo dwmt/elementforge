@@ -1,21 +1,21 @@
 <template>
-	<component
-		:is="renderableComponent"
+<component
+	:is="renderableComponent"
 
-		:darkMode="darkMode"
-		:name="nameComputed"
-		:modifiers="modifiers"
-		:properties="properties"
+	:darkMode="darkMode"
+	:name="nameComputed"
+	:modifiers="modifiers"
+	:properties="properties"
 
-		:value="valueComputed"
-		:data="dataComputed"
-		:label="label"
-		:checked="checked"
-		:disabled="disabledComputed"
+	:value="valueComputed"
+	:data="dataComputed"
+	:label="label"
+	:checked="checked"
+	:disabled="disabledComputed"
 
-		@click="click"
-		@input="input"
-	/>
+	@click="click"
+	@input="input"
+/>
 </template>
 
 <script>

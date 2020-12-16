@@ -1,29 +1,29 @@
 <template>
-	<component
-		:is="renderableComponent"
+<component
+	:is="renderableComponent"
 
-		:darkMode="darkMode"
-		:errors="errorsComputed"
-		:name="name"
-		:isValid="isValidComputed"
-		:modifiers="modifiers"
-		:properties="properties"
+	:darkMode="darkMode"
+	:errors="errorsComputed"
+	:name="name"
+	:isValid="isValidComputed"
+	:modifiers="modifiers"
+	:properties="properties"
 
-		:options="selectionOptions"
-		:required="required"
-		:value="selectionValue"
-		:selectedIndex="selectedIndex"
-		:label="label"
-		:toggled="toggled"
-		:disabled="disabled"
+	:options="selectionOptions"
+	:required="required"
+	:value="selectionValue"
+	:selectedIndex="selectedIndex"
+	:label="label"
+	:toggled="toggled"
+	:disabled="disabled"
 
-		@click="click"
-		@focus="focus"
-		@blur="blur"
-		@keyup="keyup"
-		@input="select"
-		@toggle="toggle"
-	/>
+	@click="click"
+	@focus="focus"
+	@blur="blur"
+	@keyup="keyup"
+	@input="select"
+	@toggle="toggle"
+/>
 </template>
 
 <script>

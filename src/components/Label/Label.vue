@@ -1,13 +1,13 @@
 <template lang="pug">
-	component(
-		:is="renderableComponent"
-		:value="value"
-		:label="label"
-		:properties="properties"
-		:modifiers="modifiers",
+component(
+	:is="renderableComponent"
+	:value="value"
+	:label="label"
+	:properties="properties"
+	:modifiers="modifiers",
 
-		@click="click"
-	)
+	@click="click"
+)
 </template>
 
 <script>

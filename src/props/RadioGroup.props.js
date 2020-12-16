@@ -1,24 +1,24 @@
 const props = {
-	value: {},
-	required: {
-		default: false,
-		type: Boolean
-	},
-	disabled: {
-		default: false,
-		type: Boolean
-	}
+  value: {},
+  required: {
+    default: false,
+    type: Boolean
+  },
+  disabled: {
+    default: false,
+    type: Boolean
+  }
 }
 
 const container = {
-	...props
+  ...props
 }
 
 const renderable = {
-	...props
+  ...props
 }
 
 export default {
-	container,
-	renderable
+  container,
+  renderable
 }

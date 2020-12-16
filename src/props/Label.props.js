@@ -1,21 +1,21 @@
 const props = {
-	value: {
-		default: ''
-	},
-	label: {
-		type: String
-	}
+  value: {
+    default: ''
+  },
+  label: {
+    type: String
+  }
 }
 
 const container = {
-	...props
+  ...props
 }
 
 const renderable = {
-	...props
+  ...props
 }
 
 export default {
-	container,
-	renderable
+  container,
+  renderable
 }

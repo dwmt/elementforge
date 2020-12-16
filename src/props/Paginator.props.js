@@ -1,22 +1,22 @@
 const props = {
-	value: {
-		type: Number
-	},
-	totalPages: {
-		type: Number,
-		required: true
-	}
+  value: {
+    type: Number
+  },
+  totalPages: {
+    type: Number,
+    required: true
+  }
 }
 
 const container = {
-	...props
+  ...props
 }
 
 const renderable = {
-	...props
+  ...props
 }
 
 export default {
-	container,
-	renderable
+  container,
+  renderable
 }

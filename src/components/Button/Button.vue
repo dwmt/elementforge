@@ -1,20 +1,20 @@
 <template>
-	<component
-		:is="renderableComponent"
-		:text="text"
-		:properties="properties"
-		:modifiers="modifiers"
-		:name="name"
-		:isValid="isValid"
-		:errors="errors"
-		:data="data"
-		:darkMode="darkModeState"
-		:disabled="disabledComputed"
+<component
+	:is="renderableComponent"
+	:text="text"
+	:properties="properties"
+	:modifiers="modifiers"
+	:name="name"
+	:isValid="isValid"
+	:errors="errors"
+	:data="data"
+	:darkMode="darkModeState"
+	:disabled="disabledComputed"
 
-		:isLoading="isLoading"
+	:isLoading="isLoading"
 
-		@click="click"
-	/>
+	@click="click"
+/>
 </template>
 <script>
 import Props from '../../props/index.js'

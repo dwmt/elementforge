@@ -1,27 +1,27 @@
 <template>
-	<component
-		:is="renderableComponent"
+<component
+	:is="renderableComponent"
 
-		:darkMode="darkMode"
-		:errors="errorsComputed"
-		:name="name"
-		:isValid="isValidComputed"
-		:modifiers="modifiers"
-		:properties="properties"
+	:darkMode="darkMode"
+	:errors="errorsComputed"
+	:name="name"
+	:isValid="isValidComputed"
+	:modifiers="modifiers"
+	:properties="properties"
 
 
-		:selectedItems="selectedItems"
-		:items="items"
-		:label="label"
-		:disabled="disabled"
+	:selectedItems="selectedItems"
+	:items="items"
+	:label="label"
+	:disabled="disabled"
 
-		@focus="focus"
-		@blur="blur"
-		@select="selectItem"
-		@delete="deleteItem"
-		@selectAll="selectAll"
-		@deleteAll="deleteAll"
-	/>
+	@focus="focus"
+	@blur="blur"
+	@select="selectItem"
+	@delete="deleteItem"
+	@selectAll="selectAll"
+	@deleteAll="deleteAll"
+/>
 </template>
 
 <script>

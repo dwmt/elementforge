@@ -1,14 +1,14 @@
 <template lang="pug">
-	component(
-		:is="renderableComponent"
-		:properties="properties"
-		:modifiers="modifiers"
+component(
+	:is="renderableComponent"
+	:properties="properties"
+	:modifiers="modifiers"
 
-		:value="value"
-		:totalPages="totalPages"
+	:value="value"
+	:totalPages="totalPages"
 
-		@input="input"
-	)
+	@input="input"
+)
 </template>
 
 <script>

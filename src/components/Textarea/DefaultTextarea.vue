@@ -1,18 +1,18 @@
 <template>
-	<textarea
-		:value="value"
-		:required="required"
-		:placeholder="placeholder"
-		:disabled="disabled"
-		:minlength="minlength"
-		:maxlength="maxlength"
+<textarea
+	:value="value"
+	:required="required"
+	:placeholder="placeholder"
+	:disabled="disabled"
+	:minlength="minlength"
+	:maxlength="maxlength"
 
-		@click="click"
-		@input="input"
-		@focus="focus"
-		@blur="blur"
-		@keyup="keyup"
-	/>
+	@click="click"
+	@input="input"
+	@focus="focus"
+	@blur="blur"
+	@keyup="keyup"
+/>
 </template>
 
 <script>
