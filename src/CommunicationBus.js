@@ -1,8 +1,8 @@
-const EventEmitter = require('events')
+import Emitter from 'tiny-emitter'
 
-export class CommunicationBus extends EventEmitter {}
+export class CommunicationBus extends Emitter {}
 
 const bus = new CommunicationBus()
-bus.setMaxListeners(0)
+// bus.setMaxListeners(0)
 
 export default bus

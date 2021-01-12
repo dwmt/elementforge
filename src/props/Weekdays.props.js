@@ -8,7 +8,7 @@ const props = {
 
 const container = {
   ...props,
-  value: {},
+  modelValue: {},
   options: {}
 }
 

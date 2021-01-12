@@ -9,7 +9,7 @@
 	:modifiers="modifiers"
 	:properties="properties"
 
-	:value="value"
+	:modelValue="modelValue"
 	:required="required"
 	:minlength="minlength"
 	:maxlength="maxlength"
@@ -20,7 +20,7 @@
 	@click="click"
 	@focus="focus"
 	@blur="blur"
-	@input="input"
+	@update:modelValue="input"
 	@keyup="keyup"
 />
 </template>
@@ -62,7 +62,7 @@ export default {
 		},
 	},
 	methods: {
-		click () {},
+		click () { return },
 		focus (payload) {
 			this.$emit('focus', payload)
 			this.state = STATES.UNTOUCHED
@@ -80,9 +80,9 @@ export default {
 			}
 		},
 		input (payload) {
-			this.$emit('input', payload)
+			this.$emit('update:modelValue', payload)
 		},
-		keyup () {}
+		keyup () { return }
 	},
 	mounted () {
 		if (this.form) {

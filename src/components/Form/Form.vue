@@ -5,14 +5,17 @@
 </template>
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 
 import { STATES } from '../../consts'
 
-const v = require('vindication.js')
+import v from 'vindication.js'
+// const v = require('vindication.js')
 
 export default {
 	name: 'Form',
 	props: Props.Form.container,
+	emits: Events.Form.container,
 	data () {
 		return {
 			formState: {},
@@ -27,7 +30,7 @@ export default {
 		}
 	},
 	watch: {
-		value: {
+		modelValue: {
 			deep: true,
 			handler () {
 				console.log('Value changed...')
@@ -41,9 +44,9 @@ export default {
 	methods: {
 		resetForm (valueReset = true) {
 			if (valueReset) {
-				this.$emit('input', this.resetValue)
+				this.$emit('update:modelValue', this.resetValue)
 			}
-			let entries = Object.keys(this.formState)
+			const entries = Object.keys(this.formState)
 			entries.forEach((entry) => {
 				this.formState[entry].state = STATES.PRISTINE
 				this.formState[entry].isValid = true
@@ -72,11 +75,11 @@ export default {
 			this.validate(name)
 		},
 		validate (name) {
-			let validation = v.validate(
-				this.value[name],
+			const validation = v.validate(
+				this.modelValue[name],
 				this.rules[name]
 			)
-			let isValid = validation === null
+			const isValid = validation === null
 			let errors = []
 			this.formState[name].isValid = isValid
 			this.formState[name].errors = errors
@@ -88,7 +91,7 @@ export default {
 			this.checkValidity()
 		},
 		validateAll (opts = {}) {
-			let entries = Object.keys(this.formState)
+			const entries = Object.keys(this.formState)
 			entries.forEach((entry) => {
 				if (!opts.ignoreState && this.formState[entry].state === STATES.PRISTINE || this.formState[entry].state === STATES.UNTOUCHED) {
 					return
@@ -98,7 +101,7 @@ export default {
 			this.checkValidity(opts)
 		},
 		checkValidity (opts = {}) {
-			let entries = Object.values(this.formState)
+			const entries = Object.values(this.formState)
 			let isValid = true
 			entries.forEach((entry) => {
 				if (!opts.ignoreState && (entry.state === STATES.PRISTINE || entry.state === STATES.UNTOUCHED)) {
@@ -110,7 +113,7 @@ export default {
 			this.informSubmits()
 		},
 		informSubmits () {
-			let submits = Object.values(this.submits)
+			const submits = Object.values(this.submits)
 			submits.forEach((inform) => {
 				inform(!this.isValid)
 			})

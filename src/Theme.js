@@ -14,7 +14,9 @@ Theme.prototype.install = function (container, VueInst) {
         VueInst.component(appearanceObject.componentName, appearanceObject.vueComponent)
       })
     })
-  } catch (e) {}
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 Theme.prototype.registerAppearance = function (component, appearanceName, VueComponent, isDefault = false) {

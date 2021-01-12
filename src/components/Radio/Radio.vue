@@ -7,22 +7,24 @@
 	:modifiers="modifiers"
 	:properties="properties"
 
-	:value="valueComputed"
+	:modelValue="valueComputed"
 	:data="dataComputed"
 	:label="label"
 	:checked="checked"
 	:disabled="disabledComputed"
 
 	@click="click"
-	@input="input"
+	@update:model-value="input"
 />
 </template>
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
-const equal = require('fast-deep-equal')
+import equal from 'fast-deep-equal'
+// const equal = require('fast-deep-equal')
 
 export default {
 	name: 'Radio',
@@ -31,6 +33,7 @@ export default {
 		radioGroup: { default: null }
 	},
 	props: Props.Radio.container,
+	emits: Events.Radio.container,
 	data () {
 		return {
 			component: 'Radio',
@@ -49,10 +52,10 @@ export default {
 			if (this.radioGroup) {
 				return this.valueInherit
 			}
-			return this.value
+			return this.modelValue
 		},
 		disabledComputed () {
-			let disabledInherit = (this.disabledInherit === null) ? false : this.disabledInherit
+			const disabledInherit = (this.disabledInherit === null) ? false : this.disabledInherit
 
 			return this.disabledInherit || this.disabled
 		},
@@ -65,7 +68,7 @@ export default {
 			this.$emit('click', payload)
 		},
 		input () {
-			this.$emit('input', this.dataComputed)
+			this.$emit('update:modelValue', this.dataComputed)
 			if (this.radioGroup) {
 				this.radioGroup.input(this.dataComputed)
 			}
@@ -78,7 +81,7 @@ export default {
 		this.dataComputed = this.data
 		this.nameComputed = this.name || 'radio-' + Math.floor(Math.random() * 100) + 1
 		if (this.radioGroup) {
-			let inheritValues = this.radioGroup.registerEntry(this.groupIdentifier, (newValue) => {
+			const inheritValues = this.radioGroup.registerEntry(this.groupIdentifier, (newValue) => {
 				this.valueInherit = newValue.value
 				this.disabledInherit = newValue.disabled
 			})
@@ -86,7 +89,7 @@ export default {
 			this.disabledInherit = inheritValues.disabled
 		}
 	},
-	beforeDestroy () {
+	beforeUnmount () {
 		if (this.radioGroup) {
 			this.radioGroup.deleteEntry(this.groupIdentifier)
 		}

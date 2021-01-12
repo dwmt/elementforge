@@ -49,6 +49,7 @@
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 function daysInMonth (year, month) {
@@ -78,8 +79,9 @@ export default {
 		}
 	},
 	props: Props.DateTimePicker.container,
+	emits: Events.DateTimePicker.container,
 	watch: {
-		value () {
+		modelValue () {
 			this.selectedYear = this.year
 			this.selectedMonth = this.month
 			this.selectedDay = this.day
@@ -89,10 +91,10 @@ export default {
 	},
 	computed: {
 		dateValue () {
-			if (!this.value) {
+			if (!this.modelValue) {
 				return new Date(this.defaultDate)
 			}
-			return new Date(this.value)
+			return new Date(this.modelValue)
 		},
 		year () {
 			return this.dateValue.getFullYear()
@@ -110,7 +112,7 @@ export default {
 			return this.dateValue.getMinutes()
 		},
 		days () {
-			let days = daysInMonth(this.selectedYear, this.selectedMonth)
+			const days = daysInMonth(this.selectedYear, this.selectedMonth)
 			return range(1, days)
 		},
 		selectedDate () {
@@ -127,7 +129,7 @@ export default {
 				validMonth = false
 			}
 
-			let days = daysInMonth(this.selectedYear, this.selectedMonth)
+			const days = daysInMonth(this.selectedYear, this.selectedMonth)
 
 			if (this.selectedDay < 0 || this.selectedDay > days) {
 				validDay = false
@@ -142,11 +144,11 @@ export default {
 		},
 		input () {
 			if (this.returnDate) {
-				this.$emit('input', this.selectedDate)
+				this.$emit('update:modelValue', this.selectedDate)
 				this.$emit('close')
 				return
 			}
-			this.$emit('input', this.selectedDate.getTime())
+			this.$emit('update:modelValue', this.selectedDate.getTime())
 			this.$emit('close')
 		},
 
@@ -198,7 +200,7 @@ export default {
 		},
 		nextDay () {
 			let selectedDay = this.selectedDay + 1
-			let days = daysInMonth(this.selectedYear, this.selectedMonth)
+			const days = daysInMonth(this.selectedYear, this.selectedMonth)
 			if (selectedDay > days) {
 				this.nextMonth()
 				selectedDay = 0
@@ -210,7 +212,7 @@ export default {
 		},
 		selectDay (day) {
 			let selectedDay = day
-			let days = daysInMonth(this.selectedYear, this.selectedMonth)
+			const days = daysInMonth(this.selectedYear, this.selectedMonth)
 			if (day < 0 || day > days) {
 				selectedDay = 0
 			}

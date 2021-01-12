@@ -22,7 +22,7 @@ const props = {
 
 const container = {
   ...props,
-  value: {
+  modelValue: {
     type: Array,
     default: () => []
   }
@@ -30,7 +30,7 @@ const container = {
 
 const renderable = {
   ...props,
-  value: {
+  modelValue: {
     type: String,
     default: ''
   },

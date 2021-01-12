@@ -11,12 +11,14 @@
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultMultiselect',
 	extends: RenderableComponent,
 	props: Props.Multiselect.renderable,
+	emits: Events.Multiselect.renderable,
 	methods: {
 		selectItem (value) {
 			this.$emit('select', value)

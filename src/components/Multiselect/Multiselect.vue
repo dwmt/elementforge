@@ -26,11 +26,15 @@
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
+
+import { optionalChaining } from  '../../utils/index.js'
 
 import { OPTIONS_TYPES, STATES } from '../../consts'
 
-const equal = require('fast-deep-equal')
+import equal from 'fast-deep-equal'
+// const equal = require('fast-deep-equal')
 
 export default {
 	name: 'Multiselect',
@@ -39,6 +43,7 @@ export default {
 		form: { default: null }
 	},
 	props: Props.Multiselect.container,
+	emits: Events.Multiselect.container,
 	data () {
 		return {
 			component: 'Multiselect',
@@ -93,11 +98,13 @@ export default {
 			}
 			throw new Error('Provided options array is invalid!')
 		},
+		// TODO: provide default return value
+		// eslint-disable-next-line
 		selectionOptions () {
 			if (!this.options || !this.options.length) {
 				return []
 			}
-			let optionsType = this.optionsType
+			const optionsType = this.optionsType
 
 			if (optionsType === OPTIONS_TYPES.ARRAY) {
 				return this.options.map((o) => { return {key: o, value: o} })
@@ -126,20 +133,20 @@ export default {
 		},
 		selectedItems () {
 			return this.selectionOptions.filter((item) => {
-				let found = this.value.find((val) => equal(val, item.value))
+				const found = this.modelValue.find((val) => equal(val, item.value))
 				return found
 			})
 		},
 		items () {
 			return this.selectionOptions.filter((item) => {
-				let found = this.value.find((val) => equal(val, item.value))
+				const found = this.modelValue.find((val) => equal(val, item.value))
 				return !found
 			})
 		}
 	},
 	methods: {
 		input (payload) {
-			this.$emit('input', payload)
+			this.$emit('update:modelValue', payload)
 			this.state = STATES.DIRTY
 			if (this.form) {
 				this.form.dirty(this.name)
@@ -162,12 +169,12 @@ export default {
 			}
 		},
 		selectItem (value) {
-			let items = [].concat(this.value)
+			const items = [].concat(this.modelValue)
 			items.push(value)
 			this.input(items)
 		},
 		deleteItem (value) {
-			let items = [].concat(this.value)
+			const items = [].concat(this.modelValue)
 			this.input(items.filter((item) => !equal(item, value)))
 		},
 		selectAll () {

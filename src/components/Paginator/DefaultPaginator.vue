@@ -11,12 +11,14 @@ ul(class="flex list-reset border border-smoke-light rounded w-auto font-sans", v
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultPaginator',
 	extends: RenderableComponent,
 	props: Props.Paginator.renderable,
+	emits: Events.Paginator.renderable,
 	computed: {
 		pageNumbers () {
 			let delta = 2,
@@ -24,7 +26,7 @@ export default {
 			right = this.currentPage + delta + 1,
 			result = [];
 
-			let length = (parseInt(this.currentPage) + 2 > parseInt(this.totalPages)) ? parseInt(this.totalPages) : parseInt(this.currentPage) + 2
+			const length = (parseInt(this.currentPage) + 2 > parseInt(this.totalPages)) ? parseInt(this.totalPages) : parseInt(this.currentPage) + 2
 
 			result = Array.from({length: length }, (v, k) => k + 1).filter(i => i && i >= left && i < right);
 
@@ -39,21 +41,21 @@ export default {
 	},
 	methods: {
 		goToRoute (e) {
-			let page = e.currentTarget.getAttribute('page')
+			const page = e.currentTarget.getAttribute('page')
 			if (parseInt(page) !== parseInt(this.currentPage)) {
-				this.$emit('input', page)
+				this.$emit('update:modelValue', page)
 			}
 		},
 		goToNext () {
-			let nextPage = parseInt(this.currentPage) + 1
+			const nextPage = parseInt(this.currentPage) + 1
 			if (parseInt(nextPage) <= parseInt(this.totalPages)) {
-				this.$emit('input', nextPage)
+				this.$emit('update:modelValue', nextPage)
 			}
 		},
 		goToPrevious () {
-			let prevPage = parseInt(this.currentPage) - 1
+			const prevPage = parseInt(this.currentPage) - 1
 			if (parseInt(prevPage) >= 1) {
-				this.$emit('input', prevPage)
+				this.$emit('update:modelValue', prevPage)
 			}
 		}
 	}

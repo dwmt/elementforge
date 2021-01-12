@@ -4,21 +4,23 @@ component(
 	:properties="properties"
 	:modifiers="modifiers"
 
-	:value="value"
+	:modelValue="modelValue"
 	:totalPages="totalPages"
 
-	@input="input"
+	@update:model-value="input"
 )
 </template>
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Paginator',
 	extends: ContainerComponent,
 	props: Props.Paginator.container,
+	emits: Events.Paginator.container,
 	data () {
 		return {
 			component: 'Paginator',
@@ -27,7 +29,7 @@ export default {
 	},
 	methods: {
 		input (e) {
-			this.$emit('input', e)
+			this.$emit('update:modelValue', e)
 		}
 	}
 }

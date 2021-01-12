@@ -45,7 +45,7 @@ export default {
 				this.backspaceDelete = false
 			}
 			if (this.tag.indexOf(',') !== -1) {
-				let tags = [].concat(this.value)
+				const tags = [].concat(this.value)
 				let tag = '' + this.tag
 				tag = tag.replace(',', '')
 				if (tags.includes(tag) || tag === '') {
@@ -54,13 +54,13 @@ export default {
 				}
 				tags.push(tag)
 				this.tag = ''
-				this.$emit('input', tags)
+				this.$emit('update:modelValue', tags)
 			}
 		}
 	},
 	methods: {
 		enter () {
-			let tags = [].concat(this.value)
+			const tags = [].concat(this.value)
 			let tag = '' + this.tag
 			tag = tag.replace(',', '')
 			if (tags.includes(tag) || tag === '') {
@@ -68,15 +68,15 @@ export default {
 			}
 			tags.push(tag)
 			this.tag = ''
-			this.$emit('input', tags)
+			this.$emit('update:modelValue', tags)
 		},
 		remove (tag) {
-			let tags = [].concat(this.value)
-			this.$emit('input', tags.filter(t => t !== tag))
+			const tags = [].concat(this.value)
+			this.$emit('update:modelValue', tags.filter(t => t !== tag))
 		},
 		backspace (e) {
 			if (this.backspaceDelete) {
-				let lastTag = this.value[this.value.length - 1]
+				const lastTag = this.value[this.value.length - 1]
 				this.remove(lastTag)
 			}
 			if (this.tag === '') {

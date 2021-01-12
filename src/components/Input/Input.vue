@@ -19,13 +19,14 @@ component(
 	:required="required"
 
 	:label="label"
-	:value="value"
+	:modelValue="modelValue"
 	v-on="inputListeners"
 )
 </template>
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import { STATES } from '../../consts'
@@ -37,6 +38,7 @@ export default {
 		form: { default: null }
 	},
 	props: Props.Input.container,
+	emits: Events.Input.container,
 	data () {
 		return {
 			component: 'Input',
@@ -48,33 +50,29 @@ export default {
 	},
 	computed: {
 		inputListeners: function () {
-			var vm = this
-			return Object.assign({},
-				this.$listeners,
-				{
-					input: function (event) {
-						vm.input(event)
-					},
-					blur: function (event) {
-						vm.blur(event)
-					},
-					click: function (event) {
-						vm.$emit('click', event)
-					},
-					focus: function (event) {
-						vm.focus(event)
-					},
-					keyup: function (event) {
-						vm.$emit('keyup', event)
-					},
-					keydown: function (event) {
-						vm.$emit('keydown', event)
-					},
-					keypress: function (event) {
-						vm.$emit('keypress', event)
-					}
+			return {
+				'update:modelValue': (event) => {
+					this.input(event)
+				},
+				blur: (event) => {
+					this.blur(event)
+				},
+				click: (event) => {
+					this.$emit('click', event)
+				},
+				focus: (event) => {
+					this.focus(event)
+				},
+				keyup: (event) => {
+					this.$emit('keyup', event)
+				},
+				keydown: (event) => {
+					this.$emit('keydown', event)
+				},
+				keypress: (event) => {
+					this.$emit('keypress', event)
 				}
-			)
+			}
 		},
 		isValidComputed () {
 			if (!this.form || this.isValidInherit === null || !this.validable) {
@@ -91,7 +89,7 @@ export default {
 	},
 	methods: {
 		input (e) {
-			this.$emit('input', e)
+			this.$emit('update:modelValue', e)
 			this.makeDirty()
 		},
 		makeDirty () {

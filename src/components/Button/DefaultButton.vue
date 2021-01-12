@@ -6,12 +6,14 @@
 </template>
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultButton',
 	extends: RenderableComponent,
 	props: Props.Button.renderable,
+	emits: Events.Button.renderable,
 	computed: {
 		classes () {
 			let classes = []

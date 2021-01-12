@@ -11,7 +11,7 @@
 
 	:options="selectionOptions"
 	:required="required"
-	:value="selectionValue"
+	:modelValue="selectionValue"
 	:selectedIndex="selectedIndex"
 	:label="label"
 	:toggled="toggled"
@@ -21,20 +21,22 @@
 	@focus="focus"
 	@blur="blur"
 	@keyup="keyup"
-	@input="select"
+	@update:model-value="select"
 	@toggle="toggle"
 />
 </template>
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import {optionalChaining} from '../../utils'
 
 import { OPTIONS_TYPES, STATES } from '../../consts'
 
-const equal = require('fast-deep-equal')
+import equal from 'fast-deep-equal'
+// const equal = require('fast-deep-equal')
 
 export default {
 	name: 'Select',
@@ -43,6 +45,7 @@ export default {
 		form: { default: null }
 	},
 	props: Props.Select.container,
+	emits: Events.Select.container,
 	data () {
 		return {
 			component: 'Select',
@@ -68,9 +71,9 @@ export default {
 			return this.errorsInherit
 		},
 		selectionValue () {
-			let optionsType = this.optionsType
-			let value = this.selectionOptions.find((option) => {
-				return equal(option.value, this.value)
+			const optionsType = this.optionsType
+			const value = this.selectionOptions.find((option) => {
+				return equal(option.value, this.modelValue)
 			})
 			if (!value)
 				return undefined
@@ -108,11 +111,13 @@ export default {
 			}
 			throw new Error('Provided options array is invalid!')
 		},
+		// TODO:
+		// eslint-disable-next-line
 		selectionOptions () {
 			if (!this.options || !this.options.length) {
 				return []
 			}
-			let optionsType = this.optionsType
+			const optionsType = this.optionsType
 
 			if (optionsType === OPTIONS_TYPES.ARRAY) {
 				return this.options.map((o) => { return {key: o, value: o} })
@@ -173,7 +178,7 @@ export default {
 		},
 		select (key) {
 			this.selectedIndex = key
-			this.$emit('input', this.selectionOptions[key].value)
+			this.$emit('update:modelValue', this.selectionOptions[key].value)
 			this.toggled = false
 			this.state = STATES.DIRTY
 			if (this.form) {
@@ -201,7 +206,7 @@ export default {
 		}
 	},
 	mounted () {
-		this.selectedIndex = this.options.findIndex(option => option.value ? option.value === this.value : option === this.value)
+		this.selectedIndex = this.options.findIndex(option => option.value ? option.value === this.modelValue : option === this.modelValue)
 		if (this.form) {
 			this.form.registerEntry(this.name)
 			this.form.watchEntry(this.name, (isValid, errors, reset) => {

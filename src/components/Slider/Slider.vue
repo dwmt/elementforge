@@ -17,12 +17,14 @@
 </template>
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Slider',
 	extends: ContainerComponent,
 	props: Props.Slider.container,
+	emits: Events.Slider.container,
 	data () {
 		return {
 			component: 'Slider',
@@ -31,24 +33,20 @@ export default {
 	},
 	computed: {
 		inputListeners: function () {
-			var vm = this
-			return Object.assign({},
-				this.$listeners,
-				{
-					input: function (event) {
-						vm.$emit('input', event)
-					},
-					click: function (event) {
-						vm.$emit('click', event)
-					},
-					dragstart: function (event) {
-						vm.$emit('dragstart', event)
-					},
-					dragend: function (event) {
-						vm.$emit('dragend', event)
-					}
+			return {
+				'update:modelValue': (event) => {
+					this.$emit('update:modelValue', event)
+				},
+				click: (event) => {
+					this.$emit('click', event)
+				},
+				dragstart: (event) => {
+					this.$emit('dragstart', event)
+				},
+				dragend: (event) => {
+					this.$emit('dragend', event)
 				}
-			)
+			}
 		},
 	}
 }

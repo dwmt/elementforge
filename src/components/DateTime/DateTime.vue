@@ -7,17 +7,29 @@
 		:darkMode="darkModeState"
 
 		:name="name"
-		:value="displayDate"
+		:model-value="displayDate"
 		:label="label"
 		:disabled="disabled"
 		:required="required"
 		@click="openPicker"
 	)
-	DateTimePicker(:theme="theme" :value="value" :type="type" :defaultDate="defaultDate" @input="changeTime" :modal="true" v-if="pickerVisible" @close="closePicker" :returnDate="true")
+	DateTimePicker(
+		v-if="pickerVisible"
+		:theme="theme"
+		:model-value="modelValue"
+		:type="type"
+		:defaultDate="defaultDate"
+		:modal="true"
+		:returnDate="true"
+
+		@close="closePicker"
+		@update:model-value="changeTime"
+	)
 </template>
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
@@ -37,6 +49,7 @@ export default {
 		}
 	},
 	props: Props.DateTime.container,
+	emits: Events.DateTime.container,
 	computed: {
 		computedFormat () {
 			if (!this.format) {
@@ -57,7 +70,7 @@ export default {
 	},
 	methods: {
 		changeTime (payload) {
-			this.$emit('input', payload)
+			this.$emit('update:modelValue', payload)
 		},
 		openPicker () {
 			this.pickerVisible = true

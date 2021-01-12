@@ -19,7 +19,7 @@ component(
 import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
-let stateMatrix = {
+const stateMatrix = {
 	'0': 1,
 	'1': -1,
 	'-1': 0
@@ -42,7 +42,7 @@ export default {
 	},
 	methods: {
 		input () {
-			this.$emit('input', this.nextState)
+			this.$emit('update:modelValue', this.nextState)
 		}
 	}
 }

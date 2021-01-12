@@ -15,15 +15,17 @@
 	:isLoading="isLoading"
 
 	@click="click"
-	@input="input"
+	@update:model-value="input"
 />
 </template>
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
-const Loader = require('@dwmt/loader/lib/Loader')
+import Loader from '@dwmt/loader/lib/Loader'
+// const Loader = require('@dwmt/loader/lib/Loader')
 
 export default {
 	name: 'Checkbox',
@@ -37,9 +39,10 @@ export default {
 		}
 	},
 	props: Props.Checkbox.container,
+	emits: Events.Checkbox.container,
 	computed: {
 		checked () {
-			return this.value === this.trueValue
+			return this.modelValue === this.trueValue
 		}
 	},
 	methods: {
@@ -48,9 +51,9 @@ export default {
 		},
 		input (payload) {
 			if (!payload) {
-				this.$emit('input', this.falseValue)
+				this.$emit('update:modelValue', this.falseValue)
 			} else {
-				this.$emit('input', this.trueValue)
+				this.$emit('update:modelValue', this.trueValue)
 			}
 		}
 	},

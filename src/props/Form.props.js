@@ -1,15 +1,15 @@
 const container = {
-  resetValue: {
+  resetmodelValue: {
     type: Object,
-    default: () => {}
+    default: () => { return {} }
   },
-  value: {
+  modelValue: {
     type: Object,
-    default: () => {}
+    default: () => { return {} }
   },
   rules: {
     type: Object,
-    default: () => {}
+    default: () => { return {} }
   }
 }
 

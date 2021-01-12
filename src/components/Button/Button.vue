@@ -18,9 +18,12 @@
 </template>
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
-const Loader = require('@dwmt/loader/lib/Loader')
+import Loader from '@dwmt/loader/lib/Loader'
+
+// const Loader = require('@dwmt/loader/lib/Loader')
 
 export default {
 	name: 'Button',
@@ -38,6 +41,7 @@ export default {
 		form: { default: null }
 	},
 	props: Props.Button.container,
+	emits: Events.Button.container,
 	computed: {
 		disabledComputed () {
 			if (this.disabledInherit === null || this.type !== 'submit') {

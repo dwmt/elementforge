@@ -5,13 +5,14 @@
 		:name="name"
     :min="min"
 		:max="max"
-		:value="value"
+		:value="modelValue"
 		:step="step"
 		@input="input"
 	)
 </template>
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
@@ -32,8 +33,8 @@ export default {
 	},
 	methods: {
 		input (e) {
-			let value = Number(e.target.value)
-			this.$emit('input', value)
+			const value = Number(e.target.value)
+			this.$emit('update:modelValue', value)
 		}
 	}
 }

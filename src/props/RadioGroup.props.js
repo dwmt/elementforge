@@ -1,5 +1,5 @@
 const props = {
-  value: {},
+  modelmodelValue: {},
   required: {
     default: false,
     type: Boolean

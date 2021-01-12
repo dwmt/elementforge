@@ -4,7 +4,7 @@ const props = {
     default: ''
   },
   type: {},
-  value: {},
+  modelValue: {},
   editable: {
     type: Boolean,
     default: true

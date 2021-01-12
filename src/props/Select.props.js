@@ -1,5 +1,5 @@
 const props = {
-  value: {},
+  modelValue: {},
   options: {
     type: Array,
     default: () => []

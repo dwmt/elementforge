@@ -2,7 +2,7 @@
 .autocomplete-component
 	Input(
 		:theme="theme"
-		:value="computedValue"
+		:model-value="computedValue"
 		:type="type"
 		:properties="properties"
 		:modifiers="modifiers"
@@ -17,7 +17,7 @@
 		:errors="errorsComputed"
 		:validable="false"
 
-		@input="input"
+		@update:model-value="input"
 		@focus="focus"
 		@blur="blur"
 		@keydown="keypress"
@@ -42,13 +42,16 @@
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import { STATES } from '../../consts'
 
 import Input from '../Input/Input.vue'
 
-const equal = require('fast-deep-equal')
+import equal from 'fast-deep-equal'
+
+// const equal = require('fast-deep-equal')
 
 export default {
 	name: 'Autocomplete',
@@ -72,6 +75,7 @@ export default {
 		}
 	},
 	props: Props.Autocomplete.container,
+	emits: Props.Autocomplete.container,
 	computed: {
 		optionsComputed () {
 			return this.optionsCleaned
@@ -97,7 +101,7 @@ export default {
 			}
 			this.computedValue = payload
 			if (this.behaviour.toLowerCase() === 'input') {
-				this.$emit('input', payload)
+				this.$emit('update:modelValue', payload)
 			}
 			this.makeDirty()
 		},
@@ -160,24 +164,24 @@ export default {
 		},
 		selectOption (optionIndex) {
 			console.log('Selecting option...')
-			let selectedIndex = optionIndex
-			let selectedOption = this.optionsComputed[optionIndex]
+			const selectedIndex = optionIndex
+			const selectedOption = this.optionsComputed[optionIndex]
 			this.computedValue = selectedOption.value
-			this.$emit('input', selectedOption.value)
+			this.$emit('update:modelValue', selectedOption.value)
 			this.dropdownVisible = false
 			this.makeDirty()
 		},
 
 		setComputedValue () {
-			let val = this.optionsCleaned.find(o => equal(o.value, this.value))
+			const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
 
-			if (!!val) {
+			if (val) {
 				this.computedValue = val.key
 				this.selectedIndex = this.optionsCleaned.indexOf(val)
 				return
 			}
-			if (typeof this.value === 'string') {
-				this.computedValue = this.value
+			if (typeof this.modelValue === 'string') {
+				this.computedValue = this.modelValue
 			} else {
 				this.computedValue = this.displayValue
 			}
@@ -185,8 +189,8 @@ export default {
 		},
 
 		cleanOptions (options) {
-			let res = []
-			for (let option of options) {
+			const res = []
+			for (const option of options) {
 				if (typeof option === 'string') {
 					res.push({ key: option, value: option })
 				} else {
@@ -203,7 +207,7 @@ export default {
 				this.optionsCleaned = this.cleanOptions(newVal)
 			}
 		},
-		value: {
+		modelValue: {
 			deep: true,
 			handler: function () {
 				this.setComputedValue()
@@ -227,7 +231,7 @@ export default {
 		this.setComputedValue()
 
 	},
-	beforeDestroy () {
+	beforeUnmount () {
 		this.optionsCleaned = []
 	}
 }

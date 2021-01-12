@@ -20,7 +20,7 @@ export default {
 			this.$emit('enter')
 		},
 		input (e) {
-			this.$emit('input', e.target.value)
+			this.$emit('update:modelValue', e.target.value)
 		},
 		remove (tag) {
 			this.$emit('remove', tag)

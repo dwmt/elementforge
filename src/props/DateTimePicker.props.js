@@ -7,7 +7,7 @@ const props = {
 
 const container = {
   ...props,
-  value: {},
+  modelValue: {},
   type: {
     type: String,
     default: 'date'
@@ -25,7 +25,7 @@ const renderable = {
   ...props,
   toolbox: {
     type: Object,
-    default: () => {}
+    default: () => { return {} }
   },
 
   year: {

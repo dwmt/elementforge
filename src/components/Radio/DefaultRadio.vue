@@ -6,24 +6,26 @@ label(:for="name")
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultRadio',
 	extends: RenderableComponent,
 	props: Props.Radio.renderable,
+	emits: Events.Radio.renderable,
 	methods: {
 		click (e) {
 			if (this.disabled) {
 				return
 			}
-			this.$emit('click', { event: e, data: this.data, value: this.value})
+			this.$emit('click', { event: e, data: this.data, value: this.modelValue})
 		},
 		input (e) {
 			if (this.disabled) {
 				return
 			}
-			this.$emit('input', e.target.value)
+			this.$emit('update:modelValue', e.target.value)
 		}
 	}
 }

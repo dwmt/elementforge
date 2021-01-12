@@ -20,7 +20,7 @@ export default {
 		}
 	},
 	watch: {
-		value: {
+		modelValue: {
 			deep: true,
 			handler () {
 				this.informAll()
@@ -29,12 +29,12 @@ export default {
 	},
 	methods: {
 		input (payload) {
-			this.$emit('input', payload)
+			this.$emit('update:modelValue', payload)
 		},
 		registerEntry (name, cb) {
 			this.watchers[name] = cb
 			return {
-				value: this.value,
+				value: this.modelValue,
 				disabled: this.disabled
 			}
 		},
@@ -42,8 +42,8 @@ export default {
 			delete this.watchers[name]
 		},
 		informAll () {
-			let watchers = Object.keys(this.watchers)
-			for (let watcher of watchers) {
+			const watchers = Object.keys(this.watchers)
+			for (const watcher of watchers) {
 				this.watchers[watcher]({ value: this.value, disabled: this.disabled })
 			}
 		}

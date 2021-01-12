@@ -1,5 +1,5 @@
 const props = {
-  value: {},
+  modelValue: {},
   label: {},
   data: {},
   disabled: {

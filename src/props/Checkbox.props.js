@@ -16,13 +16,13 @@ const container = {
   data: {
     type: Object
   },
-  trueValue: {
+  truemodelValue: {
     default: true
   },
-  falseValue: {
+  falsemodelValue: {
     default: false
   },
-  value: {}
+  modelValue: {}
 }
 
 const renderable = {

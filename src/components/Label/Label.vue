@@ -12,12 +12,15 @@ component(
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
+
 import ContainerComponent from '../ContainerComponent.vue'
 
 export default {
 	name: 'Label',
 	extends: ContainerComponent,
 	props: Props.Label.container,
+	emits: Events.Label.container,
 	data () {
 		return {
 			component: 'Label',

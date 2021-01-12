@@ -31,7 +31,7 @@ export default {
 			this.$emit('click', { event: e, data: this.value })
 		},
 		input (e) {
-			this.$emit('input', e.target.value )
+			this.$emit('update:modelValue', e.target.value )
 		},
 		focus (e) {
 			this.$emit('focus', e)

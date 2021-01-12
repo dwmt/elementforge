@@ -4,8 +4,8 @@ const props = {
     default: ''
   },
   type: {},
-  value: {},
-  displayValue: {
+  modelValue: {},
+  displaymodelValue: {
     type: String,
     default: ''
   },
