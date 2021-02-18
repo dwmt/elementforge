@@ -13,7 +13,7 @@
 		:required="required"
 		@click="openPicker"
 	)
-	DateTimePicker(:theme="theme" :value="value" :type="type" :defaultDate="defaultDate" @input="changeTime" :modal="true" v-if="pickerVisible" @close="closePicker" :returnDate="true")
+	// DateTimePicker(:theme="theme" :value="value" :type="type" :defaultDate="defaultDate" @input="changeTime" :modal="true" v-if="pickerVisible" @close="closePicker" :returnDate="true")
 </template>
 
 <script>
@@ -21,6 +21,8 @@ import Props from '../../props/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
+
+import Vue from 'vue'
 
 import {format} from 'date-fns'
 const isNull = (value) => typeof value === "object" && !value
@@ -33,7 +35,8 @@ export default {
 		return {
 			component: 'DateTime',
 			defaultComponent: 'default-datetime',
-			pickerVisible: false
+			pickerVisible: false,
+			datePickerRemoveFunc: null
 		}
 	},
 	props: Props.DateTime.container,
@@ -59,11 +62,43 @@ export default {
 		changeTime (payload) {
 			this.$emit('input', payload)
 		},
+		// TODO: Refactor this with teleport when vue 3 is available
 		openPicker () {
+			if (this.pickerVisible) return
 			this.pickerVisible = true
+			const appContainer = this.$root.$el
+			const datePickerContainer = document.createElement('div')
+			const datePickerID = 'ef-datepicker-container' + Date.now()
+			datePickerContainer.id = datePickerID
+
+			appContainer.appendChild(datePickerContainer)
+
+			let datePickerComp = Vue.extend(DateTimePicker)
+			let self = this
+			let datePicker = new datePickerComp({
+				propsData: {
+					theme: self.theme,
+					value: self.value,
+					type: self.type,
+					defaultDate: self.defaultDate,
+					modal: true,
+					returnDate: true,
+				},
+				created () {
+					this.$on('close', self.closePicker)
+					this.$on('input', self.changeTime)
+				}
+			}).$mount(`#${datePickerID}`)
+
+			this.datePickerRemoveFunc = function () {
+				appContainer.removeChild(datePicker.$el)
+			}
 		},
 		closePicker () {
 			this.pickerVisible = false
+			if (!this.datePickerRemoveFunc) return
+			this.datePickerRemoveFunc()
+			this.datePickerRemoveFunc = null
 		}
 	}
 }
