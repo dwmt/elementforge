@@ -34,6 +34,8 @@ import ContainerComponent from '../ContainerComponent.vue'
 
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
 
+import Vue from 'vue'
+
 import {format} from 'date-fns'
 const isNull = (value) => typeof value === "object" && !value
 
@@ -45,7 +47,8 @@ export default {
 		return {
 			component: 'DateTime',
 			defaultComponent: 'default-datetime',
-			pickerVisible: false
+			pickerVisible: false,
+			datePickerRemoveFunc: null
 		}
 	},
 	props: Props.DateTime.container,
@@ -72,11 +75,23 @@ export default {
 		changeTime (payload) {
 			this.$emit('update:modelValue', payload)
 		},
+		// TODO: Refactor this with teleport when vue 3 is available
 		openPicker () {
+			if (this.pickerVisible) return
 			this.pickerVisible = true
+			const appContainer = this.$root.$el
+			const datePickerContainer = document.createElement('div')
+			const datePickerID = 'ef-datepicker-container' + Date.now()
+			datePickerContainer.id = datePickerID
+
+			appContainer.appendChild(datePickerContainer)
+
 		},
 		closePicker () {
 			this.pickerVisible = false
+			if (!this.datePickerRemoveFunc) return
+			this.datePickerRemoveFunc()
+			this.datePickerRemoveFunc = null
 		}
 	}
 }
