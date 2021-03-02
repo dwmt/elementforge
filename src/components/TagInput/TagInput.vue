@@ -11,7 +11,7 @@ component(
 
 	v-model="tag"
 
-	:tags="value"
+	:tags="modelValue"
 	:editable="editable"
 	:required="required"
 	:label="label"
@@ -45,7 +45,7 @@ export default {
 				this.backspaceDelete = false
 			}
 			if (this.tag.indexOf(',') !== -1) {
-				const tags = [].concat(this.value)
+				const tags = [].concat(this.modelValue)
 				let tag = '' + this.tag
 				tag = tag.replace(',', '')
 				if (tags.includes(tag) || tag === '') {
@@ -60,7 +60,7 @@ export default {
 	},
 	methods: {
 		enter () {
-			const tags = [].concat(this.value)
+			const tags = [].concat(this.modelValue)
 			let tag = '' + this.tag
 			tag = tag.replace(',', '')
 			if (tags.includes(tag) || tag === '') {
@@ -71,12 +71,12 @@ export default {
 			this.$emit('update:modelValue', tags)
 		},
 		remove (tag) {
-			const tags = [].concat(this.value)
+			const tags = [].concat(this.modelValue)
 			this.$emit('update:modelValue', tags.filter(t => t !== tag))
 		},
 		backspace (e) {
 			if (this.backspaceDelete) {
-				const lastTag = this.value[this.value.length - 1]
+				const lastTag = this.modelValue[this.modelValue.length - 1]
 				this.remove(lastTag)
 			}
 			if (this.tag === '') {
