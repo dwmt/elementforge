@@ -1,7 +1,4 @@
 const props = {
-  modelValue: {
-    type: Number
-  },
   label: {
     type: String,
     required: false
@@ -18,15 +15,17 @@ const props = {
   }
 }
 
-const container = {
-  ...props
-}
-
-const renderable = {
-  ...props
-}
-
 export default {
-  container,
-  renderable
+  container: {
+		modelValue: {
+			type: Number
+		},
+		...props
+	},
+  renderable: {
+		value: {
+			type: Number
+		},
+		...props
+	}
 }

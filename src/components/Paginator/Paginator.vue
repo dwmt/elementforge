@@ -7,7 +7,7 @@ component(
 	:modelValue="modelValue"
 	:totalPages="totalPages"
 
-	@update:model-value="input"
+	@input="input"
 )
 </template>
 

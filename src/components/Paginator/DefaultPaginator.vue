@@ -43,19 +43,19 @@ export default {
 		goToRoute (e) {
 			const page = e.currentTarget.getAttribute('page')
 			if (parseInt(page) !== parseInt(this.modelValue)) {
-				this.$emit('update:modelValue', page)
+				this.$emit('input', page)
 			}
 		},
 		goToNext () {
 			const nextPage = parseInt(this.modelValue) + 1
 			if (parseInt(nextPage) <= parseInt(this.totalPages)) {
-				this.$emit('update:modelValue', nextPage)
+				this.$emit('input', nextPage)
 			}
 		},
 		goToPrevious () {
 			const prevPage = parseInt(this.modelValue) - 1
 			if (parseInt(prevPage) >= 1) {
-				this.$emit('update:modelValue', prevPage)
+				this.$emit('input', prevPage)
 			}
 		}
 	}
