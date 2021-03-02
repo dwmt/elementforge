@@ -20,13 +20,14 @@
 	@click="click"
 	@focus="focus"
 	@blur="blur"
-	@update:modelValue="input"
+	@input="input"
 	@keyup="keyup"
 />
 </template>
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
 import { STATES } from '../../consts'
@@ -34,6 +35,8 @@ import { STATES } from '../../consts'
 export default {
 	name: 'Textarea',
 	extends: ContainerComponent,
+	props: Props.Textarea.container,
+	emits: Events.Textarea.container,
 	inject: {
 		form: { default: null }
 	},
@@ -46,7 +49,6 @@ export default {
 			errorsInherit: null
 		}
 	},
-	props: Props.Textarea.container,
 	computed: {
 		isValidComputed () {
 			if (!this.form || this.isValidInherit === null) {

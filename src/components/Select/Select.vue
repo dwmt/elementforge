@@ -21,7 +21,7 @@
 	@focus="focus"
 	@blur="blur"
 	@keyup="keyup"
-	@update:model-value="select"
+	@input="select"
 	@toggle="toggle"
 />
 </template>

@@ -7,7 +7,7 @@ component(
 	:modifiers="modifiers"
 	:properties="properties"
 
-	:value="modelValue"
+	:modelValue="modelValue"
 	:label="label"
 	:disabled="disabled"
 

@@ -1,5 +1,4 @@
 const props = {
-  modelValue: {},
   options: {
     type: Array,
     default: () => []
@@ -14,27 +13,26 @@ const props = {
   }
 }
 
-const container = {
-  localisation: {
-    type: Boolean,
-    default: false
-  },
-  ...props
-}
-
-const renderable = {
-  ...props,
-  toggled: {
-    type: Boolean,
-    default: false
-  },
-  selectedIndex: {
-    type: Number,
-    default: -1
-  }
-}
-
 export default {
-  container,
-  renderable
+  container: {
+		modelValue: {},
+		localisation: {
+			type: Boolean,
+			default: false
+		},
+		...props
+	}
+	,
+  renderable: {
+		...props,
+		value: {},
+		toggled: {
+			type: Boolean,
+			default: false
+		},
+		selectedIndex: {
+			type: Number,
+			default: -1
+		}
+	}
 }

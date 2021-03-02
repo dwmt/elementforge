@@ -17,12 +17,14 @@
 
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 import RenderableComponent from "../RenderableComponent.vue";
 
 export default {
 	name: 'DefaultTextarea',
 	extends: RenderableComponent,
 	props: Props.Textarea.renderable,
+	emits: Events.Textarea.renderable,
 	methods: {
 		click (e) {
 			if (this.disabled) {
@@ -31,7 +33,7 @@ export default {
 			this.$emit('click', { event: e, data: this.modelValue })
 		},
 		input (e) {
-			this.$emit('update:modelValue', e.target.value )
+			this.$emit('input', e.target.value )
 		},
 		focus (e) {
 			this.$emit('focus', e)

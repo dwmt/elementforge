@@ -1,16 +1,6 @@
-const events = {
-	click: {},
-}
-
-const container = {
-  ...events
-}
-
-const renderable = {
-  ...events
-}
+const events = ['click']
 
 export default {
-  container,
-  renderable
+  container: [...events],
+  renderable: [...events]
 }

@@ -5,7 +5,7 @@
 		:name="name"
     :min="min"
 		:max="max"
-		:value="modelValue"
+		:value="value"
 		:step="step"
 		@input="input"
 	)
@@ -19,6 +19,7 @@ export default {
 	name: 'DefaultSlider',
 	extends: RenderableComponent,
 	props: Props.Slider.renderable,
+	emits: Events.Slider.renderable,
 	computed: {
 		classes () {
 			let classes = []
@@ -34,7 +35,7 @@ export default {
 	methods: {
 		input (e) {
 			const value = Number(e.target.value)
-			this.$emit('update:modelValue', value)
+			this.$emit('input', value)
 		}
 	}
 }

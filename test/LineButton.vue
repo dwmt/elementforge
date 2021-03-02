@@ -12,11 +12,12 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue'
-import { RenderableComponent, components } from '../src/ElementForge.ts'
+import { RenderableComponent, components, events } from '../src/ElementForge.ts'
 export default defineComponent({
 	name: 'LineButton',
 	extends: RenderableComponent,
 	props: components.Button.renderable,
+	emits: events.Button.renderable,
 	methods: {
 		click (e: any) {
 			this.$emit('click', e)

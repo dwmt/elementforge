@@ -1,6 +1,7 @@
 const events = {
 	'update:modelValue': {},
-	click: {}
+	click: {},
+	input: {}
 }
 
 const container = {

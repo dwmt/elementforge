@@ -1,5 +1,4 @@
 const props = {
-  modelValue: {},
   label: {},
   data: {},
   disabled: {
@@ -9,11 +8,13 @@ const props = {
 }
 
 const container = {
+	modelValue: {},
   ...props
 }
 
 const renderable = {
   ...props,
+	value: {},
   checked: {
     type: Boolean,
     default: false

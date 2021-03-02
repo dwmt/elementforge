@@ -7,14 +7,14 @@
 	:modifiers="modifiers"
 	:properties="properties"
 
-	:modelValue="valueComputed"
+	:value="valueComputed"
 	:data="dataComputed"
 	:label="label"
 	:checked="checked"
 	:disabled="disabledComputed"
 
 	@click="click"
-	@update:model-value="input"
+	@input="input"
 />
 </template>
 
@@ -82,6 +82,7 @@ export default {
 		this.nameComputed = this.name || 'radio-' + Math.floor(Math.random() * 100) + 1
 		if (this.radioGroup) {
 			const inheritValues = this.radioGroup.registerEntry(this.groupIdentifier, (newValue) => {
+				console.log(newValue)
 				this.valueInherit = newValue.value
 				this.disabledInherit = newValue.disabled
 			})

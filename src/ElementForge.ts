@@ -7,4 +7,6 @@ export const RenderableComponent = RenderableComponentVue
 
 import props from './props/index'
 export const components = props
+import evts from './events/index'
+export const events = evts
 

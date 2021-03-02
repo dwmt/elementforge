@@ -31,11 +31,13 @@
 	h3
 		span Default
 	div
+		div {{ normalCheckbox }}
 		Checkbox(v-model="normalCheckbox", label="Some random label")
 		Checkbox(v-model="normalCheckbox", label="Some random label", :disabled="true").my-2
 	h3
 		span Toggle
 	div
+		div {{ toggle }}
 		Checkbox(v-model="toggle", appearance="toggle", label="Whatever").mt-2
 		Checkbox(v-model="toggle", appearance="toggle", label="Whatever", :modifiers="['slim']").mt-2
 		Checkbox(v-model="toggle", appearance="toggle", label="Whatever", :modifiers="['narrow']").mt-2
@@ -46,6 +48,7 @@
 	h3
 		span Default
 	div
+		div {{ normalRadio }}
 		Radio(v-model="normalRadio", name="normalRadio", label="Some random label", data="1")
 		Radio(v-model="normalRadio", name="normalRadio", label="Some random label", data="2").my-2
 		Radio(v-model="normalRadio", label="Disabled radio", :disabled="true", data="1").my-2
@@ -54,6 +57,7 @@
 	h3
 		span Default
 	div
+		div {{ normalRadioGroup }}
 		RadioGroup(v-model="normalRadioGroup", label="Is it true?")
 			Radio(:data="true", label="Yes")
 			Radio(:data="false", label="No")
@@ -70,12 +74,17 @@
 	h3
 		span Default
 	div(class="w-1/3")
+		div {{ selectArray }}
 		Select.mb-4(v-model="selectArray" :options="optionsArray" label="Array selection")
+		div {{ selectKeyValue }}
 		Select.mb-4(v-model="selectKeyValue" :options="optionsKeyValue" label="Key Value Selection", :required="true")
+		div {{ selectKeyValueLang }}
 		Select.mb-4(v-model="selectKeyValueLang" :options="optionsKeyValueLang" label="Localized Key Value Selection")
+		div {{ selectObject }}
 		Select.mb-4(v-model="selectObject" :options="optionsObject" label="Object value of seleciton")
 		Select.mb-4(v-model="selectObject" :options="optionsObject" label="Disabled selection", :disabled="true")
 		Select.mb-4(v-model="selectObject" :options="optionsObject" label="Disabled selection", :isValid="false", :errors="['Example error']")
+		div {{ narrowSelectObject }}
 		Select.mb-4(class=" w-1/4",v-model="narrowSelectObject" :options="narrowOptionsObject" label="Narrow selection")
 
 	h2

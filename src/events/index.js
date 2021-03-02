@@ -9,8 +9,10 @@ import Label from './Label.events'
 import Multiselect from './Multiselect.events'
 import Paginator from './Paginator.events'
 import Radio from './Radio.events'
+import RadioGroup from './RadioGroup.events'
 import Select from './Select.events'
 import Slider from './Slider.events'
+import Textarea from './Textarea.events'
 
 export default {
 	Autocomplete,
@@ -24,6 +26,8 @@ export default {
 	Multiselect,
 	Paginator,
 	Radio,
+	RadioGroup,
 	Select,
-	Slider
+	Slider,
+	Textarea
 }

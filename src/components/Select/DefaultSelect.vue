@@ -1,6 +1,6 @@
 <template>
-<select name="" @input="input">
-	<option v-for="(option, index) in options" :key="index" :selected="modelValue === option.value">{{ option.key }}</option>
+<select name="">
+	<option @click="input(index)" v-for="(option, index) in options" :key="index" :selected="value === option.value">{{ option.key }}</option>
 </select>
 </template>
 
@@ -20,10 +20,10 @@ export default {
 			if (this.disabled) {
 				return
 			}
-			this.$emit('click', { event: e, data: this.modelValue})
+			this.$emit('click', { event: e, data: this.value})
 		},
 		input (e) {
-			this.$emit('update:modelValue', e.target.value)
+			this.$emit('input', e)
 		}
 	}
 }

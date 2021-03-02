@@ -4,7 +4,8 @@ component(
 	:value="value"
 	:label="label"
 	:properties="properties"
-	:modifiers="modifiers",
+	:modifiers="modifiers"
+	:disabled="disabled"
 
 	@click="click"
 )

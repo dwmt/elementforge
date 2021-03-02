@@ -5,10 +5,12 @@
 </template>
 <script>
 import Props from '../../props/index.js'
+import Events from '../../events/index.js'
 
 export default {
 	name: 'RadioGroup',
 	props: Props.RadioGroup.container,
+	emits: Events.RadioGroup.container,
 	data () {
 		return {
 			watchers: {},
@@ -42,9 +44,8 @@ export default {
 			delete this.watchers[name]
 		},
 		informAll () {
-			const watchers = Object.keys(this.watchers)
-			for (const watcher of watchers) {
-				this.watchers[watcher]({ value: this.value, disabled: this.disabled })
+			for (const watcher of this.watchers) {
+				this.watchers[watcher]({ value: this.modelValue, disabled: this.disabled })
 			}
 		}
 	}

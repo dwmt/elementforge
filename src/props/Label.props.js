@@ -4,6 +4,10 @@ const props = {
   },
   label: {
     type: String
+  },
+  disabled: {
+    type: Boolean,
+    deafult: false
   }
 }
 

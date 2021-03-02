@@ -1,6 +1,6 @@
 <template lang="pug">
 label(:for="name")
-	input(type="radio" :value="data" :checked="checked", @click="click", @input="input")
+	input(type="radio" :value="data" :checked="checked", @click="click", @input="click" :disabled="disabled")
 	span {{ label }}
 </template>
 
@@ -20,12 +20,6 @@ export default {
 				return
 			}
 			this.$emit('click', { event: e, data: this.data, value: this.modelValue})
-		},
-		input (e) {
-			if (this.disabled) {
-				return
-			}
-			this.$emit('update:modelValue', e.target.value)
 		}
 	}
 }
