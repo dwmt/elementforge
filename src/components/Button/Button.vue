@@ -21,10 +21,6 @@ import Props from '../../props/index.js'
 import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
-import Loader from '@dwmt/loader/lib/Loader'
-
-// const Loader = require('@dwmt/loader/lib/Loader')
-
 export default {
 	name: 'Button',
 	extends: ContainerComponent,
@@ -69,16 +65,6 @@ export default {
 				})
 			}
 		}
-	},
-	beforeMount () {
-		this.loader = new Loader({
-			onActivation: () => {
-				this.isLoading = true
-			},
-			onTermination: () => {
-				this.isLoading = false
-			}
-		})
 	}
 }
 </script>

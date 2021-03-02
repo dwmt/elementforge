@@ -36,7 +36,6 @@ import {optionalChaining} from '../../utils'
 import { OPTIONS_TYPES, STATES } from '../../consts'
 
 import equal from 'fast-deep-equal'
-// const equal = require('fast-deep-equal')
 
 export default {
 	name: 'Select',

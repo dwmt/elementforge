@@ -1,6 +1,6 @@
 <template>
 <select name="" @input="input">
-	<option v-for="(option, index) in options" :key=index :selected="modelValue === option.value">{{ option.value }}</option>
+	<option v-for="(option, index) in options" :key="index" :selected="modelValue === option.value">{{ option.key }}</option>
 </select>
 </template>
 

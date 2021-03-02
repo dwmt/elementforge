@@ -34,8 +34,6 @@ import ContainerComponent from '../ContainerComponent.vue'
 
 import DateTimePicker from '../DateTimePicker/DateTimePicker.vue'
 
-import Vue from 'vue'
-
 import {format} from 'date-fns'
 const isNull = (value) => typeof value === "object" && !value
 
@@ -66,7 +64,7 @@ export default {
 			return this.format
 		},
 		displayDate () {
-			let val = this.value
+			let val = this.modelValue
 			val = (typeof val === 'undefined') ? '' : format(isNull(val) ? new Date() : new Date(val), this.computedFormat)
 			return val
 		}

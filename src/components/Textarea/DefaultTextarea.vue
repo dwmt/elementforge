@@ -1,6 +1,6 @@
 <template>
 <textarea
-	:value="value"
+	:value="modelValue"
 	:required="required"
 	:placeholder="placeholder"
 	:disabled="disabled"
@@ -28,7 +28,7 @@ export default {
 			if (this.disabled) {
 				return
 			}
-			this.$emit('click', { event: e, data: this.value })
+			this.$emit('click', { event: e, data: this.modelValue })
 		},
 		input (e) {
 			this.$emit('update:modelValue', e.target.value )

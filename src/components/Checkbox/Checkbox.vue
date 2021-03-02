@@ -24,8 +24,7 @@ import Props from '../../props/index.js'
 import Events from '../../events/index.js'
 import ContainerComponent from '../ContainerComponent.vue'
 
-import Loader from '@dwmt/loader/lib/Loader'
-// const Loader = require('@dwmt/loader/lib/Loader')
+import {Loader} from '@dwmt/loader'
 
 export default {
 	name: 'Checkbox',
@@ -42,7 +41,7 @@ export default {
 	emits: Events.Checkbox.container,
 	computed: {
 		checked () {
-			return this.modelValue === this.trueValue
+			return this.modelValue === this.truemodelValue
 		}
 	},
 	methods: {
@@ -51,9 +50,9 @@ export default {
 		},
 		input (payload) {
 			if (!payload) {
-				this.$emit('update:modelValue', this.falseValue)
+				this.$emit('update:modelValue', this.falsemodelValue)
 			} else {
-				this.$emit('update:modelValue', this.trueValue)
+				this.$emit('update:modelValue', this.truemodelValue)
 			}
 		}
 	},

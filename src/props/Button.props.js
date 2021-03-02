@@ -22,7 +22,7 @@ const container = {
   formInstance: {
     type: Object,
     default () {
-      return this.form
+      return null
     }
   },
   ...props

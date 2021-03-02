@@ -4,7 +4,7 @@
 		.tag(v-for="(tag, key) in tags" :key="key")
 			span.name {{ tag }}
 			span.delete(@click="remove(tag)") x
-	input(:value="value", @input="input", @keypress.enter="enter", @keyup.delete="backspace")
+	input(:value="modelValue", @input="input", @keypress.enter="enter", @keyup.delete="backspace")
 </template>
 
 <script>

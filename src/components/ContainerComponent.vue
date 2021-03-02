@@ -1,9 +1,6 @@
 <script>
 import RenderableComponent from "./RenderableComponent.vue"
-
-const Loader = require('@dwmt/loader/lib/Loader')
-import container from '../Container'
-import bus from '../CommunicationBus.js'
+import { Loader } from '@dwmt/loader'
 export default {
 	name: 'ContainerComponent',
 	extends: RenderableComponent,
@@ -34,11 +31,11 @@ export default {
 			return this.globalDarkMode
 		},
 		renderableComponent () {
-			let theme = container.getDefaultTheme()
+			let theme = this.$furnace.getDefaultTheme()
 			if (this.theme) {
 				theme = this.theme
 			}
-			let appearance = container.getAppearance(theme, this.component, this.appearance)
+			let appearance = this.$furnace.getAppearance(theme, this.component, this.appearance)
 			if (!appearance) {
 				return this.defaultComponent
 			}
@@ -46,8 +43,7 @@ export default {
 		}
 	},
 	beforeMount () {
-		this.globalDarkMode = container.getDarkMode()
-		bus.on('darkMode:change', (darkMode) => {
+		this.globalDarkMode = this.$furnace.onDarkMode((darkMode) => {
 			this.globalDarkMode = darkMode
 		})
 		this.loader = new Loader({

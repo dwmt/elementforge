@@ -7,7 +7,7 @@ component(
 	:modifiers="modifiers"
 	:properties="properties"
 
-	:value="value"
+	:value="modelValue"
 	:label="label"
 	:disabled="disabled"
 
@@ -37,7 +37,7 @@ export default {
 	},
 	computed: {
 		nextState () {
-			return stateMatrix[this.value.toString()]
+			return stateMatrix[this.modelValue.toString()]
 		}
 	},
 	methods: {

@@ -6,7 +6,7 @@
 	:name="name"
 	:darkMode="darkModeState"
 	:label="label"
-	:value="value"
+	:value="modelValue"
 	:showPercentage="showPercentage"
 	:animated="animated"
 />

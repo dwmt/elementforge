@@ -6,7 +6,7 @@
 	:name="name"
 	:darkMode="darkModeState"
 
-	:value="value"
+	:value="modelValue"
 	:animated="animated"
 	:min="min"
 	:max="max"
