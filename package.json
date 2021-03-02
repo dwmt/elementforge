@@ -1,6 +1,6 @@
 {
 	"name": "@dwmt/elementforge",
-	"version": "2.0.0-rc1",
+	"version": "2.0.0-rc2",
 	"description": "Simple UI component library",
 	"main": "./dist/elementforge.umd.js",
 	"module": "./dist/elementforge.es.js",
@@ -10,9 +10,10 @@
 			"require": "./dist/elementforge.umd.js"
 		}
 	},
+	"types": "./dist/ElementForge.d.ts",
 	"scripts": {
 		"prepublishOnly": "npm run build",
-		"build": "rimraf dist && vite build",
+		"build": "rimraf dist && vite build && tsc -d --emitDeclarationOnly --outDir dist",
 		"dev": "vite"
 	},
 	"files": [
