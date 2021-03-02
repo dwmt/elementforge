@@ -37,35 +37,31 @@ const props = {
   }
 }
 
-const container = {
-  ...props,
-  behaviour: {
-    type: String,
-    default: 'input'
-  },
-  autoFilter: {
-    type: Boolean,
-    default: () => true
-  }
-}
-
-const renderable = {
-  ...props,
-  selectedOption: {
-    type: Number,
-    default: () => 0
-  },
-  visible: {
-    type: Boolean,
-    default: () => false
-  },
-  selectedIndex: {
-    type: Number,
-    default: () => -1
-  }
-}
-
 export default {
-  container,
-  renderable
+  container: {
+		...props,
+		behaviour: {
+			type: String,
+			default: 'input'
+		},
+		autoFilter: {
+			type: Boolean,
+			default: () => true
+		}
+	},
+  renderable: {
+		...props,
+		selectedOption: {
+			type: Number,
+			default: () => 0
+		},
+		visible: {
+			type: Boolean,
+			default: () => false
+		},
+		selectedIndex: {
+			type: Number,
+			default: () => -1
+		}
+	}
 }

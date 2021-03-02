@@ -1,5 +1,6 @@
-<script>
-export default {
+<script lang="ts">
+import {defineComponent} from 'vue'
+export default defineComponent({
 	name: 'RenderableComponent',
 	props: {
 		modifiers: {
@@ -25,5 +26,5 @@ export default {
 			default: false
 		}
 	}
-}
+})
 </script>

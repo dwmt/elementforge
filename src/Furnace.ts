@@ -115,6 +115,7 @@ export class Furnace {
 
 	install (app: App) {
 		const furnace = this
+		this.app = app
 		componentLibrary.install(app, this.installOptions)
 		if (this.installOptions.darkMode) {
 			this.setDarkMode(this.installOptions.darkMode)
@@ -158,7 +159,7 @@ export class Furnace {
 		}
 		for(const componentKey of Object.keys(this.themes[themeName])) {
 			for(const appearanceKey of Object.keys(this.themes[themeName][componentKey])) {
-				this.app!.component(componentKey, this.themes[themeName][componentKey][appearanceKey].vueComponent)
+				this.app!.component(this.themes[themeName][componentKey][appearanceKey].componentName, this.themes[themeName][componentKey][appearanceKey].vueComponent)
 			}
 		}
 		this.themes[themeName]._installed = true

@@ -18,29 +18,23 @@ const props = {
   }
 }
 
-const container = {
-  ...props,
-  modal: {
-    type: Boolean,
-    default: false
-  },
-  returnDate: {
-    type: Boolean,
-    default: false
-  },
-  defaultDate: {
-    default: () => new Date()
-  },
-  format: {
-    type: String
-  }
-}
-
-const renderable = {
-  ...props
-}
-
 export default {
-  container,
-  renderable
+  container: {
+		...props,
+		modal: {
+			type: Boolean,
+			default: false
+		},
+		returnDate: {
+			type: Boolean,
+			default: false
+		},
+		defaultDate: {
+			default: () => new Date()
+		},
+		format: {
+			type: String
+		}
+	},
+  renderable: props
 }
