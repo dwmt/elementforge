@@ -1,5 +1,5 @@
 <template>
-<progress class="default" :value="modelValue" max="100"/>
+<progress class="default" :value="value" max="100"/>
 </template>
 <script>
 import Props from '../../props/index.js'

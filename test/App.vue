@@ -111,6 +111,7 @@
 	h3
 		span Default
 	div(class="w-1/3")
+		div {{ normalInput }}
 		Input(
 			label="Normal Input",
 			v-model="normalInput",
