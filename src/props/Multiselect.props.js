@@ -10,7 +10,6 @@ const container = {
   ...props,
   modelValue: {},
   options: {},
-	localisation: {}
 }
 
 const renderable = {

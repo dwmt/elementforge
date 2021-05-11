@@ -16,10 +16,6 @@ const props = {
 export default {
   container: {
 		modelValue: {},
-		localisation: {
-			type: Boolean,
-			default: false
-		},
 		...props
 	}
 	,

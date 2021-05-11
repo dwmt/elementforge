@@ -90,13 +90,11 @@ export default {
 			}
 
 			if (allObject && allObjKey) {
-				return OPTIONS_TYPES.LOCALIZED
+				return OPTIONS_TYPES.COMPLEX
 			}
 			throw new Error('Provided options array is invalid!')
 		},
-		// TODO: provide default return value
-		// eslint-disable-next-line
-	selectionOptions () {
+		selectionOptions () {
 			if (!this.options || !this.options.length) {
 				return []
 			}
@@ -105,27 +103,7 @@ export default {
 			if (optionsType === OPTIONS_TYPES.ARRAY) {
 				return this.options.map((o) => { return {key: o, value: o} })
 			}
-
-			if (optionsType === OPTIONS_TYPES.NORMAL && !this.localisation) {
-				return this.options
-			}
-			if (optionsType === OPTIONS_TYPES.NORMAL && this.localisation) {
-				return this.options.map((o) => {
-					return {
-						key: this.translate(o.key),
-						value: o.value
-					}
-				})
-			}
-
-			if (optionsType === OPTIONS_TYPES.LOCALIZED) {
-				return this.options.map((o, key) => {
-					return {
-						key: o[optionalChaining(this, $i18n.locale)] || o.default || 'No Key #' + key,
-						value: o.value
-					}
-				})
-			}
+			return this.options
 		},
 		selectedItems () {
 			return this.selectionOptions.filter((item) => {
