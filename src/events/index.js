@@ -3,6 +3,8 @@ import Button from './Button.events'
 import Checkbox from './Checkbox.events'
 import DateTime from './DateTime.events'
 import DateTimePicker from './DateTimePicker.events'
+import DateRange from './DateRange.events'
+import DateRangePicker from './DateRangePicker.events'
 import Form from './Form.events'
 import Input from './Input.events'
 import Label from './Label.events'
@@ -29,5 +31,7 @@ export default {
 	RadioGroup,
 	Select,
 	Slider,
-	Textarea
+	Textarea,
+	DateRange,
+	DateRangePicker
 }

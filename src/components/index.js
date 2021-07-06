@@ -8,6 +8,8 @@ import Progress from './Progress'
 import Multiselect from './Multiselect'
 import DateTimePicker from './DateTimePicker'
 import DateTime from './DateTime'
+import DateRangePicker from './DateRangePicker'
+import DateRange from './DateRange'
 import TagInput from './TagInput'
 import Form from './Form'
 import Paginator from './Paginator'
@@ -29,6 +31,8 @@ const components = {
   Multiselect: Multiselect,
   DateTimePicker: DateTimePicker,
   DateTime: DateTime,
+  DateRangePicker: DateRangePicker,
+  DateRange: DateRange,
   TagInput: TagInput,
   Form: Form,
   Paginator: Paginator,

@@ -2,6 +2,8 @@ import Button from './Button.props'
 import Checkbox from './Checkbox.props'
 import DateTime from './DateTime.props'
 import DateTimePicker from './DateTimePicker.props'
+import DateRange from './DateRange.props'
+import DateRangePicker from './DateRangePicker.props'
 import Form from './Form.props'
 import Input from './Input.props'
 import InputGroup from './InputGroup.props'
@@ -24,6 +26,8 @@ export default {
   Checkbox,
   DateTime,
   DateTimePicker,
+  DateRange,
+  DateRangePicker,
   Form,
   Input,
   InputGroup,

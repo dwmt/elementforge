@@ -218,6 +218,12 @@
 		span Default
 	div(class="w-1/3")
 		Slider(:min="0", :max="100", v-model="sliderValue", :step="1")
+	h2
+		span DateRange
+	h3
+		span Default
+	div(class="w-1/3")
+		DateRange(:modelValue="{ start: new Date(), end: new Date()}")
 </template>
 
 <script lang="ts">
