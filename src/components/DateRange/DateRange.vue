@@ -43,8 +43,7 @@ export default {
 		return {
 			component: 'DateRange',
 			defaultComponent: 'default-daterange',
-			pickerVisible: false,
-			datePickerRemoveFunc: null
+			pickerVisible: false
 		}
 	},
 	computed: {
@@ -66,19 +65,9 @@ export default {
 		openPicker () {
 			if (this.pickerVisible) return
 			this.pickerVisible = true
-			const appContainer = this.$root.$el
-			const datePickerContainer = document.createElement('div')
-			const datePickerID = 'ef-daterange-container' + Date.now()
-			datePickerContainer.id = datePickerID
-
-			appContainer.appendChild(datePickerContainer)
-
 		},
 		closePicker () {
 			this.pickerVisible = false
-			if (!this.datePickerRemoveFunc) return
-			this.datePickerRemoveFunc()
-			this.datePickerRemoveFunc = null
 		}
 	}
 }

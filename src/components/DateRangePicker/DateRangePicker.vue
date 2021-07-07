@@ -69,7 +69,7 @@ export default {
 				day: 0
 			},
 			selectionState: IntervalSelectionState.START,
-
+			closeCallback: null,
 			selectedInterval: {
 				start: {
 					year: 0,
@@ -87,18 +87,32 @@ export default {
 	computed: {
 		dateValue () {
 			const { start, end } = this.modelValue
-			if (!start) return new Date()
-			if (!end) return new Date(start)
-			return new Date(end)
+			if (!start) return {
+				start: new Date(),
+				end: new Date()
+			}
+			return {
+				start: new Date(start),
+				end: new Date(end)
+			}
 		},
 		year () {
-			return this.dateValue.getFullYear()
+			return {
+				start: this.dateValue.start.getFullYear(),
+				end: this.dateValue.end.getFullYear()
+			}
 		},
 		month () {
-			return this.dateValue.getMonth()
+			return {
+				start: this.dateValue.start.getMonth(),
+				end: this.dateValue.end.getMonth()
+			}
 		},
 		day () {
-			return this.dateValue.getDate()
+			return {
+				start: this.dateValue.start.getDate(),
+				end: this.dateValue.end.getDate()
+			}
 		},
 		days () {
 			let date = new Date(this.state.year, this.state.month, 1)
@@ -201,18 +215,31 @@ export default {
 		}
 	},
 	mounted () {
-		this.state.year = this.year
-		this.state.month = this.month
-		this.state.day = this.day
+		this.closeCallback = (e) => {
+			if (this.$el.contains(e.target)) {
+				return
+			}
+			document.body.removeEventListener('click', this.closeCallback)
+			this.closeCallback = null
+			this.$emit('close')
+		}
+		setTimeout(() => {
+			document.body.addEventListener('click', this.closeCallback)
+		})
+
+		this.state.year = this.year.end
+		this.state.month = this.month.end
+		this.state.day = this.day.end
+
 		this.selectedInterval.start = {
-			year: this.year,
-			month: this.month,
-			day: this.day
+			year: this.year.start,
+			month: this.month.start,
+			day: this.day.start
 		}
 		this.selectedInterval.end = {
-			year: this.year,
-			month: this.month,
-			day: this.day
+			year: this.year.end,
+			month: this.month.end,
+			day: this.day.end
 		}
 	}
 }
