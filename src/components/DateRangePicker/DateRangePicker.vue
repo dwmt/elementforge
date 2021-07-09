@@ -69,7 +69,6 @@ export default {
 				day: 0
 			},
 			selectionState: IntervalSelectionState.START,
-			closeCallback: null,
 			selectedInterval: {
 				start: {
 					year: 0,
@@ -215,18 +214,6 @@ export default {
 		}
 	},
 	mounted () {
-		this.closeCallback = (e) => {
-			if (this.$el.contains(e.target)) {
-				return
-			}
-			document.body.removeEventListener('click', this.closeCallback)
-			this.closeCallback = null
-			this.$emit('close')
-		}
-		setTimeout(() => {
-			document.body.addEventListener('click', this.closeCallback)
-		})
-
 		this.state.year = this.year.end
 		this.state.month = this.month.end
 		this.state.day = this.day.end
