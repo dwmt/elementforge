@@ -172,7 +172,10 @@ export default {
 			this.makeDirty()
 		},
 
+		// TODO: refactor this
 		setComputedValue () {
+			if (!this.useAutocomplete) return
+
 			const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
 
 			if (val) {
