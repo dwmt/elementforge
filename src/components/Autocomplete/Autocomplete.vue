@@ -75,7 +75,7 @@ export default {
 		}
 	},
 	props: Props.Autocomplete.container,
-	emits: Props.Autocomplete.container,
+	emits: Events.Autocomplete.container,
 	computed: {
 		optionsComputed () {
 			return this.optionsCleaned
@@ -151,6 +151,7 @@ export default {
 			}
 			if (e.keyCode == 13) {
 				e.preventDefault()
+				if (!this.optionsCleaned.length) return
 				this.selectOption(this.selectedOption)
 			}
 			if (e.keyCode == 9) {
@@ -167,14 +168,15 @@ export default {
 			const selectedIndex = optionIndex
 			const selectedOption = this.optionsComputed[optionIndex]
 			this.computedValue = selectedOption.value
+			this.$emit('optionSelected', selectedOption.value)
 			this.$emit('update:modelValue', selectedOption.value)
 			this.dropdownVisible = false
 			this.makeDirty()
 		},
 
-		// TODO: refactor this
-		setComputedValue () {
-			if (!this.useAutocomplete) return
+		// TODO: rethink this
+		setComputedValue (initial = false) {
+			if (!this.useAutocomplete && initial) return
 
 			const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
 
@@ -231,7 +233,7 @@ export default {
 			})
 		}
 		this.optionsCleaned = this.cleanOptions(this.options)
-		this.setComputedValue()
+		this.setComputedValue(true)
 
 	},
 	beforeUnmount () {

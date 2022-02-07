@@ -19,6 +19,10 @@ export default {
 		},
 		defaultDate: {
 			default: () => new Date()
+		},
+		emitOnSelect: {
+			type: Boolean,
+			default: true
 		}
 	},
   renderable: {
@@ -27,7 +31,7 @@ export default {
 			type: Object,
 			default: () => { return {} }
 		},
-	
+
 		year: {
 			type: Number
 		},
@@ -37,7 +41,7 @@ export default {
 		day: {
 			type: Number
 		},
-	
+
 		needTime: {
 			type: Boolean,
 			default: false
@@ -48,7 +52,7 @@ export default {
 		minute: {
 			type: Number
 		},
-	
+
 		selectedYear: {
 			type: Number
 		},

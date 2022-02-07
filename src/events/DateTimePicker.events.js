@@ -8,7 +8,23 @@ const container = {
 }
 
 const renderable = {
-  ...events
+  ...events,
+  previousYear: {},
+  nextYear: {},
+  selectYear: {},
+  previousMonth: {},
+  nextMonth: {},
+  selectMonth: {},
+  previousDay: {},
+  nextDay: {},
+  selectDay: {},
+  previousHour: {},
+  nextHour: {},
+  selectHour: {},
+  previousMinute: {},
+  nextMinute: {},
+  selectMinute: {},
+  input: {}
 }
 
 export default {

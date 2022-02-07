@@ -1,6 +1,7 @@
 const events = {
 	filter: {},
-	'update:modelValue': {}
+	'update:modelValue': {},
+  optionSelected: {}
 }
 
 const container = {
