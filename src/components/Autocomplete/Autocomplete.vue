@@ -78,6 +78,9 @@ export default {
 	emits: Events.Autocomplete.container,
 	computed: {
 		optionsComputed () {
+			if (this.autoFilter) {
+				return this.optionsCleaned.filter(option => this.autoFilterFunction(option.key, this.computedValue))
+			}
 			return this.optionsCleaned
 		},
 		isValidComputed () {
@@ -94,6 +97,11 @@ export default {
 		}
 	},
 	methods: {
+
+		autoFilterFunction (element, expression) {
+			return element.includes(expression)
+		},
+
 		// Input events
 		input (payload) {
 			if (!this.autoFilter) {
@@ -151,7 +159,7 @@ export default {
 			}
 			if (e.keyCode == 13) {
 				e.preventDefault()
-				if (!this.optionsCleaned.length) return
+				if (!this.optionsComputed.length) return
 				this.selectOption(this.selectedOption)
 			}
 			if (e.keyCode == 9) {
@@ -167,6 +175,7 @@ export default {
 			console.log('Selecting option...')
 			const selectedIndex = optionIndex
 			const selectedOption = this.optionsComputed[optionIndex]
+			if (selectedOption.value === this.modelValue) return
 			this.computedValue = selectedOption.value
 			this.$emit('optionSelected', selectedOption.value)
 			this.$emit('update:modelValue', selectedOption.value)
@@ -176,7 +185,7 @@ export default {
 
 		// TODO: rethink this
 		setComputedValue (initial = false) {
-			if (!this.useAutocomplete && initial) return
+			if (!this.useAutocomplete || !initial) return
 
 			const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
 
