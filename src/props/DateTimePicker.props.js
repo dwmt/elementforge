@@ -19,10 +19,6 @@ export default {
 		},
 		defaultDate: {
 			default: () => new Date()
-		},
-		emitOnSelect: {
-			type: Boolean,
-			default: true
 		}
 	},
   renderable: {

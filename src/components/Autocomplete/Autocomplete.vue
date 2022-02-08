@@ -20,7 +20,7 @@
 		@update:model-value="input"
 		@focus="focus"
 		@blur="blur"
-		@keydown="keypress"
+		@keydown.self="keypress"
 		ref="inputField"
 	)
 	component(
@@ -139,9 +139,11 @@ export default {
 			}, 250)
 		},
 		arrowUp () {
+			console.log('arrowUP')
 			this.selectedOption = (this.selectedOption - 1 >= 0) ? this.selectedOption - 1 : 0
 		},
 		arrowDown () {
+			console.log('arrowDOWN')
 			this.selectedOption = (this.selectedOption + 1 < this.optionsComputed.length) ? this.selectedOption + 1 : this.optionsComputed.length - 1
 		},
 		keypress (e) {

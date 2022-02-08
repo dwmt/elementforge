@@ -195,9 +195,6 @@ export default {
 				selectedDay = daysInMonth(this.selectedYear, this.selectedMonth)
 			}
 			this.selectedDay = selectedDay
-			if (this.emitOnSelect && this.type === 'date') {
-				this.input()
-			}
 		},
 		nextDay () {
 			let selectedDay = this.selectedDay + 1
@@ -207,9 +204,6 @@ export default {
 				selectedDay = 0
 			}
 			this.selectedDay = selectedDay
-			if (this.emitOnSelect && this.type === 'date') {
-				this.input()
-			}
 		},
 		selectDay (day) {
 			let selectedDay = day
@@ -218,55 +212,34 @@ export default {
 				selectedDay = 0
 			}
 			this.selectedDay = selectedDay
-			if (this.emitOnSelect && this.type === 'date') {
-				this.input()
-			}
 		},
 
 		previousHour () {
 			let selectedHour = this.selectedHour - 1
 			if (selectedHour < 0) selectedHour = 23
 			this.selectedHour = selectedHour
-			if (this.emitOnSelect && this.type === 'datetime') {
-				this.input()
-			}
 		},
 		nextHour () {
 			let selectedHour = this.selectedHour + 1
 			if (selectedHour > 23) selectedHour = 0
 			this.selectedHour = selectedHour
-			if (this.emitOnSelect && this.type === 'datetime') {
-				this.input()
-			}
 		},
 		selectHour (hour) {
 			this.selectedHour = (hour < 0 || hour > 23) ? 0 : hour
-			if (this.emitOnSelect && this.type === 'datetime') {
-				this.input()
-			}
 		},
 
 		previousMinute () {
 			let selectedMinute = this.selectedMinute - 1
 			if (selectedMinute < 0) selectedMinute = 59
 			this.selectedMinute = selectedMinute
-			if (this.emitOnSelect && this.type === 'datetime') {
-				this.input()
-			}
 		},
 		nextMinute () {
 			let selectedMinute = this.selectedMinute + 1
 			if (selectedMinute > 59) selectedMinute = 0
 			this.selectedMinute = selectedMinute
-			if (this.emitOnSelect && this.type === 'datetime') {
-				this.input()
-			}
 		},
 		selectMinute (minute) {
 			this.selectedMinute = (minute < 0 || minute > 59) ? 0 : minute
-			if (this.emitOnSelect && this.type === 'datetime') {
-				this.input()
-			}
 		}
 	},
 	mounted () {
