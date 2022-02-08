@@ -99,7 +99,7 @@ export default {
 	methods: {
 
 		autoFilterFunction (element, expression) {
-			return element.includes(expression)
+			return element.toLocaleLowerCase().includes(expression.toLocaleLowerCase())
 		},
 
 		// Input events
@@ -136,14 +136,15 @@ export default {
 			setTimeout(() => {
 				this.dropdownVisible = false
 				this.selectedOption = 0
+				if (this.behaviour === 'select') {
+					this.setComputedValue()
+				}
 			}, 250)
 		},
 		arrowUp () {
-			console.log('arrowUP')
 			this.selectedOption = (this.selectedOption - 1 >= 0) ? this.selectedOption - 1 : 0
 		},
 		arrowDown () {
-			console.log('arrowDOWN')
 			this.selectedOption = (this.selectedOption + 1 < this.optionsComputed.length) ? this.selectedOption + 1 : this.optionsComputed.length - 1
 		},
 		keypress (e) {
@@ -151,20 +152,22 @@ export default {
 				this.dropdownVisible = true
 				return
 			}
-			if (e.keyCode == 38) {
+			if (e.keyCode === 38) {
 				e.preventDefault()
 				this.arrowUp()
 			}
-			if (e.keyCode == 40) {
+			if (e.keyCode === 40) {
 				e.preventDefault()
 				this.arrowDown()
 			}
-			if (e.keyCode == 13) {
+			if (e.keyCode === 13) {
 				e.preventDefault()
 				if (!this.optionsComputed.length) return
 				this.selectOption(this.selectedOption)
 			}
-			if (e.keyCode == 9) {
+			if (e.keyCode === 9) {
+				e.preventDefault()
+				if (!this.optionsComputed.length) return
 				this.selectOption(this.selectedOption)
 			}
 		},
@@ -177,8 +180,6 @@ export default {
 			console.log('Selecting option...')
 			const selectedIndex = optionIndex
 			const selectedOption = this.optionsComputed[optionIndex]
-			if (selectedOption.value === this.modelValue) return
-			this.computedValue = selectedOption.value
 			this.$emit('optionSelected', selectedOption.value)
 			this.$emit('update:modelValue', selectedOption.value)
 			this.dropdownVisible = false
@@ -186,31 +187,32 @@ export default {
 		},
 
 		// TODO: rethink this
-		setComputedValue (initial = false) {
-			if (!this.useAutocomplete || !initial) return
-
-			const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
-
-			if (val) {
-				this.computedValue = val.key
-				this.selectedIndex = this.optionsCleaned.indexOf(val)
+		setComputedValue () {
+			if (!this.modelValue) {
+				this.computedValue = ''
+				this.selectedIndex = -1
 				return
 			}
-			if (typeof this.modelValue === 'string') {
-				this.computedValue = this.modelValue
-			} else {
-				this.computedValue = this.displayValue
+			if (this.behaviour === 'select') {
+				const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
+				if (val) {
+					this.computedValue = val.key
+					this.selectedIndex = this.optionsCleaned.indexOf(val)
+				}
+				return
 			}
-			this.selectedIndex = -1
+			this.computedValue = this.modelValue
 		},
 
 		cleanOptions (options) {
 			const res = []
 			for (const option of options) {
 				if (typeof option === 'string') {
-					res.push({ key: option, value: option })
-				} else {
+					res.push({ key: option, listKey: option, value: option })
+				} else if (Object.keys(option).includes('listKey')) {
 					res.push(option)
+				} else {
+					res.push({ key: option.key, listKey: option.key, value: option.value })
 				}
 			}
 			return res
@@ -244,7 +246,7 @@ export default {
 			})
 		}
 		this.optionsCleaned = this.cleanOptions(this.options)
-		this.setComputedValue(true)
+		this.setComputedValue()
 
 	},
 	beforeUnmount () {

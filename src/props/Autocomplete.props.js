@@ -1,8 +1,4 @@
 const props = {
-  useAutocomplete: {
-    type: Boolean,
-    default: false
-  },
   label: {
     type: String,
     default: ''
