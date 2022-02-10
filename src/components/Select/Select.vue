@@ -123,6 +123,9 @@ export default {
 		}
 	},
 	watch: {
+		modelValue () {
+			this.selectedIndex = this.options.findIndex(option => option.value ? option.value === this.modelValue : option === this.modelValue)
+		},
 		toggled () {
 			if (this.toggled) {
 				document.addEventListener('click', this.blurEvent)
@@ -153,7 +156,6 @@ export default {
 			this.$emit('click', payload)
 		},
 		select (key) {
-			this.selectedIndex = key
 			this.$emit('update:modelValue', this.selectionOptions[key].value)
 			this.toggled = false
 			this.state = STATES.DIRTY
