@@ -123,8 +123,11 @@ export default {
 		}
 	},
 	watch: {
-		modelValue () {
-			this.selectedIndex = this.options.findIndex(option => option.value ? option.value === this.modelValue : option === this.modelValue)
+		modelValue: {
+			handler: function () {
+				this.selectedIndex = this.options.findIndex(option => option.value ? option.value === this.modelValue : option === this.modelValue)
+			},
+			deep: true
 		},
 		toggled () {
 			if (this.toggled) {
