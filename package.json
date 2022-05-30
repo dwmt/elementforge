@@ -1,6 +1,6 @@
 {
 	"name": "@dwmt/elementforge",
-	"version": "2.0.0-rc19",
+	"version": "2.0.0-rc20",
 	"description": "Simple UI component library",
 	"main": "./dist/elementforge.umd.js",
 	"module": "./dist/elementforge.es.js",
@@ -64,10 +64,13 @@
 	"devDependencies": {
 		"@types/node": "^14.14.31",
 		"@vitejs/plugin-vue": "^1.1.5",
+		"@vue/compiler-sfc": "^3.2.36",
+		"@vue/runtime-core": "^3.2.36",
 		"pug": "^3.0.0",
 		"rimraf": "^3.0.2",
 		"stylus": "^0.54.8",
 		"typescript": "^4.2.2",
-		"vite": "^2.0.3"
+		"vite": "^2.0.3",
+		"vue": "^3.2.36"
 	}
 }

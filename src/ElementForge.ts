@@ -1,12 +1,18 @@
-export { Theme } from './theme/Theme'
-export { Furnace, createFurnace } from './Furnace'
-export { useFurnace } from './composition'
+import { Theme } from './theme/Theme'
+import { Furnace, createFurnace } from './Furnace'
+import { useFurnace } from './composition'
 
-import RenderableComponentVue from './components/RenderableComponent.vue'
-export const RenderableComponent = RenderableComponentVue
+import RenderableComponent from './components/RenderableComponent.vue'
 
 import props from './props/index'
-export const components = props
 import evts from './events/index'
-export const events = evts
 
+export default {
+  Theme,
+  Furnace,
+  createFurnace,
+  useFurnace,
+  RenderableComponent,
+  components: props,
+  events: evts
+}
