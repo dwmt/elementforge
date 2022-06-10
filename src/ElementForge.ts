@@ -7,6 +7,8 @@ import RenderableComponent from './components/RenderableComponent.vue'
 import props from './props/index'
 import evts from './events/index'
 
+import * as vueComponents from './components/vueComponents'
+
 export default {
   Theme,
   Furnace,
@@ -14,5 +16,6 @@ export default {
   useFurnace,
   RenderableComponent,
   components: props,
-  events: evts
+  events: evts,
+  vueComponents,
 }
