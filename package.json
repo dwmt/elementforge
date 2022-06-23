@@ -82,7 +82,7 @@
 		"expect": "^24.9.0",
 		"file-loader": "^5.0.2",
 		"install-peers-cli": "^2.2.0",
-		"jsdom": "^15.2.1",
+		"jsdom": "^16.5.0",
 		"jsdom-global": "^3.0.2",
 		"mini-css-extract-plugin": "^0.9.0",
 		"minimist": "^1.2.5",
