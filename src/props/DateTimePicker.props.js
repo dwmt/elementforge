@@ -19,6 +19,12 @@ export default {
 		},
 		defaultDate: {
 			default: () => new Date()
+		},
+		min: {
+			type: String
+		},
+		max: {
+			type: String
 		}
 	},
   renderable: {
@@ -66,6 +72,12 @@ export default {
 		},
 		days: {
 			type: Array
+		},
+		min: {
+			type: Date
+		},
+		max: {
+			type: Date
 		}
 	}
 }

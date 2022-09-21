@@ -15,6 +15,14 @@ const props = {
   disabled: {
     default: false,
     type: Boolean
+  },
+  min: {
+  	default: '',
+	type: String | Number
+  },
+  max: {
+  	default: '',
+	type: String | Number
   }
 }
 

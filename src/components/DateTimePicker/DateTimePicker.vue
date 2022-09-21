@@ -12,6 +12,8 @@
 	:needTime="type === 'datetime'"
 	:hour="hour"
 	:minute="minute"
+	:min="minDate"
+	:max="maxDate"
 
 	:selectedYear="selectedYear"
 	:selectedMonth="selectedMonth"
@@ -136,6 +138,28 @@ export default {
 			}
 
 			return validMonth && validDay
+		},
+		minDate () {
+			if (this.min) {
+				const date = new Date(this.min)
+
+				if (date.toString() !== 'Invalid Date') {
+					return date
+				}
+			}
+
+			return null
+		},
+		maxDate () {
+			if (this.max) {
+				const date = new Date(this.max)
+
+				if (date.toString() !== 'Invalid Date') {
+					return date
+				}
+			}
+
+			return null
 		}
 	},
 	methods: {
@@ -247,6 +271,7 @@ export default {
 			throw new Error(`[ElementForge][DateTimePicker][${this.theme}]${this.type} type is not supported`)
 		}
 		console.log('DateTimePicker', this.hour, this.minute)
+		console.log('asd', this.minDate, this.maxDate)
 		this.selectedYear = this.year
 		this.selectedMonth = this.month
 		this.selectedDay = this.day
