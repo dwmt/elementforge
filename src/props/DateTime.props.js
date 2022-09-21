@@ -17,12 +17,12 @@ const props = {
     type: Boolean
   },
   min: {
-  	default: '',
-	type: String | Number
+    default: '',
+	type: String
   },
   max: {
-  	default: '',
-	type: String | Number
+    default: '',
+	type: String
   }
 }
 
