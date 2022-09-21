@@ -270,8 +270,6 @@ export default {
 		if (this.type !== 'date' && this.type !== 'datetime') {
 			throw new Error(`[ElementForge][DateTimePicker][${this.theme}]${this.type} type is not supported`)
 		}
-		console.log('DateTimePicker', this.hour, this.minute)
-		console.log('asd', this.minDate, this.maxDate)
 		this.selectedYear = this.year
 		this.selectedMonth = this.month
 		this.selectedDay = this.day
