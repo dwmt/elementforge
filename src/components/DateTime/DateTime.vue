@@ -21,6 +21,8 @@
 		:defaultDate="defaultDate"
 		:modal="true"
 		:returnDate="true"
+		:min="min",
+		:max="max",
 
 		@close="closePicker"
 		@update:model-value="changeTime"
