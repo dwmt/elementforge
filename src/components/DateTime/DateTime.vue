@@ -13,20 +13,21 @@
 		:required="required"
 		@click="openPicker"
 	)
-	DateTimePicker(
-		v-if="pickerVisible"
-		:theme="theme"
-		:model-value="modelValue"
-		:type="type"
-		:defaultDate="defaultDate"
-		:modal="true"
-		:returnDate="true"
-		:min="min",
-		:max="max",
+	Teleport(to="body")
+		DateTimePicker(
+			v-if="pickerVisible"
+			:theme="theme"
+			:model-value="modelValue"
+			:type="type"
+			:defaultDate="defaultDate"
+			:modal="true"
+			:returnDate="true"
+			:min="min",
+			:max="max",
 
-		@close="closePicker"
-		@update:model-value="changeTime"
-	)
+			@close="closePicker"
+			@update:model-value="changeTime"
+		)
 </template>
 
 <script>
@@ -48,7 +49,6 @@ export default {
 			component: 'DateTime',
 			defaultComponent: 'default-datetime',
 			pickerVisible: false,
-			datePickerRemoveFunc: null
 		}
 	},
 	props: Props.DateTime.container,
@@ -75,23 +75,12 @@ export default {
 		changeTime (payload) {
 			this.$emit('update:modelValue', payload)
 		},
-		// TODO: Refactor this with teleport when vue 3 is available
 		openPicker () {
 			if (this.pickerVisible) return
 			this.pickerVisible = true
-			const appContainer = this.$root.$el
-			const datePickerContainer = document.createElement('div')
-			const datePickerID = 'ef-datepicker-container' + Date.now()
-			datePickerContainer.id = datePickerID
-
-			appContainer.appendChild(datePickerContainer)
-
 		},
 		closePicker () {
 			this.pickerVisible = false
-			if (!this.datePickerRemoveFunc) return
-			this.datePickerRemoveFunc()
-			this.datePickerRemoveFunc = null
 		}
 	}
 }
