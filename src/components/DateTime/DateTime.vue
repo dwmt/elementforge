@@ -12,6 +12,8 @@
 		:disabled="disabled"
 		:required="required"
 		@click="openPicker"
+		:errors="errors"
+		:is-valid="isValid"
 	)
 	Teleport(to="body")
 		DateTimePicker(
