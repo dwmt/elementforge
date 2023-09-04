@@ -23,7 +23,8 @@
 			:type="type"
 			:defaultDate="defaultDate"
 			:modal="true"
-			:returnDate="true"
+			:returnDate="returnDate",
+			:pointOfTime="pointOfTime"
 			:min="min",
 			:max="max",
 

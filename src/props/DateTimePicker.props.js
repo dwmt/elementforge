@@ -20,6 +20,9 @@ export default {
 		defaultDate: {
 			default: () => new Date()
 		},
+		pointOfTime: {
+			type: String
+		},
 		min: {
 			type: String
 		},

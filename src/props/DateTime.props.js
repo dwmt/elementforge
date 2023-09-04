@@ -35,7 +35,10 @@ export default {
 		},
 		returnDate: {
 			type: Boolean,
-			default: false
+			default: true
+		},
+		pointOfTime: {
+			type: String,
 		},
 		defaultDate: {
 			default: () => new Date()
