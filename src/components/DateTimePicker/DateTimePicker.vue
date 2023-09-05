@@ -122,7 +122,7 @@ export default {
 				if (this.pointOfTime === 'SOD') {
 					return new Date(Date.UTC(this.selectedYear, this.selectedMonth, this.selectedDay, 0, 0, 0))
 				} else if (this.pointOfTime === 'EOD') {
-					return new Date(Date.UTC(this.selectedYear, this.selectedMonth, this.selectedDay, 23, 59, 59))
+					return new Date(this.selectedYear, this.selectedMonth, this.selectedDay, 23, 59, 59)
 				} else {
 					const currentDateTime = new Date()
 					return new Date(
