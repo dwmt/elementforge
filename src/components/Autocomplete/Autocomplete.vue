@@ -68,7 +68,6 @@ export default {
 			computedValue: '',
 			selectedOption: 0,
 			selectedIndex: -1,
-			optionsCleaned: [],
 			state: STATES.PRISTINE,
 			isValidInherit: null,
 			errorsInherit: null
@@ -236,9 +235,6 @@ export default {
 		}
 		this.setComputedValue()
 
-	},
-	beforeUnmount () {
-		this.optionsCleaned = []
 	}
 }
 </script>
