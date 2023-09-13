@@ -77,6 +77,19 @@ export default {
 	props: Props.Autocomplete.container,
 	emits: Events.Autocomplete.container,
 	computed: {
+		optionsCleaned () {
+			const res = []
+			for (const option of this.options) {
+				if (typeof option === 'string') {
+					res.push({ key: option, listKey: option, value: option })
+				} else if (Object.keys(option).includes('listKey')) {
+					res.push(option)
+				} else {
+					res.push({ key: option.key, listKey: option.key, value: option.value })
+				}
+			}
+			return res
+		},
 		optionsComputed () {
 			if (this.autoFilter) {
 				return this.optionsCleaned.filter(option => this.autoFilterFunction(option.key, this.computedValue))
@@ -177,8 +190,6 @@ export default {
 			this.selectedOption = index
 		},
 		selectOption (optionIndex) {
-			console.log('Selecting option...')
-			const selectedIndex = optionIndex
 			const selectedOption = this.optionsComputed[optionIndex]
 			this.$emit('optionSelected', selectedOption.value)
 			this.$emit('update:modelValue', selectedOption.value)
@@ -196,35 +207,13 @@ export default {
 			if (this.behaviour === 'select') {
 				const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
 				if (val) {
-					this.computedValue = val.key
 					this.selectedIndex = this.optionsCleaned.indexOf(val)
 				}
-				return
 			}
 			this.computedValue = this.modelValue
 		},
-
-		cleanOptions (options) {
-			const res = []
-			for (const option of options) {
-				if (typeof option === 'string') {
-					res.push({ key: option, listKey: option, value: option })
-				} else if (Object.keys(option).includes('listKey')) {
-					res.push(option)
-				} else {
-					res.push({ key: option.key, listKey: option.key, value: option.value })
-				}
-			}
-			return res
-		}
 	},
 	watch: {
-		options: {
-			deep: true,
-			handler: function (newVal) {
-				this.optionsCleaned = this.cleanOptions(newVal)
-			}
-		},
 		modelValue: {
 			deep: true,
 			handler: function () {
@@ -245,7 +234,6 @@ export default {
 				this.errorsInherit = errors || null
 			})
 		}
-		this.optionsCleaned = this.cleanOptions(this.options)
 		this.setComputedValue()
 
 	},
