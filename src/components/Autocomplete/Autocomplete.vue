@@ -13,8 +13,8 @@
 		:precision="precision"
 		:max="max"
 		:min="min"
-		:isValid="isValidComputed"
-		:errors="errorsComputed"
+		:isValid="isValid"
+		:errors="errors"
 		:validable="false"
 
 		@update:model-value="input"
@@ -28,8 +28,8 @@
 		:properties="properties"
 		:modifiers="modifiers"
 		:darkMode="darkModeState"
-		:isValid="isValidComputed"
-		:errors="errorsComputed"
+		:isValid="isValid"
+		:errors="errors"
 
 		:options="optionsComputed"
 		:selectedOption="selectedOption"
@@ -57,9 +57,6 @@ export default {
 	name: 'Autocomplete',
 	extends: ContainerComponent,
 	components: { Input },
-	inject: {
-		form: { default: null }
-	},
 	data () {
 		return {
 			component: 'Autocomplete',
@@ -69,8 +66,6 @@ export default {
 			selectedOption: 0,
 			selectedIndex: -1,
 			state: STATES.PRISTINE,
-			isValidInherit: null,
-			errorsInherit: null
 		}
 	},
 	props: Props.Autocomplete.container,
@@ -95,18 +90,6 @@ export default {
 			}
 			return this.optionsCleaned
 		},
-		isValidComputed () {
-			if (!this.form || this.isValidInherit === null) {
-				return this.isValid
-			}
-			return this.isValidInherit
-		},
-		errorsComputed () {
-			if (!this.form || this.errorsInherit === null) {
-				return this.errors
-			}
-			return this.errorsInherit
-		}
 	},
 	methods: {
 
@@ -127,23 +110,14 @@ export default {
 		},
 		makeDirty () {
 			this.state = STATES.DIRTY
-			if (this.form) {
-				this.form.dirty(this.name)
-			}
 		},
 		focus () {
 			this.dropdownVisible = true
 			this.state = STATES.UNTOUCHED
-			if (this.form) {
-				this.form.focus(this.name)
-			}
 		},
 		blur () {
 			if (this.state !== STATES.DIRTY) {
 				this.state = STATES.TOUCHED
-			}
-			if (this.form) {
-				this.form.blur(this.name)
 			}
 			setTimeout(() => {
 				this.dropdownVisible = false
@@ -204,10 +178,12 @@ export default {
 				return
 			}
 			if (this.behaviour === 'select') {
-				const val = this.optionsCleaned.find(o => equal(o.value, this.modelValue))
+				const val = this.optionsComputed.find(o => equal(o.value, this.modelValue))
 				if (val) {
 					this.selectedIndex = this.optionsCleaned.indexOf(val)
+					this.computedValue = val.key
 				}
+				return
 			}
 			this.computedValue = this.modelValue
 		},
@@ -221,20 +197,7 @@ export default {
 		}
 	},
 	mounted () {
-		if (this.form) {
-			this.form.registerEntry(this.name)
-			this.form.watchEntry(this.name, (isValid, errors, reset) => {
-				if (reset) {
-					this.isValidInherit = null
-					this.errorsInherit = null
-					return
-				}
-				this.isValidInherit = !!isValid
-				this.errorsInherit = errors || null
-			})
-		}
 		this.setComputedValue()
-
 	}
 }
 </script>
